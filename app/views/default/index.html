@@ -58,12 +58,12 @@
     <body style="background-image: url('/public/images/bg/bg_test.png');background-size: 239px;background-position: top center">
         <!-- wrapper -->
         <div class="wrapper">
-            <?php if(is_file($theme.'/require/heads.html')) require $theme.'/require/heads.html';?>
-            <?php if(is_file($theme.'/require/header.html')) require $theme.'/require/header.html';?>
+            <?=$head;?>
+            <?=$menu;?>
             <!-- content -->
             <?=$content?>
             <!-- content end -->
-            <?php if(is_file($theme.'/require/footer.html')) require $theme.'/require/footer.html';?>
+            <?=$footer;?>
         </div>
         <!-- wrapper end -->
         <!-- modal end -->

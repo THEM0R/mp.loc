@@ -26,6 +26,9 @@ abstract class Model
      */
     public $theme;
 
+
+
+
     public function __construct($route)
     {
         //pr1(Language::$ru);
@@ -43,6 +46,7 @@ abstract class Model
 
         // unset optimize
         unset($route);
+
     }
 
 

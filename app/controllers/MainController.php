@@ -18,6 +18,9 @@ class MainController extends AppController
     $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
 
     $products = \R::getAll('SELECT id,name,url FROM _material WHERE active = 1');
+
+    //pr1($products);
+
     $slider = $this->slider(\R::getAll('SELECT * FROM _material WHERE active = 1 AND slider = 1'));
 
     $gallery = $this->gallery(\R::getAll('SELECT * FROM _gallery WHERE type = 77'));

@@ -32,12 +32,12 @@ class View
     public function __construct($route, $theme = null, $view = null, $meta = [])
     {
 
-        $this->route        = $route;
-        $this->controller   = App::lowerCamelCase($route['controller']);
-        $this->theme        = $theme ?: THEME;
-        $this->view         = $view;
-        $this->script       = App::$config['script'];
-        $this->meta         = $meta;
+        $this->route = $route;
+        $this->controller = App::lowerCamelCase($route['controller']);
+        $this->theme = $theme ?: THEME;
+        $this->view = $view;
+        $this->script = App::$config['script'];
+        $this->meta = $meta;
         // code
 
         // unset optimize
@@ -48,61 +48,125 @@ class View
 
     }
 
+    private function replaceHtml($file)
+    {
+        if (is_file($file)) {
+
+            $file = file_get_contents($file);
+
+            $html = str_replace("{","<?=$",$file);
+            $html = str_replace("}",";?>",$html);
+
+            return $html;
+
+/*            return preg_replace("#{(.+)}#", "<?=$$1;?>", file_get_contents($file));*/
+        }
+        return false;
+    }
+
 
     public function rendering($vars)
     {
-
         $script = $this->script;
         $all = compact('script');
-        $vars = array_merge($all,$vars);
+        $vars = array_merge($all, $vars);
 
         // unset optimize
         unset($script);
         unset($all);
 
-        if($this->view == false) App::NotFound();
+        if ($this->view == false) App::NotFound();
 
-        if(is_array($vars)) extract($vars);
-
-        // unset optimize
-        unset($vars);
-
-        $file_view = APP .'/views/'.$this->theme.'/'.App::lowerCamelCase($this->view).'.html';
-
-        //pr1($file_view);
-
-        ob_start();
-
-        if( is_file($file_view) ){ require $file_view; }else{ App::NotFound(); }
+        if (is_array($vars)) extract($vars);
 
         // unset optimize
-        unset($file_view);
+        //unset($vars);
 
-        $content = ob_get_clean();
 
-        if( false !== $this->theme )
-        {
+        /*
+         * $content
+         */
+        $file_view = APP . '/views/' . $this->theme . '/' . App::lowerCamelCase($this->view) . '.html';
 
-            $file_theme = APP .'/views/'.$this->theme.'/index.html';
+        if($file_view){
 
-            if( is_file($file_theme) )
-            {
+
+
+            $file_view = $this->replaceHtml($file_view);
+
+
+
+            ob_start();
+            if (is_file($file_view)) {
+
+                //pr1($file_view);
+                //echo $file_view;
+//                require $file_view;
+            }
+            $content = ob_get_clean();
+
+
+            // unset optimize
+            unset($file_view);
+
+        }else{
+            App::NotFound();
+        }
+
+
+        /*
+         * $content end
+         */
+
+        /*
+         * $module
+         */
+
+        if ($modules !== []) {
+            foreach ($modules as $name => $file) {
+                if ($file) {
+                    if (is_file($file)) {
+
+                        //$file = $this->replaceHtml($file);
+
+                        ob_start();
+
+                        require $file;
+
+                        $$name = ob_get_clean();
+                        unset($file);
+                        unset($name);
+                    }
+                }
+            }
+        }
+
+        /*
+         * $module end
+         */
+
+        if (false !== $this->theme) {
+
+            $file_theme = APP . '/views/' . $this->theme . '/index.html';
+
+            if (is_file($file_theme)) {
                 require $file_theme;
 
-            }else{
+            } else {
                 App::NotFound();
             }
 
             // unset optimize
             unset($file_theme);
 
-        }else{
+        } else {
 
             App::NotFound();
         }
     }
 
-    public function require_pro($file){
-        if(is_file($file)) require ($file);
+    public function require_pro($file)
+    {
+        if (is_file($file)) require($file);
     }
 }
