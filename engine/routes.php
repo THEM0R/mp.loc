@@ -24,7 +24,7 @@ Router::add('about', 'about','about');
 
 
 // Material
-Router::add('material', 'material', 'material');
+Router::add('(category:all)', 'category', 'category');
 Router::add('material/(product:all)', 'material:product','material_product');
 //Router::add('material/(product:all)/(url:all)', 'material:view','material_view');
 

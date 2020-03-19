@@ -1,0 +1,23 @@
+<div class="slider-main">
+    <ul class="rslides">
+
+        <?//pr1($slider);?>
+
+        <? foreach ($slider as $item) :?>
+        <li>
+            <a href="<?=$item['url'];?>">
+                <div class="img" style=''>
+                    <!-- content -->
+                    <div class="content">
+                        <h3 class="name"><?=$item['name'];?></h3>
+                        <h1 class="alt_name">Металевий</h1>
+                        <p class="description"><?=$item['info'];?></p>
+                        <img class="slider-logo" src="/public/images/articles/material/'<?=$item['id'];?>'.png" alt="">
+                    </div>
+                    <!-- content -->
+                </div>
+            </a>
+        </li>
+        <? endforeach; ?>
+    </ul>
+</div>
