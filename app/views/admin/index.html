@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <!--  meta -->
+  <meta description="<?=$meta['description'];?> | Приватне Підприємство МЕТАЛІК-PLUS">
+  <meta keywords="<?=$meta['keywords'];?> | Приватне Підприємство МЕТАЛІК-PLUS">
+  <title><?=$meta['title'];?></title>
+  <!--  meta -->
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -17,7 +21,7 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="/public/admin/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/public/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/public/admin/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -26,8 +30,11 @@
   <link rel="stylesheet" href="/public/admin/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/public/admin/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/public/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-boxed" style="background-color: #dddddd">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -38,11 +45,11 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    <!--    <a href="index3.html" class="brand-link">-->
+    <!--      <img src="/public/admin/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"-->
+    <!--           style="opacity: .8">-->
+    <!--      <span class="brand-text font-weight-light">AdminLTE 3</span>-->
+    <!--    </a>-->
 
 
     <!-- Sidebar -->
@@ -55,16 +62,16 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-    <?php if(is_file($theme.'/require/content_header.html'))
-    require $theme.'/require/content_header.html';?>
+    <?php if(is_file($theme.'/require/breadcrumbs.html'))
+    require $theme.'/require/breadcrumbs.html';?>
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- content -->
-        <?=$content?>
-        <!-- content end -->
-      </div>
+      <!--      <div class="container-fluid">-->
+      <!-- content -->
+      <?=$content?>
+      <!-- content end -->
+      <!--      </div>-->
     </section>
     <!-- /.content -->
   </div>
@@ -91,7 +98,7 @@
 <script src="/public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -114,10 +121,20 @@
 <!-- overlayScrollbars -->
 <script src="/public/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/public/admin/dist/js/adminlte.js"></script>
+<script src="/public/admin/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/public/admin/dist/js/pages/dashboard.js"></script>
+<script src="/public/admin/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/public/admin/dist/js/demo.js"></script>
+<script src="/public/admin/js/demo.js"></script>
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
+</script>
+
 </body>
 </html>

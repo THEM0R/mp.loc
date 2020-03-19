@@ -1,15 +1,43 @@
 <?php
 use core\Router;
 
-/* admin */
+/*
+ * admin
+ */
+
+/*
+ * index
+ */
 Router::add('admin', 'admin:index','main');
+/*
+ * category
+ */
 Router::add('admin/category', 'admin:category','category');
-Router::add('admin/product', 'admin:product','product');
+/*
+ * articles
+ */
+Router::add('admin/articles', 'admin:articles','articles');
+Router::add('admin/articles/(id:int)', 'admin:articlesView','articlesView');
+Router::add('admin/articles/(id:int)/edit', 'admin:articlesEdit','articlesEdit');
+Router::add('admin/articles/(id:int)/delete', 'admin:articlesDelete','articlesDelete');
+/*
+ * page
+ */
+Router::add('admin/page', 'admin:page','page');
+Router::add('admin/page/(id:int)', 'admin:pageView','pageView');
+Router::add('admin/page/(id:int)/add', 'admin:pageAdd','pageAdd');
+Router::add('admin/page/(id:int)/edit', 'admin:pageEdit','pageEdit');
+Router::add('admin/page/(id:int)/delete', 'admin:pageDelete','pageDelete');
+/*
+ * widgets
+ */
 Router::add('admin/widgets', 'admin:widgets','widgets');
 Router::add('admin/widgets/add', 'admin:widgetsAdd','widgetsAdd');
-/* admin */
 
-/* pages */
+
+/*
+ * site
+ */
 
 // test
 Router::add('contact', 'main:contact','contact');

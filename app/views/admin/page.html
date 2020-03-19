@@ -1,7 +1,9 @@
 <!-- Main content -->
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Категорії</h3>
+    <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+      <i class="fas fa-folder"></i> Добавити
+    </a>
   </div>
   <div class="card-body p-0" style="display: block;">
     <table class="table table-striped projects">
@@ -16,6 +18,9 @@
         <th style="width: 30%">
           Лінк (url)
         </th>
+        <th style="width: 30%">
+          Категорія (url)
+        </th>
         <th>
           description
         </th>
@@ -25,25 +30,26 @@
       </thead>
       <tbody>
 
-      <? foreach($category as $cats): ?>
+      <? foreach($articles2 as $article): ?>
       <tr>
-        <td><?=$cats['id']?></td>
-        <td><?=$cats['name']?>
+        <td><?=$article['id']?></td>
+        <td><?=$article['name']?>
         </td>
-        <td><?=$cats['url']?></td>
-        <td><?=$cats['description']?></td>
+        <td><?=$article['url']?></td>
+        <td><?=$category[$article['category']]['name']?></td>
+        <td></td>
         <td>
-          <a class="btn btn-primary btn-sm" href="#">
+          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
             <i class="fas fa-folder">
             </i>
             View
           </a>
-          <a class="btn btn-info btn-sm" href="#">
+          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
             <i class="fas fa-pencil-alt">
             </i>
             Edit
           </a>
-          <a class="btn btn-danger btn-sm" href="#">
+          <a class="btn btn-danger btn-sm" href="/admin/articles/<?=$article['id']?>/delete">
             <i class="fas fa-trash">
             </i>
             Delete

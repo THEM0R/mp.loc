@@ -1,0 +1,63 @@
+<!-- Main content -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Товари</h3>
+    </div>
+    <div class="card-body p-0" style="display: block;">
+        <table class="table table-striped projects">
+            <thead>
+            <tr>
+                <th style="width: 1%">
+                    #ID
+                </th>
+                <th style="width: 20%">
+                    Назва (name)
+                </th>
+                <th style="width: 30%">
+                    Лінк (url)
+                </th>
+                <th style="width: 30%">
+                    Категорія (url)
+                </th>
+                <th>
+                    description
+                </th>
+                <th style="width: 22%">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <? foreach($articles as $article): ?>
+            <tr>
+                <td><?=$article['id']?></td>
+                <td><?=$article['name']?>
+                </td>
+                <td><?=$article['url']?></td>
+                <td><?=$category[$article['category']]['name']?></td>
+                <td></td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+                        <i class="fas fa-folder">
+                        </i>
+                        View
+                    </a>
+                    <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="/admin/articles/<?=$article['id']?>/delete">
+                        <i class="fas fa-trash">
+                        </i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            <? endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- /.content -->

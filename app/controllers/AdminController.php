@@ -8,73 +8,122 @@ use function GuzzleHttp\Psr7\str;
 class AdminController extends AppController
 {
 
+  public $title = ' | Адмін Панель - MetallicPlus.Com.Ua';
+
   public function indexAction($model, $route)
   {
 
-    $this->meta();
+    $title = 'Головна';
+
+    $this->meta($title.$this->title);
 
     $this->theme = 'admin';
 
     $description = $this->configs['about']['description2'];
 
-    $this->render(compact('description'));
+    /*
+     * articles
+     */
+    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?',[1]);
+
+
+    $this->render(compact('title','description','articles'));
 
 
   }
 
   public function categoryAction($model, $route)
   {
-    $this->meta();
+    $title = 'Категорії';
+
+    $this->meta($title.$this->title);
 
     $this->theme = 'admin';
 
     $description = $this->configs['about']['description2'];
-
-
-    $_category = \R::getAll('SELECT * FROM _category');
-
-    $parent_category = [];
-    $category = [];
-
-    foreach ($_category as $cat){
-      if($cat['parent_category'] == 0){
-        $parent_category[] = $cat;
-      }
-    }
-
-    foreach ($parent_category as $cts){
-
-      foreach ($_category as $cat){
-        if($cat['parent_category'] == $cts['id']){
-          $cts['parents'][] = $cat;
-        }
-      }
-
-      $category[] = $cts;
-
-    }
-
-    $this->render(compact('description','category'));
-  }
-
-  public function productAction($model, $route)
-  {
-    $this->meta();
-
-    $this->theme = 'admin';
-
-    $description = $this->configs['about']['description2'];
-
 
     $category = \R::getAll('SELECT * FROM _category');
 
 
-    $this->render(compact('description','category'));
+    $this->render(compact('title','description','category'));
+  }
+
+  public function articlesAction($model, $route)
+  {
+
+    $title = 'Матеріали';
+
+    $this->meta($title.$this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+      $category[$cat['id']] = $cat;
+    }
+
+    //pr1($category);
+
+    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
+
+
+    $this->render(compact('title','description','category','articles'));
+  }
+  public function articlesViewAction($model, $route)
+  {
+
+    $title = 'Матеріал';
+
+    $this->meta($title.$this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+      $category[$cat['id']] = $cat;
+    }
+
+    //pr1($category);
+
+    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'],1]);
+
+    $this->render(compact('title','description','category','article'));
+  }
+  public function articlesEditAction($model, $route)
+  {
+
+    $title = 'Редагування Матеріалу';
+
+    $this->meta($title.$this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+      $category[$cat['id']] = $cat;
+    }
+
+    //pr1($category);
+
+    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'],1]);
+
+    $this->render(compact('title','description','category','article'));
   }
 
   public function widgetsAction($model, $route)
   {
-    $this->meta();
+    $title = 'Віджети';
+
+    $this->meta($title.$this->title);
 
     $this->theme = 'admin';
 
@@ -85,7 +134,7 @@ class AdminController extends AppController
     $count = \R::count('_widgets');
 
 
-    $this->render(compact('description','category','count'));
+    $this->render(compact('title','description','category','count'));
   }
 
 
@@ -125,7 +174,30 @@ class AdminController extends AppController
     $count = \R::count('_widgets');
 
 
-    $this->render(compact('description','category','count'));
+    $this->render(compact('title','description','category','count'));
+  }
+
+
+  public function pageAction($model, $route)
+  {
+
+    $title = 'Сторінки';
+
+    $this->meta($title.$this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+    /*
+     * articles
+     */
+    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?',[1]);
+
+
+    $this->render(compact('title','description','articles'));
+
+
   }
 
 

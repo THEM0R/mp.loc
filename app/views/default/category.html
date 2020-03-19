@@ -9,11 +9,11 @@
 <div class="content container category bg-style">
 
     <h4 class="title">
-        <a href="#" class="">МАТЕРІАЛИ <i class="icon-right-open"></i></a>
+        <a href="#" class=""><?=$category['name'];?> <i class="icon-right-open"></i></a>
     </h4>
     <div class="articles">
-        <? if($products): ?>
-        <? foreach($products as $item): ?>
+        <? if($articles): ?>
+        <? foreach($articles as $item): ?>
         <div class="article">
             <a href="/<?=$route['view'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
                 <div class="poster" style="background-image: url('/public/images/articles/material/<?=$item['id'];?>.png')"></div>
