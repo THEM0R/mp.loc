@@ -88,32 +88,15 @@ class View
          */
         $file_view = APP . '/views/' . $this->theme . '/' . App::lowerCamelCase($this->view) . '.html';
 
-        if($file_view){
-
-
-
-            $file_view = $this->replaceHtml($file_view);
-
-
-
-            ob_start();
-            if (is_file($file_view)) {
-
-                //pr1($file_view);
-                //echo $file_view;
-//                require $file_view;
-            }
-            $content = ob_get_clean();
-
-
-            // unset optimize
-            unset($file_view);
-
-        }else{
+        ob_start();
+        if (is_file($file_view)) {
+            require $file_view;
+        } else {
             App::NotFound();
         }
-
-
+        // unset optimize
+        unset($file_view);
+        $content = ob_get_clean();
         /*
          * $content end
          */
@@ -126,8 +109,6 @@ class View
             foreach ($modules as $name => $file) {
                 if ($file) {
                     if (is_file($file)) {
-
-                        //$file = $this->replaceHtml($file);
 
                         ob_start();
 
