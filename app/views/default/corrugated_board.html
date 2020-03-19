@@ -1,0 +1,163 @@
+<!-- prais -->
+<div class="view content container" style="margin-top: 80px;">
+
+    <div class="base">
+
+        <div class="left">
+            <div class="poster" style="background-color: #eeeeee">
+                <a href="/public/images/articles/material/<?=$id;?>.png" class="js-img-viwer" data-group="view">
+                    <img src="/public/images/articles/material/<?=$id;?>.png" alt="">
+                </a>
+            </div>
+
+            <div style="display: none;margin-bottom: 15px">
+                <!--Глянцеве покриття-->
+                <? if($gallery2): ?>
+                <?=$gallery2;?>
+                <? endif; ?>
+            </div>
+
+            <div class="screens-mini"  style="margin-bottom: 15px">
+                <!--Глянцеве покриття-->
+                <? if($gallery): ?>
+                <?=$gallery;?>
+                <? endif; ?>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <h4 class="title" style="margin-bottom: 10px">
+                <a style="font-size: 52px;"><?=$logo;?></a>
+            </h4>
+
+            <? if($colors_m): ?>
+            <div class="colors" style="width: 100%">
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/1.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Золотий дуб 3D</span>
+                </div>
+
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/1.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Золотий дуб (стандарт)</span>
+                </div>
+
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/2.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Темний дуб 3D</span>
+                </div>
+
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/3.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Дуб ліноліум</span>
+                </div>
+
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/4.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Світлий дуб</span>
+                </div>
+
+                <div class="color">
+                    <div src="" style="background-image: url('/public/images/articles/material/corrugated-board/colors/5.png');width: 50px;height: 50px"></div>
+                    <span style="font-size: 12px">Камінь</span>
+                </div>
+            </div>
+            <? endif; ?>
+
+            <div class="colors">
+
+
+
+<!--                <div class="clear"></div>-->
+
+                <? foreach($colors as $color): ?>
+
+                <div class="color">
+                    <div src="" style="background-color: #<?=$color['color'];?>;width: 50px;height: 50px"></div>
+                    <span><?=$color['name'];?></span>
+                </div>
+
+                <? endforeach; ?>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="description"><?=$info;?></div>
+
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="text">
+
+        <? if($products): ?>
+
+        <div class="articles" style="border-top: 1px solid #dddddd;padding-top: 20px;margin-top: 40px">
+
+
+            <? foreach($products as $item): ?>
+            <div class="article">
+                <a title="<?=$item['name'];?>">
+                    <div class="poster" style="background-size: 200px;background-image: url('/public/images/articles/material/<?=$route['product'];?>/mini/<?=$item['id'];?>.png')">
+
+                        <?if( !empty($item['name']) ):?>
+                        <div class="clear"></div>
+
+                        <?if(strpos($item['name'], ',') === false):?>
+                        <div class="price"><?=$item['name'];?></div>
+                        <?else:?>
+                        <? $names = explode(',', $item['name']); ?>
+                        <? foreach($names as $i):?>
+                        <div class="price"><?=$i;?></div>
+                        <?endforeach;?>
+
+                        <?endif;?>
+
+                        <?if( !empty($item['thickness']) ):?>
+                        <div class="clear"></div>
+                        <div class="price">Товщина: <?=$item['thickness'];?></div>
+                        <?endif;?>
+
+                        <div class="clear"></div>
+
+                        <div class="price"><?=$item['price'].' грн '.$item['units'];?></div>
+
+                        <?if( isset($item['price_1']) && $item['price_1']):?>
+                        <div class="clear"></div>
+                        <div class="price"><?=$item['price_1'].' грн '.$item['units'];?></div>
+                        <?endif;?>
+
+                        <?if( isset($item['price_2']) && $item['price_2']):?>
+                        <div class="clear"></div>
+                        <div class="price"><?=$item['price_2'].' грн '.$item['units'];?></div>
+                        <?endif;?>
+
+                        <?if( isset($item['price_3']) && $item['price_3']):?>
+                        <div class="clear"></div>
+                        <div class="price"><?=$item['price_3'].' грн '.$item['units'];?></div>
+                        <?endif;?>
+
+
+
+
+
+
+                        <?endif;?>
+
+                    </div>
+
+                    <div class="title"><?=$item['thickness'];?></div>
+                </a>
+            </div>
+            <? endforeach; ?>
+
+        </div>
+        <? endif; ?>
+
+    </div>
+</div>
+<!-- prais -->

@@ -1,0 +1,186 @@
+<!-- Main content -->
+
+
+<?//pr($category);?>
+
+<? foreach($category as $cat): ?>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title"><?=$cat['name'];?></h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body p-0" style="display: block;">
+    <table class="table table-striped projects">
+      <thead>
+      <tr>
+        <th style="width: 1%">
+          #ID
+        </th>
+        <th style="width: 20%">
+          Назва (name)
+        </th>
+        <th style="width: 30%">
+          Лінк (url)
+        </th>
+        <th>
+          parent
+        </th>
+        <th style="width: 22%">
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <? foreach($cat['parents'] as $cats): ?>
+      <tr>
+        <td><?=$cats['id']?></td>
+        <td><?=$cats['name']?>
+        </td>
+        <td><?=$cats['url']?></td>
+        <td><?=$cats['parent_category']?></td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="#">
+            <i class="fas fa-folder">
+            </i>
+            View
+          </a>
+          <a class="btn btn-info btn-sm" href="#">
+            <i class="fas fa-pencil-alt">
+            </i>
+            Edit
+          </a>
+          <a class="btn btn-danger btn-sm" href="#">
+            <i class="fas fa-trash">
+            </i>
+            Delete
+          </a>
+        </td>
+      </tr>
+      <? endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<? endforeach; ?>
+
+
+
+
+
+
+
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Матеріали
+<!--      <table class="table table-striped projects">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>Матеріали</th>-->
+<!--          <th>-->
+<!--            1-->
+<!--          </th>-->
+<!--          <th>material</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--&lt;!&ndash;        <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <td>1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;          <td>3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tbody>&ndash;&gt;-->
+<!--      </table>-->
+    </h3>
+
+    <div class="card-tools">
+
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+
+      <!--      <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">-->
+      <!--        <i class="fas fa-times"></i>-->
+      <!--      </button>-->
+
+    </div>
+  </div>
+  <div class="card-body p-0" style="display: block;">
+    asdsad
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Projects</h3>
+
+    <div class="card-tools">
+
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+
+<!--      <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">-->
+<!--        <i class="fas fa-times"></i>-->
+<!--      </button>-->
+
+    </div>
+  </div>
+  <div class="card-body p-0" style="display: block;">
+    <table class="table table-striped projects">
+      <thead>
+      <tr>
+        <th style="width: 1%">
+          #ID
+        </th>
+        <th style="width: 20%">
+          Назва (name)
+        </th>
+        <th style="width: 30%">
+          Лінк (url)
+        </th>
+        <th>
+          parent
+        </th>
+        <th style="width: 22%">
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <? foreach($category as $cat): ?>
+      <tr>
+        <td><?=$cat['id']?></td>
+        <td><?=$cat['name']?>
+        </td>
+        <td><?=$cat['url']?></td>
+        <td><?=$cat['parent_category']?></td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="#">
+            <i class="fas fa-folder">
+            </i>
+            View
+          </a>
+          <a class="btn btn-info btn-sm" href="#">
+            <i class="fas fa-pencil-alt">
+            </i>
+            Edit
+          </a>
+          <a class="btn btn-danger btn-sm" href="#">
+            <i class="fas fa-trash">
+            </i>
+            Delete
+          </a>
+        </td>
+      </tr>
+      <? endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
+
+<!-- /.content -->

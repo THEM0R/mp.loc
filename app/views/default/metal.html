@@ -1,0 +1,23 @@
+
+
+
+<!-- content -->
+<div class="content container category bg-style">
+
+    <h4 class="title">
+        <a class="">Металопрокат</a><i class="probel"> | </i><a href="/metal/prais">Прайс лист</a>
+    </h4>
+    <div class="articles">
+        <? if($products): ?>
+        <? foreach($products as $item): ?>
+        <div class="article">
+            <a href="/<?=$route['view'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
+                <div class="poster" style="background-image: url('/public/images/articles/metal/<?=$item['id'];?>.png')"></div>
+                <div class="title"><?=$item['name'];?></div>
+            </a>
+        </div>
+        <? endforeach; ?>
+        <? endif; ?>
+    </div>
+</div>
+<!-- content end -->

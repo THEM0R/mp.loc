@@ -1,0 +1,439 @@
+//body
+body
+  background-color: $color-d
+
+  > .background
+    position: absolute !important
+    top: 0 !important
+    width: 100% !important
+    z-index: 1 !important
+    //background:
+    //  image: url(../img/bg2.jpg) !important
+    //  position: center top
+    //  repeat: no-repeat !important
+    height: 1000px !important
+    > .link
+      display: block !important
+      width: 100% !important
+      height: 100% !important
+
+.body-hidden
+  overflow: hidden
+  margin-right: 16px
+
+.wrapper
+  width: 1120px
+  height: auto
+  position: relative !important
+  z-index: 2 !important
+
+  background-color: $wrapper-color
+
+  margin:
+    top: 100px
+    bottom: 30px
+    left: auto
+    right: auto
+
+  display: table
+
+//header
+header
+  max-width: 1120px
+  height: 45px
+  line-height: 45px
+  background: rgba(0,0,0,.82)
+  position: absolute
+  z-index: 1001
+
+  .left
+    @extend %fl-l
+    line-height: 45px
+    position: relative
+  .right
+    @extend %fl-r
+    line-height: 45px
+    position: relative
+    .change-language
+      width: 45px
+      height: 45px
+      position: relative
+      @extend %fl-l
+      @extend %transition-background-color
+      &.open
+        > .title
+          background-color: $white
+        > .languages
+          visibility: visible
+          opacity: 1
+      > .title
+        position: absolute
+        top: 0
+        left: 0
+        @extend %cursor-p
+        width: 45px
+        height: 45px
+
+        > i
+          margin-left: 14px
+          margin-top: 16.5px
+          display: block
+
+          background:
+            image: url(../img/language/lang.png)
+            repeat: no-repeat
+            size: 22px 44px
+
+          vertical-align: middle
+          width: 18px
+          height: 12px
+          &.ru
+            background-position: -2px -2px
+          &.ua
+            background-position: -2px -30px
+
+      .languages
+        @extend %box-shadow
+        visibility: hidden
+        opacity: 0
+        position: absolute
+        top: 45px
+        right: 0
+        background-color: $white
+        width: 150px
+        @extend %display-ib
+        padding: 0px
+        //@extend %transition-opacity
+        li
+          @extend %width-100
+          position: relative
+
+          line-height: 10px
+          @extend %fl-l
+
+          &:hover
+            cursor: pointer
+            span.title
+              color: $fiolet
+          a
+            @extend %width-100
+            @extend %fl-l
+            padding: 20px
+            @extend %display-ib
+          span
+            &.flag
+              @extend %fl-l
+              display: block
+              background-image: url(../img/language/lang.png)
+              background-repeat: no-repeat
+              background-size: 22px 44px
+              vertical-align: middle
+              width: 18px
+              height: 12px
+              &.ru
+                background-position: -2px -2px
+              &.ua
+                background-position: -2px -30px
+            &.title
+              @extend %fl-l
+              text-align: right
+              margin-left: 5px
+              font-size: 14px
+
+.logo
+  background-image: url(../img/logo.png)
+  width: 80px
+  height: 20px
+  margin-top: 12px
+  margin-right: 15px
+  @extend %fl-l
+
+.logo2
+  @extend %fl-l
+  font-size: 24px
+  color: #ec4470
+  margin-right: 15px
+  line-height: 43px
+  font-weight: bold
+  &:hover
+    color: #ec4470
+
+
+//menu
+%menu
+  @extend %display-b
+  width: 18px
+  height: 2px
+  content: ""
+  background-color: $white
+
+.menu
+  @extend %fl-l
+  position: relative
+  @extend %cursor-p
+
+  > .link
+    @extend %fl-l
+    @extend %display-ib
+    padding-left: 15px
+    padding-right: 18px
+    height: 45px
+    @extend %transition-background-color
+
+    > b
+      line-height: 43px
+
+    .block
+      @extend %fl-l
+      width: 18px
+      margin-top: 16px
+      margin-right: 10px
+
+      i
+        @extend %menu
+        margin-top: 3px
+        margin-bottom: 3px
+        @extend %transition-background-color
+
+      &:before
+        @extend %menu
+        @extend %transition-background-color
+
+      &:after
+        @extend %menu
+        @extend %transition-background-color
+
+    b
+      @extend %fl-l
+      color: $white
+
+
+
+  > .items
+    @extend %fl-l
+    background-color: $white
+    visibility: hidden
+    opacity: 0
+    position: absolute
+    top: 45px
+    padding:
+      top: 20px
+      bottom: 20px
+    @extend %cursor-d
+    @extend %box-shadow
+    @extend %transition-opacity
+
+    > a
+      @extend %width-100
+      float: left
+      line-height: 35px
+      padding-left: 45px
+      padding-right: 45px
+      font-weight: normal
+
+      &:hover
+        color: $fiolet
+        @extend %transition-color
+
+  &:hover
+    > .link
+      background-color: $white
+
+      .block
+        &:before
+          background-color: $black
+        &:after
+          background-color: $black
+        i
+          background-color: $black
+
+      b
+        color: $black
+        @extend %transition-color
+
+    > .items
+      opacity: 1
+      visibility: visible
+
+
+//menu-phone
+@import "phone/menu"
+
+// speed-search
+#speed-search
+  @extend %display-ib
+  width: 86px
+  height: 45px
+  position: relative
+  line-height: 45px
+  @extend %fl-l
+  @extend %transition-width
+  &.open
+    width: 250px
+    @extend %cursor-d
+    input.search
+      border-radius: 0
+      @extend %display-b
+    i.close
+      @extend %display-b
+    i.placeholder
+      @extend %display-n
+      &:before
+        content: ""
+    .result
+      width: 300px
+      height: auto
+      visibility: visible
+      opacity: 1
+  input.search
+    @extend %display-n
+    @extend %width-100
+    height: 45px
+    line-height: 45px
+    @extend %border-n
+    padding-left: 30px
+    padding-right: 35px
+    background:
+      image: url(../img/search/icon-black.png)
+      repeat: no-repeat
+      position: 10px center
+      color: $white
+    &::-webkit-input-placeholder
+      color: #333
+    &::-moz-placeholder
+      color: #333
+  i.close
+    @extend %display-n
+    position: absolute
+    right: 10px
+    top: 50%
+    margin-top: -9px
+    width: 18px
+    height: 18px
+    background:
+      image: url(../img/search/close-black.png)
+      repeat: no-repeat
+      position: center left
+    @extend %cursor-p
+  .placeholder
+    @extend %pad-l-10
+    @extend %pad-r-10
+    position: absolute
+    background:
+      image: url(../img/search/icon-white.png)
+      repeat: no-repeat
+      position: 10px center
+    @extend %cursor-p
+    opacity: .7
+    &:before
+      font-style: normal
+      //content: "Поиск"
+      content: ""
+      color: $white
+      margin-left: 20px
+    &:hover
+      opacity: 1
+  .result
+    visibility: hidden
+    opacity: 0
+    width: 0px
+    height: 0px
+    background-color: $white
+    position: absolute
+    top: 45px
+    @extend %box-shadow
+    @extend %transition-opacity
+    .error
+      font-size: 14px
+    .items
+      @extend %display-ib
+      @extend %fl-l
+      .item
+        @extend %width-100
+        height: 80px
+        max-height: 80px
+        overflow: hidden
+        @extend %pad-r-10
+        @extend %pad-l-10
+        float: left
+        &:hover
+          background-color: #f2f2f2
+
+        .tab
+          padding: 10px 10px 10px 0
+          overflow: hidden
+          vertical-align: middle
+          float: left
+          line-height: 20px
+          img
+            @extend %border-radius
+            max-width: none
+            width: 40px
+            height: 56px
+            background:
+              color: $color-d
+              position: center center
+              repeat: no-repeat
+              size: cover
+          .titles
+            margin-top: 10px
+            font-weight: 600
+            width: 220px
+            height: 20px
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+          .info
+            width: 220px
+            height: 20px
+            font-size: 0.875em
+            color: #a6a6a6
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+    .link-full-search
+      @extend %fl-l
+      @extend %width-100
+      padding:
+        left: 10px
+        right: 10px
+      border-top: 1px solid #e5e5e5
+      text-align: left
+
+
+// speed-search-mini
+@import "phone/speed-search"
+
+//head-user
+header
+  .user
+    margin-left: 10px
+    @extend %fl-l
+    & *
+      color: $white
+
+    .login
+      display: table
+      opacity: 1
+      @extend %transition-opacity
+      .name
+        @extend %fl-l
+      .ava
+        @extend %fl-l
+        width: 35px
+        height: 35px
+        margin:
+          top: 5px
+          left: 10px
+        @extend %border-radius-2
+      &:hover
+        opacity: .8
+    .no-login
+      a
+        //font-weight: 600
+        @extend %transition-color
+        &:hover
+          color: $fiolet
+        &:first-child
+          margin-right: 10px
+

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- html -->
+<html lang="en">
+    <!-- head -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--  meta -->
+        <meta description="<?=$meta['description'];?> | Приватне Підприємство МЕТАЛІК-PLUS">
+        <meta keywords="<?=$meta['keywords'];?> | Приватне Підприємство МЕТАЛІК-PLUS">
+        <title><?=$meta['title'];?></title>
+        <!--  meta -->
+        <!-- font -->
+<!--        <link rel="stylesheet" property="stylesheet" href="/public/fonts/fontello/css/fontello.css">-->
+        <link rel="stylesheet" property="stylesheet" href="/public/fonts/ubuntu/ubuntu.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <!-- font end -->
+        <!-- css -->
+        <link rel="stylesheet" property="stylesheet" href='/public/css/style.css'>
+        <style>
+            .probel {
+                padding-top: 10px;
+                clear: both;
+            }
+            .probel2 {
+                padding-top: 10px;
+                clear: left;
+            }
+        </style>
+        <!-- css end -->
+        <!-- favicon -->
+        <!-- Opera Speed Dial Favicon -->
+        <link rel="icon" type="image/png" href="/public/img/favicon/ms-icon-150x150.png" />
+        <!-- Standard Favicon -->
+        <link rel="icon" type="image/x-icon" href="/public/img/favicon/favicon.ico" />
+        <!-- For iPhone 4 Retina display: -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/img/favicon/apple-icon-144x144.png">
+        <!-- For iPad: -->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/img/favicon/apple-icon-72x72.png">
+        <!-- For iPhone: -->
+        <link rel="apple-touch-icon-precomposed" href="/public/img/favicon/apple-icon-57x57.png">
+        <!-- favicon end -->
+        <!-- style -->
+        <style>
+
+        </style>
+        <!-- style end -->
+
+
+
+    </head>
+    <!-- head end -->
+    <!-- body -->
+    <body style="background-image: url('/public/images/bg/bg_test.png');background-size: 239px;background-position: top center">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <?php if(is_file($theme.'/require/heads.html')) require $theme.'/require/heads.html';?>
+            <?php if(is_file($theme.'/require/header.html')) require $theme.'/require/header.html';?>
+            <!-- content -->
+            <?=$content?>
+            <!-- content end -->
+            <?php if(is_file($theme.'/require/footer.html')) require $theme.'/require/footer.html';?>
+        </div>
+        <!-- wrapper end -->
+        <!-- modal end -->
+        <div style="display: none;visibility: hidden" id="hidden">
+            <!-- script -->
+            <!-- libs -->
+            <script src="/public/js/libs/jquery.min.js"></script>
+            <script src="/public/js/libs/slider.min.js"></script>
+            <script src="/public/js/libs/scrollfix.min.js"></script>
+            <script src="/public/js/libs/gallery.min.js"></script>
+            <!-- libs end -->
+            <script>
+                $( document ).ready(function() {
+
+
+
+
+                    /* slider */
+                    $(".rslides").responsiveSlides({
+                        auto: true,// true
+                        pager: true,
+                        nav: true,
+                        speed: 500,
+                        maxwidth: 1200,
+                        timeout: 7000,
+                        namespace: "slider"
+                    });
+                    $('.slider_tabs li a').text('');
+                    /* slider */
+
+                    $('.header').scrollFix();
+
+                    /* menu phone */
+
+                    var menu_phone = $('.menu-phone');
+
+                    var removeClass = true;
+
+                    menu_phone.click(function () {
+
+                        menu_phone.toggleClass('open');
+                        removeClass = false;
+                    });
+
+                    $("#speed-search").click(function() {
+                        removeClass = false;
+                    });
+
+
+                    $("html").click(function () {
+                        if (removeClass) {
+                            menu_phone.removeClass('open');
+                        }
+                        removeClass = true;
+                    });
+
+                    /* menu phone */
+
+                    /* gallery */
+                    // photo gallery
+                    new smartPhoto(".js-img-viwer",{
+                        arrows: true,
+                        nav: true,
+                        animationSpeed: 300,
+                        swipeOffset: 100,
+                        maxWidth: 940,
+                        headerHeight: 60,
+                        footerHeight: 60,
+                        forceInterval: 10,
+                        registance: 0.5,
+                        resizeStyle: 'fill',
+                        verticalGravity: false,
+                        useOrientationApi: true
+                    });
+                    /* gallery end */
+
+
+
+                });
+            </script>
+            <!-- script end -->
+        </div>
+    </body>
+    <!-- body end -->
+</html>
+<!-- html end -->

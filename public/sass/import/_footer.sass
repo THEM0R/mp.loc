@@ -1,0 +1,203 @@
+
+footer
+  border-top: 1px solid #ddd
+  background-color: $e6
+  padding-top: 30px
+  padding-bottom: 30px
+  font-weight: 600
+  display: inline-table
+  width: 100%
+
+  > .item
+    @extend %fl-l
+    width: 16%
+    margin-right: 3%
+    > li
+      line-height: 14px
+      margin-bottom: 10px
+      > a
+        font-size: 13px
+        color: $a6
+        @extend %transition-color
+        &:hover
+          color: $fiolet
+
+    > .title
+      font-size: 16px
+      line-height: 20px
+      color: $color-6
+      cursor: default
+      //font-size: 15px
+
+    &:nth-child(3)
+      margin-right: 0
+
+  > .copyright
+    @extend %fl-r
+    width: 24%
+
+    > .title
+      line-height: 20px
+      color: $color-6
+      cursor: default
+      font-size: 16px
+      margin-bottom: 12px
+
+    .social-group
+      width: 100%
+      margin-bottom: 10px
+      display: table
+      > .item
+        @extend %fl-l
+        margin-right: 10px
+        margin-bottom: 0
+
+
+        > a
+          background-color: $a6
+          width: 40px
+          height: 40px
+          border-radius: 40px
+          display: block
+          position: relative
+          @extend %transition-background-color
+          > i
+            position: absolute
+            left: 50%
+            top: 50%
+            display: block
+            width: 20px
+            height: 20px
+            margin:
+              top: -10px
+              left: -10px
+            background-color: white
+
+
+          .facebook
+            mask: url('../../img/svg/facebook.svg')
+          .twitter
+            mask: url('../../img/svg/twitter.svg')
+          .vkontakte
+            mask: url('../../img/svg/vk.svg')
+          .gplus
+            mask: url('../../img/svg/google-plus.svg')
+          .instagram
+            mask: url('../../img/svg/instagram2.svg')
+
+          //&:hover
+          //  opacity: .7
+        .fc:hover
+          background-color: $color-facebook
+        .vk:hover
+          background-color: $color-vk
+        .tw:hover
+          background-color: $color-twitter
+        .go:hover
+            background-color: $color-youtube
+        .in:hover
+          background-color: $color-instagram
+
+        &:last-child
+          margin-right: 0
+
+  .copyright
+    font-size: 15px
+    color: $a6
+    h2
+      font-size: 18px
+      color: $a6
+
+.bottom
+  background-color: $color-3
+  width: 100%
+  height: 45px
+  .stats
+    @extend %fl-r
+    margin-top: 7px
+    a
+      @extend %fl-l
+      margin-left: 7px
+
+      &:first-child
+        margin-left: 0
+
+      img
+        width: 88px
+        height: 31px
+
+/* @media */
+@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+  footer
+    > .item
+      width: 18%
+    > .copyright
+      width: 28%
+
+
+@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+  footer
+    > .item
+      width: 40%
+      &:nth-child(2)
+        float: right
+
+      &:nth-child(3)
+        clear: left
+        margin-top: 20px
+
+    > .copyright
+      width: 43%
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  footer
+    > .item
+      width: 40%
+      &:nth-child(2)
+        float: right
+        margin-right: 60px
+
+      &:nth-child(3)
+        clear: left
+        margin-top: 20px
+
+    > .copyright
+      margin-top: 20px
+      width: 53%
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+
+  /* footer */
+  footer
+    > .item
+      width: 100%
+      margin-bottom: 10px
+
+    > .copyright
+      width: 100%
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+
+  /* footer */
+  footer
+    > .item
+      width: 100%
+      margin-bottom: 10px
+
+    > .copyright
+      width: 100%
+
+
+@media only screen and (max-width: 319px)
+
+  /* footer */
+  footer
+    > .item
+      width: 100%
+      margin-bottom: 10px
+
+    > .copyright
+      width: 100%

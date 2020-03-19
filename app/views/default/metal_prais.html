@@ -1,0 +1,71 @@
+<!-- prais -->
+<div class="about container category">
+    <div class="overlay"></div>
+    <h4 class="title">
+        <a href="/metal">Металопрокат</a><i class="probel" style="color: white"> | </i><a class=""><?=$logo;?></a>
+    </h4>
+    <div class="text">
+
+
+
+            <? if($product): ?>
+
+            <? foreach($product as $item): ?>
+
+        <table style="width:100%; margin-bottom: 40px">
+
+            <tr>
+                <th>Назва Металопрокату</th>
+
+                <? if( isset($item[0]['price_1']) ):?>
+                <th>Ціна за 1т з ПДВ</th>
+                <? endif;?>
+
+                <? if( isset($item[0]['weight']) ):?>
+                <th>Вага 1 м.п</th>
+                <? endif;?>
+
+                <? if( isset($item[0]['price_2']) ):?>
+                <th>Ціна за 1 м.п</th>
+                <? endif;?>
+
+            </tr>
+
+            <? foreach($item as $product): ?>
+
+            <tr>
+                <td width="35%"><?=$product['name'];?> <?=$product['kind'];?></td>
+
+                <? if( isset($product['price_1']) ):?>
+                <td width="10%"><?=$product['price_1'];?></td>
+                <? endif;?>
+
+                <? if( isset($product['weight']) ):?>
+                <td width="10%"><?=$product['weight'];?></td>
+                <? endif;?>
+
+                <? if( isset($product['price_2']) ):?>
+                <td width="10%"><?=$product['price_2'];?></td>
+                <? endif;?>
+
+                <? if( isset($product['price_3']) ):?>
+                <td width="10%"><?=$product['price_3'];?></td>
+                <? endif;?>
+
+                <? if( isset($product['price_4']) ):?>
+                <td width="10%"><?=$product['price_4'];?></td>
+                <? endif;?>
+
+            </tr>
+
+            <? endforeach; ?>
+
+        </table>
+
+            <? endforeach; ?>
+            <? endif; ?>
+
+
+    </div>
+</div>
+<!-- prais -->

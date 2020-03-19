@@ -1,0 +1,144 @@
+@import "var"
+
+// defaults
+*
+  margin: 0
+  padding: 0
+  font-family: ubuntu
+  box-sizing: border-box
+  text-decoration: none
+  list-style: none
+  @extend %outline-n
+  font-size: 16px
+  color: $body-font-color
+
+// links
+a
+  @extend %transition-color
+a:hover
+  color: $fiolet
+
+// errors
+.error
+  color: $error
+
+// inputs
+input[type=text], input[type=password]
+  @extend %height-38
+  &.error
+    border-color: $error
+
+input[type=text], textarea, input[type=password]
+  @extend %width-100
+  @extend %pad-l-10
+  @extend %pad-r-10
+  border: 1px solid $input-border-color
+  color: $input-color
+  @extend %outline-n
+  @extend %transition-border
+  @extend %border-radius-2
+
+  &::-webkit-input-placeholder
+    color: $input-placeholder-color
+
+  &:focus
+    border-color: $fiolet
+    &::-webkit-input-placeholder
+      color: $input-placeholder-color-focus
+      @extend %transition-color
+
+    &::-moz-placeholder
+      color: $input-placeholder-color-focus
+      @extend %transition-color
+
+    &:-moz-placeholder
+      color: $input-placeholder-color-focus
+      @extend %transition-color
+
+//&:hover
+//  &:-ms-input-placeholder
+//    color: $input-placeholder-color-hover
+//    @extend %transition-color
+//
+//  &::-webkit-input-placeholder
+//    color: $input-placeholder-color-hover
+//    @extend %transition-color
+//
+//  &::-moz-placeholder
+//    color: $input-placeholder-color-hover
+//    @extend %transition-color
+//
+//  &:-moz-placeholder
+//    color: $input-placeholder-color-hover
+//    @extend %transition-color
+
+
+textarea
+  padding-top: 8px
+  padding-bottom: 8px
+  line-height: 26px
+
+// buttons
+.btn
+  @extend %border-n
+  @extend %outline-n
+
+  padding:
+    left: 16px
+    right: 16px
+
+  @extend %height-38
+  @extend %line-height-38
+  @extend %display-b
+  @extend %cursor-p
+  background-color: $fiolet
+  color: $white
+  @extend %border-radius-2
+  //@extend %transition-background-color
+  @extend %transition-opacity
+  @extend %opacity-1
+  &:hover
+    opacity: .7
+    &:before,&:after
+      color: $white
+  &.yes
+    background-color: $success
+  &.no
+    background-color: $error
+
+.btn2
+
+  border: 2px solid $fiolet
+  @extend %outline-n
+
+  padding:
+    left: 16px
+    right: 16px
+
+  @extend %height-38
+  line-height: 32px
+  font-weight: bolder
+  @extend %display-b
+  @extend %cursor-p
+  //background-color: $color-e
+  color: $fiolet
+  @extend %border-radius-2
+  @extend %transition-background-color
+
+
+.clear
+  clear: both
+
+//containers
+.container
+  @extend %width-100
+  padding:
+    left: 60px
+    right: 60px
+
+.container-title,.container-title-2
+  @extend %width-100
+  @extend %fl-l
+  @extend %display-b
+
+

@@ -1,0 +1,357 @@
+/*! http://responsiveslides.com v1.55 by @viljamis
+.slider-main
+  width: 100%
+  height: 500px
+  position: relative
+  margin-top: 70px
+  overflow: hidden
+  background-color: #000
+
+  .slider-logo
+    width: 300px
+    margin-top: 20px
+
+  > .slider_tabs
+    position: absolute
+    height: 12px
+    bottom: 20px
+
+    left: 60px
+
+    z-index: 1000
+    > li
+      float: left
+      width: 12px
+      height: 12px
+      margin-right: 7px
+      border: 1px solid white
+      border-radius: 50%
+      > a
+        width: 12px
+        height: 12px
+        display: block
+      &.slider_here
+        background-color: white
+      &:last-child
+        margin-right: 0
+
+
+  > .rslides
+    position: relative
+    list-style: none
+    overflow: hidden
+    width: 100%
+    padding: 0
+    margin: 0
+    height: 500px
+    > li
+      -webkit-backface-visibility: hidden
+      position: absolute
+      display: none
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      &:first-child
+        position: relative
+        display: block
+        float: left
+      > a
+        > .img
+          display: block
+          float: left
+          width: 100%
+          //height: 100%
+          height: 500px
+          border: 0
+          background-position: center
+          background-size: auto 100%
+          background-repeat: no-repeat
+          > .content
+
+            width: 60%
+            height: 100%
+            padding:
+              top: 40px
+              left: 60px
+              bottom: 40px
+            //display: inline-block
+
+            overflow: hidden
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 67%, transparent 100%)
+            vertical-align: top
+            > *
+              max-width: 80%
+              overflow: hidden
+            p
+              color: #fff
+              text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
+              font-size: 24px
+              font-weight: normal
+              position: relative
+              margin: 0
+
+            > .description
+              margin-top: 10px
+              line-height: 16px
+              font-size: 14px
+              height: 80px
+
+            > .name
+              color: #fff
+              font-size: 44px
+              font-weight: bold
+              text-shadow: 1px 1px 1px rgba(0, 0, 0, 1)
+              //margin-top: 40px
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+
+            > .alt_name
+              color: #c9c9c9
+              font-size: 18px
+              //line-height: 26px
+              font-weight: bold
+              text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3)
+              margin-bottom: 5px
+            > .docs
+              > .janre
+                margin-top: 10px
+                margin-bottom: 10px
+                display: table
+                text-transform: uppercase
+                > span
+                  font-size: 15px
+                  float: left
+                  color: #eee
+                  border: 1px solid #eee
+                  background-color: #EC174F
+
+                  border-radius: 3px
+                  padding-left: 9px
+                  padding-right: 9px
+                  line-height: 24px
+                  margin-right: 12px
+
+
+
+/* @media */
+@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+  .rslides, .slider-main
+    height: 340px
+
+  .slider-main
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 340px
+            > .content
+              p
+                font-size: 15px
+              > .name
+                margin-top: 20px
+                font-size: 36px
+
+
+@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+  .rslides, .slider-main
+    height: 260px
+
+
+  .slider-main
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 260px
+            > .content
+              > .description
+                  line-height: 12px
+                  font-size: 10px
+                  height: 46px
+              > .docs
+                > .janre
+                    margin-top: 7px
+                    margin-bottom: 7px
+                    > span
+                      margin-right: 7px
+                      line-height: 18px
+                      font-size: 14px
+                      padding-left: 7px
+                      padding-right: 7px
+
+
+              p
+                font-size: 14px
+              > .name
+                margin-top: 20px
+                font-size: 24px
+              > .alt_name
+                font-size: 14px
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  .rslides, .slider-main
+    height: 220px
+
+  .slider-main
+    > .slider_tabs
+      left: 10px
+      bottom: 10px
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 220px
+            > .content
+              padding-left: 10px
+              > .description
+                line-height: 12px
+                font-size: 10px
+                height: 46px
+              > .docs
+                > .janre
+                    margin-top: 5px
+                    margin-bottom: 5px
+                    > span
+                      margin-right: 5px
+                      line-height: 14px
+                      font-size: 10px
+                      padding-left: 5px
+                      padding-right: 5px
+
+
+              p
+                font-size: 10px
+              > .name
+                margin-top: 15px
+                font-size: 16px
+              > .alt_name
+                font-size: 12px
+
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+
+  .rslides, .slider-main
+    height: 220px
+
+  .slider-main
+    > .slider_tabs
+      left: 10px
+      bottom: 10px
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 220px
+            > .content
+              padding-left: 10px
+              width: 90%
+              > .description
+                line-height: 12px
+                font-size: 10px
+                height: 46px
+              > .docs
+                > .janre
+                  margin-top: 5px
+                  margin-bottom: 5px
+                  > span
+                    margin-right: 5px
+                    line-height: 14px
+                    font-size: 10px
+                    padding-left: 5px
+                    padding-right: 5px
+
+
+              p
+                font-size: 10px
+              > .name
+                margin-top: 15px
+                font-size: 16px
+              > .alt_name
+                font-size: 12px
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+
+  .rslides, .slider-main
+    height: 220px
+
+  .slider-main
+    > .slider_tabs
+      left: 10px
+      bottom: 10px
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 220px
+            > .content
+              padding-left: 10px
+              width: 90%
+              > .description
+                line-height: 12px
+                font-size: 10px
+                height: 46px
+              > .docs
+                > .janre
+                  margin-top: 5px
+                  margin-bottom: 5px
+                  > span
+                    margin-right: 5px
+                    line-height: 14px
+                    font-size: 10px
+                    padding-left: 5px
+                    padding-right: 5px
+
+
+              p
+                font-size: 10px
+              > .name
+                margin-top: 15px
+                font-size: 16px
+              > .alt_name
+                font-size: 12px
+
+@media only screen and (max-width: 319px)
+
+  .rslides, .slider-main
+    height: 220px
+
+  .slider-main
+    > .slider_tabs
+      left: 10px
+      bottom: 10px
+    > .rslides
+      > li
+        > a
+          > .img
+            height: 220px
+            > .content
+              padding-left: 10px
+              width: 90%
+              > .description
+                line-height: 12px
+                font-size: 10px
+                height: 46px
+              > .docs
+                > .janre
+                  margin-top: 5px
+                  margin-bottom: 5px
+                  > span
+                    margin-right: 5px
+                    line-height: 14px
+                    font-size: 10px
+                    padding-left: 5px
+                    padding-right: 5px
+
+
+              p
+                font-size: 10px
+              > .name
+                margin-top: 15px
+                font-size: 16px
+              > .alt_name
+                font-size: 12px

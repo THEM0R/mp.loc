@@ -1,0 +1,19 @@
+{
+  "name": "themor/metallic",
+  "require": {
+    "statickidz/php-google-translate-free": "^1.0",
+    "samdark/sitemap": "^2.2",
+    "spatie/image": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app",
+      "core\\": "engine/core",
+      "lib\\": "engine/libs",
+      "mvc\\": "engine/mvc",
+      "cf\\": "engine/config",
+      "lang\\": "engine/language",
+      "fw\\": "engine"
+    }
+  }
+}

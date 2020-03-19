@@ -1,0 +1,42 @@
+<!-- header -->
+<div class="header top container menu">
+    <ul class="list">
+
+        <? $i = 0; foreach($configs['menu'] as $item): $i++ ?>
+        <? if($controller == $item['url']) :?>
+        <li><a href="/<?=$item['url'];?>" style="color: #FF6E47;"><?=$item['name'];?></a></li>
+        <? else: ?>
+        <li><a href="/<?=$item['url'];?>"><?=$item['name'];?></a></li>
+        <? endif; ?>
+        <? if($i < count($configs['menu']) ) :?>
+        <i></i>
+        <? endif; ?>
+        <? endforeach; ?>
+    </ul>
+    <!-- menu-phone -->
+    <div class="menu-phone">
+
+        <a class="link">
+            <i class="icon-menu"></i>
+            <span>МЕНЮ</span>
+        </a>
+
+        <ul class="items">
+            <? $i = 0; foreach($configs['menu'] as $item): $i++ ?>
+            <li><a href="/<?=$item['url'];?>"><?=$item['name'];?></a></li>
+            <? endforeach; ?>
+        </ul>
+
+    </div>
+    <!-- menu-phone end -->
+
+    <div class="info">
+        <div class="item mobile">
+            <i class="fas fa-mobile-alt"></i>
+            <h4><?=$configs['about']['phone1'];?></h4>
+            <span><?=$configs['about']['email'];?></span>
+        </div>
+    </div>
+
+</div>
+<!-- header end -->

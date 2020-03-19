@@ -1,0 +1,69 @@
+<!-- prais -->
+<div class="about container" style="margin-top: 65px">
+    <div class="overlay"></div>
+    <h4 class="title">
+        <!--<a href="/metal" class="">Металопрокат</a>-->
+        <a class=""><?=$logo;?>  -  Прайс лист</a>
+    </h4>
+    <div class="text">
+
+        <table style="width:100%">
+
+
+            <? if($product): ?>
+
+            <tr>
+                <th>Назва Металопрокату</th>
+                
+                <? if( isset($product[0]['price_1']) ):?>
+                <th>Ціна за 1т з ПДВ</th>
+                <? endif;?>
+
+                <? if( isset($product[0]['weight']) ):?>
+                <th>Вага 1 м.п</th>
+                <? endif;?>
+
+                <? if( isset($product[0]['price_2']) ):?>
+                <th>Ціна за 1 м.п</th>
+                <? endif;?>
+
+                <!--<th colspan="4">Ціна за 1 м.п</th>-->
+            </tr>
+            <!--<tr>-->
+            <!--<th colspan="4">Арматура</th>-->
+            <!--</tr>-->
+
+
+
+            <? foreach($product as $item): ?>
+            <tr>
+                <td><?=$item['name'];?> <?=$item['kind'];?></td>
+
+                <? if( isset($item['price_1']) ):?>
+                <td><?=$item['price_1'];?></td>
+                <? endif;?>
+
+                <? if( isset($item['weight']) ):?>
+                <td><?=$item['weight'];?></td>
+                <? endif;?>
+
+                <? if( isset($item['price_2']) ):?>
+                <td><?=$item['price_2'];?></td>
+                <? endif;?>
+
+                <? if( isset($item['price_3']) ):?>
+                <td><?=$item['price_3'];?></td>
+                <? endif;?>
+
+                <? if( isset($item['price_4']) ):?>
+                <td><?=$item['price_4'];?></td>
+                <? endif;?>
+
+            </tr>
+            <? endforeach; ?>
+            <? endif; ?>
+        </table>
+
+    </div>
+</div>
+<!-- prais -->

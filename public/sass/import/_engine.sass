@@ -1,0 +1,301 @@
+@import "var"
+@import "params"
+
+.create
+  color: $fiolet
+  padding-bottom: 10px
+  border-bottom: 3px solid $color-d
+
+// content
+#content
+  @extend %fl-l
+  @extend %display-ib
+  position: relative
+  @extend %width-100
+
+//no-photo
+#no-photo
+  @extend %width-100
+  height: 100%
+  @extend %display-b
+  background-color: #eeeeee
+  @extend %border-radius-2
+
+  &:before
+    width: 100%
+    height: 100%
+    background-color: #696969
+    @extend %display-b
+    content: ""
+    mask-image: url(../img/svg/photo.svg)
+    mask-repeat: no-repeat
+    mask-position: center
+    mask-size: 200px
+  //&:after
+  //  @extend %width-100
+  //  @extend %display-b
+  //  content: "NO POSTER"
+  //  font-size: 32px
+  //  color: #696969
+  //  font-weight: 600
+  //  padding-top: 0px
+  //  text-align: center
+
+
+
+// @media querys !!!
+
+@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+  .wrapper
+    width: 981px
+
+@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+  .wrapper
+    width: 730px
+
+  header
+    .user
+      margin-left: 0
+      .login
+        .name
+          display: none
+        .ava
+          margin-left: 0
+      .no-login
+        a
+          &:first-child
+            margin-right: 0
+            margin-left: 10px
+          &:last-child
+            display: none
+
+  .reg
+    display: none
+  .log
+    margin-right: 0
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  .wrapper
+    width: 480px
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  header
+    .user
+      margin-left: 0
+      .login
+        .name
+          display: none
+        .ava
+          margin-left: 0
+      .no-login
+        a
+          &:last-child
+            display: none
+
+  /* search-main */
+  /* search-main */
+  #speed-search
+    display: none
+  /* speed-search-mini */
+  .speed-search-mini
+    display: block
+  /* search-main */
+  /* menu */
+  .menu
+    display: none
+  .menu-phone
+    display: block
+    > .link
+      padding-right: 15px
+      .block
+        margin-right: 0px
+      b
+        display: none
+    .items
+      padding-top: 10px
+      padding-bottom: 10px
+      a
+        line-height: 30px
+        padding-left: 15px
+        padding-right: 15px
+
+  .reg
+    display: none
+  .log
+    margin-right: 0
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+  .wrapper
+    width: 360px
+    margin-bottom: 0
+    margin-top: 0
+  .container
+    padding:
+      left: 10px
+      right: 10px
+  .logo
+    margin-right: 7px
+
+  header
+    .user
+      margin-left: 0
+      .no-login
+        a
+          &:last-child
+            display: none
+      .login
+        .name
+          display: none
+        .ava
+          margin-left: 0
+
+  /* search-main */
+  #speed-search
+    display: none
+  /* speed-search-mini */
+  .speed-search-mini
+    display: block
+  /* menu */
+  .menu
+    display: none
+  .menu-phone
+    display: block
+    > .link
+      padding-right: 15px
+      .block
+        margin-right: 0px
+      b
+        display: none
+    .items
+      padding-top: 10px
+      padding-bottom: 10px
+      a
+        line-height: 30px
+        padding-left: 15px
+        padding-right: 15px
+
+  .reg
+    display: none
+  .log
+    margin-right: 0
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+  .wrapper
+    width: 320px
+    margin-bottom: 0
+    margin-top: 0
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  header
+    .logo
+      display: none
+    .user
+      margin-left: 0
+      .no-login
+        a
+          &:last-child
+            display: none
+      .login
+        .name
+          display: none
+        .ava
+          margin-left: 0
+
+  /* search-main */
+  #speed-search
+    display: none
+  /* speed-search-mini */
+  .speed-search-mini
+    display: block
+
+  /* menu */
+  .menu
+    display: none
+  .menu-phone
+    margin-left: -10px
+    display: block
+    > .link
+      padding-right: 15px
+      .block
+        margin-right: 0px
+      b
+        display: none
+    .items
+      padding-top: 10px
+      padding-bottom: 10px
+      a
+        line-height: 30px
+        padding-left: 15px
+        padding-right: 15px
+
+  .reg
+    display: none
+  .log
+    margin-right: 0
+
+
+@media only screen and (max-width: 319px)
+  .wrapper
+    width: 320px
+    margin-bottom: 0
+    margin-top: 0
+  .container
+    padding:
+      left: 10px
+      right: 10px
+  header
+    .logo
+      display: none
+
+  header
+    .user
+      margin-left: 0
+      .no-login
+        a
+          &:last-child
+            display: none
+      .login
+        .name
+          display: none
+        .ava
+          margin-left: 0
+
+  /* search-main */
+  #speed-search
+    display: none
+  /* speed-search-mini */
+  .speed-search-mini
+    display: block
+  /* menu */
+  .menu
+    display: none
+  .menu-phone
+    margin-left: -10px
+    display: block
+    > .link
+      padding-right: 15px
+      .block
+        margin-right: 0px
+      b
+        display: none
+    .items
+      padding-top: 10px
+      padding-bottom: 10px
+      a
+        line-height: 30px
+        padding-left: 15px
+        padding-right: 15px
+
+  .reg
+    display: none
+  .log
+    margin-right: 0

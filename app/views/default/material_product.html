@@ -1,0 +1,98 @@
+<!-- prais -->
+<div class="view content container" style="margin-top: 80px;">
+
+
+
+    <div class="base">
+
+        <div class="left">
+
+            <div class="poster" style="background-color: #eeeeee">
+                <a href="/public/images/articles/material/<?=$id;?>.png" class="js-img-viwer" data-group="view">
+                    <img src="/public/images/articles/material/<?=$id;?>.png" alt="">
+                </a>
+            </div>
+
+            <div class="screens-mini"  style="margin-bottom: 15px">
+                <!--Глянцеве покриття-->
+                <? if($gallery): ?>
+                <?=$gallery;?>
+                <? endif; ?>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <h4 class="title" style="margin-bottom: 10px">
+                <a style="font-size: 52px;"><?=$logo;?></a>
+            </h4>
+
+            <div class="screens" style="margin-bottom: 15px">
+
+                <!--<a href="/public/images/articles/material/chertej/<?=$id;?>.png" class="js-img-viwer" data-group="view">-->
+                    <!--<img src="/public/images/articles/material/chertej/<?=$id;?>.png">-->
+                <!--</a>-->
+
+                <? if($gallery2): ?>
+                <?=$gallery2;?>
+                <? endif; ?>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="description"><?=$info;?></div>
+            
+            <!--<h4 class="name"><?=$logo;?></h4>-->
+
+
+
+            <!--<img src="/public/images/articles/material/chertej/<?=$id;?>.png">-->
+
+
+
+            <!--<div class="screens">-->
+            <!--<?=$screens;?>-->
+            <!--</div>-->
+
+            
+
+
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <!--<h4 class="title">-->
+        <!--&lt;!&ndash;<a href="/metal" class="">Металопрокат</a>&ndash;&gt;-->
+        <!--<a class=""><?=$logo;?></a>-->
+    <!--</h4>-->
+    <div class="text">
+
+        <? if($products): ?>
+
+        <div class="articles" style="border-top: 1px solid #dddddd;padding-top: 20px;margin-top: 40px">
+
+
+            <? //pr($products); ?>
+
+            <? foreach($products as $item): ?>
+            <div class="article">
+                <a title="<?=$item['name'];?>">
+                    <!--<a href="/material/<?=$route['product'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">-->
+                    <div class="poster" style="background-size: 280px;background-image: url('/public/images/articles/material/<?=$route['product'];?>/<?=$item['id'];?>.png')">
+                        <div class="price"><?=$item['price_4'].' грн '.$item['price_3'];?></div>
+                    </div>
+
+                    <div class="title"><?=$item['name'].' '.$item['kind'];?></div>
+                </a>
+            </div>
+            <? endforeach; ?>
+
+        </div>
+        <? endif; ?>
+
+    </div>
+</div>
+<!-- prais -->

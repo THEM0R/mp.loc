@@ -1,0 +1,37 @@
+// overlay
+.overlay
+  position: absolute
+  top: 0px
+  left: 0px
+  @extend %width-100
+  @extend %height-100
+  background-color: rgba(0, 0, 0, 0.6)
+  @extend %transition-opacity
+
+
+// overlay-white
+.overlay-white
+  //display: inline-block
+  position: absolute
+  top: 0
+  left: 0
+  @extend %width-100
+  @extend %height-100
+  background-color: rgba(255, 255, 255, 0.9)
+  @extend %display-n
+  z-index: 901
+  > i
+    background-image: url(../img/load.gif)
+    width: 103px
+    height: 103px
+    position: absolute
+    top: 80px
+    left: 50%
+    margin-left: -51.5px
+
+  &.false
+    > i
+      top: -20px
+  &.true
+    > i
+      top: 80px

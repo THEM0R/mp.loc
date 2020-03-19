@@ -1,0 +1,87 @@
+<!-- content -->
+
+<!-- slider -->
+<?if($slider):?>
+<?=$slider;?>
+<?endif;?>
+<!-- slider end -->
+
+<!-- content -->
+<div class="content container">
+
+    <h4 class="title">
+        <a href="/material" class="">МАТЕРІАЛИ <i class="icon-right-open"></i></a>
+    </h4>
+    <div class="articles">
+        <? if($products): ?>
+        <? foreach($products as $item): ?>
+        <div class="article">
+            <a href="/material/<?=$item['url'];?>" title="<?=$item['name'];?>">
+                <div class="poster"
+                     style="background-image: url('/public/images/articles/material/<?=$item['id'];?>.png')"></div>
+                <div class="title"><?=$item['name'];?></div>
+            </a>
+        </div>
+        <? endforeach; ?>
+        <? endif; ?>
+    </div>
+</div>
+<!-- content end -->
+
+<!-- content -->
+<div class="content container" style="background-color: #f2f2f2;background-image: url(/public/images/bg_fon.png)">
+
+    <h4 class="title">
+        <a href="/metal" class="">МЕТАЛОПРОКАТ <i class="icon-right-open"></i></a>
+    </h4>
+    <div class="articles">
+        <div class="article big">
+            <a href="/metal" title="Арматура">
+                <div class="poster" style="background-image: url('/public/images/articles/metal/logo.png')"></div>
+                <div class="title">Металопрокат</div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- content end -->
+
+<!-- about -->
+<div class="about container">
+    <!-- title -->
+    <h4 class="title">
+        <a><?=$configs['about']['title'];?></a>
+    </h4>
+    <!-- title end -->
+    <!-- iframe -->
+    <?=$configs['about']['iframe'];?>
+    <!-- iframe end -->
+    <!-- description -->
+    <div class="text">
+        <?=$configs['about']['description2'];?>
+    </div>
+    <!-- description end -->
+</div>
+<!-- about -->
+
+
+<!-- gallery -->
+<div class="gallery gallery-mini content container">
+
+    <h4 class="title">
+        <a href="/gallery" class="">ГАЛЕРЕЯ
+            <i class="icon-right-open"></i>
+        </a>
+    </h4>
+
+    <!-- photos -->
+    <div class="photos">
+        <? if($gallery): ?>
+        <?=$gallery;?>
+        <? endif; ?>
+    </div>
+</div>
+<!-- gallery end -->
+
+
+<!-- content end -->
+

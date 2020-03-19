@@ -1,0 +1,1117 @@
+@import "import/var"
+@import "import/params"
+@import "import/slider"
+@import "import/gallery"
+
+$reds: #FF6E47
+
+$yelows: $reds
+
+$article: $reds
+
+*
+  margin: 0
+  padding: 0
+  font-family: ubuntu
+  box-sizing: border-box
+  text-decoration: none
+  list-style: none
+  @extend %outline-n
+  font-size: 16px
+  color: $font-color
+  cursor: default
+
+a
+  cursor: pointer
+  &:hover
+    color: $reds
+
+.clear
+  clear: both
+
+.title
+  > a
+    &:hover
+      //text-decoration: underline
+  > .probel
+    font-size: 22px
+    font-weight: bold
+    color: $reds
+    margin-left: 8px
+    margin-right: 8px
+
+.left
+  @extend %fl-l
+
+.right
+  @extend %fl-r
+
+.box
+  width: 100%
+  padding:
+    top: 50px
+    bottom: 30px
+  display: inline-block
+
+.container
+  padding-left: 60px
+  padding-right: 60px
+  .title
+    margin-bottom: 30px
+    padding-bottom: 15px
+    border-bottom: 1px solid #dddddd
+    a
+      font-size: 24px
+      font-weight: bold
+      color: $reds
+      position: relative
+      @extend %transition-color
+      &:hover
+        color: $reds
+        > i
+          opacity: 1
+          color: $reds
+
+      > i
+        opacity: 0
+        color: #999999
+        font-size: 19px
+        @extend %transition-opacity
+
+body
+  background:
+    color: $body-background
+    image: url(../images/bg.png)
+    position: center top
+    size: 240px
+
+.wrapper
+  background-color: white
+  width: 1200px
+  margin: 0px auto 0px auto
+  position: relative !important
+  z-index: 2 !important
+  box-shadow: 0px 0px 3px rgba(0,0,0,.2)
+
+
+.clear
+  clear: both
+
+.head
+  background-color: rgb(69, 69, 69)
+  height: 120px
+  //line-height: 120px
+  width: 100%
+
+.info
+  display: inline-block
+  position: relative
+  padding:
+    top: 45px
+    bottom: 40px
+  > .item
+    @extend %fl-l
+    max-width: 230px
+    max-height: 60px
+    display: inline-block
+    border-right: 1px solid #989898
+    margin-left: 15px
+    position: relative
+    > .icon
+      position: absolute
+      top: -10px
+      left: 0px
+      @extend %fl-l
+      color: #989898
+      font-size: 40px
+      width: 50px
+    > h4
+      @extend %fl-l
+      color: #dddddd
+      padding-left: 50px
+    > span
+      @extend %fl-l
+      color: #989898
+      font-size: 12px
+      padding-left: 50px
+
+
+.header
+  width: 100%
+  height: 75px
+  background-color: #f9f9f9
+  line-height: 70px
+  position: absolute
+  z-index: 3
+  color: #dddddd
+  box-shadow: 0px 0px 3px rgba(0,0,0,.2)
+  &.scroll-fix
+    //background-color: rgba(0,0,0,.8)
+    box-shadow: 0px 1px 3px rgba(0,0,0,.5)
+    .info
+      display: block
+
+  .info
+    display: none
+    padding-top: 10px
+    padding-bottom: 0px
+    > .item
+      > span
+        line-height: 20px
+      > h4
+        margin-top: 8px
+        line-height: 20px
+        color: #999999
+
+
+.menu
+  > ul
+    text-align: center
+    > li
+      @extend %fl-l
+      border-top: 3px solid #f9f9f9
+      &:hover
+        border-top: 3px solid $reds
+        > ul
+          visibility: visible
+          display: block
+      > a
+        font-weight: bold
+        color: #999999
+        display: block
+        padding-left: 20px
+        padding-right: 20px
+        font-size: 20px
+        &:hover
+          color: $reds
+
+      > ul
+        display: none
+        visibility: hidden
+        background-color: $reds
+        padding: 15px
+        > li
+          text-align: left
+          line-height: 20px
+          padding-bottom: 10px
+          cursor: pointer
+          &:hover
+            color: white
+            text-decoration: underline
+          > a
+            color: white
+            display: block
+
+    > i
+      @extend %fl-l
+      display: block
+      width: 1px
+      height: 16px
+      margin-top: 31px
+      background-color: #999999
+
+
+.logo
+  display: inline-block
+  margin-top: 25px
+  > img
+    @extend %cursor-p
+    width: 220px
+  &:hover
+    border-color: $reds
+
+
+// 292
+
+
+.content
+  width: 100%
+  padding:
+    top: 30px
+    bottom: 30px
+  display: inline-block
+  &.gallery
+    .articles
+      .article
+        width: 343px
+        height: 225px
+        .title
+          display: none
+        .poster
+          width: 343px
+          min-height: 225px
+
+
+  .articles
+    .article
+      position: relative
+      width: 343px
+      height: 275px
+      margin:
+        right: 25px
+        bottom: 25px
+      @extend %fl-l
+      background-color: white
+      box-shadow: 0px 1px 3px $article
+      &:nth-child(3n)
+        margin-right: 0
+
+      a
+        display: inline-block
+        position: absolute
+        top: 0
+        left: 0
+        cursor: pointer
+        z-index: 1
+
+      .poster
+        overflow: hidden
+        width: 343px
+        height: 225px
+        background:
+          color: #dddddd
+          position: center center
+          size: 200px
+          repeat: no-repeat
+        cursor: pointer
+        .price
+          margin-top: 5px
+          margin-left: 5px
+          background-color: $reds
+          @extend %fl-l
+          padding: 5px
+          @extend %border-radius
+          color: white
+          font-size: 18px
+      .title
+        text-align: center
+        width: 343px
+        height: 50px
+        line-height: 50px
+        cursor: pointer
+        font-weight: bold
+        color: $article
+        font-size: 18px
+        overflow: hidden
+
+      &.big
+        width: 1080px
+        .poster
+          width: 1080px
+          background-size: 700px
+        .title
+          width: 1080px
+
+
+        // #e8b71f
+
+
+.about
+  background:
+    color: $reds
+  position: relative
+  padding:
+    top: 50px
+    bottom: 50px
+  box-shadow: 0px 0px 3px rgba(0,0,0,.2)
+  > .overlay
+    width: 100%
+    height: 100%
+    display: block
+
+    background:
+      image: url(../images/3.jpg)
+      repeat: no-repeat
+      position: center center
+      size: cover
+
+    opacity: .2
+    position: absolute
+    top: 0
+    left: 0
+  > .title
+    a
+      color: white
+      text-shadow: 0px 0px 1px rgba(0,0,0,.5)
+      &:hover
+        color: white
+        > i
+          color: white
+      > i
+        color: white
+
+  > .text
+    display: block
+    width: 100%
+    height: auto
+    color: white
+    font-size: 20px
+    text-shadow: 0px 0px 1px rgba(0,0,0,.5)
+
+.google-map
+  width: 100%
+  height: 300px
+
+
+
+.blockhaus
+  margin-top: 65px
+
+
+.view
+  margin-top: 85px
+  margin-bottom: 50px
+  .left
+    width: 30%
+    @extend %fl-l
+    margin-right: 20px
+    .poster
+      @extend %fl-l
+      width: 320px
+      display: inline-block
+      border: 2px solid $reds
+      @extend %border-radius
+      padding-top: 40px
+      padding-bottom: 40px
+
+      a
+        width: 320px
+        padding: 10px
+        display: block
+        img
+          width: 300px
+          cursor: pointer
+
+
+    .screens
+      margin-top: 10px
+      @extend %fl-l
+      width: 320px
+      a
+        display: block
+        @extend %fl-l
+        border: 2px solid $reds
+        @extend %border-radius
+        padding: 10px
+        margin-right: 10px
+        &:nth-child(3)
+          margin-right: 0
+
+        img
+          width: 76px
+          cursor: pointer
+
+  .right
+    width: 68%
+    .name
+      @extend %width-100
+      @extend %fl-l
+      font-size: 32px
+      color: $reds
+      margin-bottom: 20px
+    .price
+      font-size: 24px
+      background-color: $reds
+      @extend %fl-l
+      padding: 5px
+      color: white
+      @extend %border-radius
+
+    .description
+      border-top: 1px solid $color-69
+      padding-top: 20px
+      @extend %fl-l
+      @extend %width-100
+      margin-top: 20px
+      font-size: 18px
+      color: $color-69
+
+
+.menu-phone
+  display: none
+
+
+.footer
+  @extend %fl-l
+  background:
+    image: url(images/bg_fon.png)
+    //color: #f2f2f2
+    color: #454545
+
+  .info
+    padding:
+      top: 0
+      bottom: 0
+
+    .item
+      border-right: 0
+      margin-bottom: 25px
+
+  .tab
+    @extend %fl-l
+    width: 330px
+    margin-right: 60px
+    &:last-child
+      margin-right: 0
+
+    > span
+      color: #eeeeee
+      font-weight: bold
+      font-size: 24px
+      margin-bottom: 10px
+      @extend %fl-l
+      width: 100%
+
+    > ul
+      @extend %fl-l
+      width: 100%
+      > li
+        line-height: 25px
+        > a
+          color: white
+          &:hover
+            color: $yelows
+
+    > .descriptino
+      margin:
+        top: -5px
+      color: white
+
+
+
+  .logo
+    line-height: 69px
+
+// table
+
+table, th, td
+  border: 1px solid white
+  border-collapse: collapse
+
+  th, td
+    padding: 10px
+    text-align: left
+    color: white
+    font-weight: bold
+
+
+// media queries
+
+@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+  .wrapper
+    width: 981px
+  .menu
+    ul
+      li
+        a
+          font-size: 14px
+
+  .info
+    .item
+      display: none
+      &:first-child
+        display: block
+        border-right: 0
+
+  .content
+    .articles
+      .article
+        width: 270px
+        .poster
+          width: 270px
+        .title
+          width: 270px
+        &.big
+          width: 860px
+          .poster
+            width: 860px
+            background-size: 600px
+          .title
+            width: 860px
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 295px
+      margin-right: 30px
+    .info
+      .item
+        display: block
+
+@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  .header.scroll-fix
+    .info
+      display: none
+
+  .wrapper
+    width: 730px
+  .menu
+    ul
+      li
+        a
+          font-size: 16px
+
+  .info
+    .item
+      display: none
+      &:first-child
+        display: block
+        border-right: 0
+
+  .content
+    .articles
+      .article
+        width: 220px
+        .poster
+          width: 220px
+        .title
+          width: 220px
+        &.big
+          width: 708px
+          .poster
+            width: 708px
+            background-size: 500px
+          .title
+            width: 708px
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 730px
+      margin-right: 0px
+      margin-bottom: 20px
+    .info
+      .item
+        display: block
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  .logo
+    padding: 10px
+    line-height: 70px
+
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  .head
+    min-height: 200px
+    > .right
+      float: left
+      .info
+        padding:
+          top: 10px
+          bottom: 10px
+        .item
+          border-right: 0
+          margin-top: 10px
+          width: 100%
+
+
+  .header.scroll-fix
+    .info
+      display: none
+
+  .wrapper
+    width: 480px
+  .menu
+    height: 45px
+    line-height: 45px
+    .list
+      display: none
+
+  .menu-phone
+    display: block
+    float: left
+    position: relative
+    &.open
+      > .items
+        display: inline-block
+
+    > .link
+      display: inline-block
+      cursor: pointer
+      padding:
+        left: 10px
+        right: 10px
+      height: 45px
+      &:hover
+        background-color: #e8b71f
+        > i
+          color: white
+        > span
+          color: white
+
+      > i
+        margin-right: 4px
+        cursor: pointer
+
+      > span
+        font-weight: bold
+        cursor: pointer
+    > .items
+      display: none
+      position: absolute
+      top: 45px
+      left: 0px
+      background-color: white
+
+      padding:
+        top: 10px
+        bottom: 10px
+
+        left: 20px
+        right: 20px
+
+
+      > li
+        line-height: 20px
+        padding:
+          left: 10px
+          right: 10px
+          top: 5px
+          bottom: 5px
+        &:hover
+          //text-decoration: underline
+
+
+
+  .content
+    .articles
+      .article
+        width: 217px
+        .poster
+          width: 217px
+        .title
+          width: 217px
+        &:nth-child(2n)
+          margin-right: 0
+        &:last-child
+          margin-right: 0
+        &:nth-child(3)
+          margin-right: 25px
+        &:nth-child(9)
+          margin-right: 25px
+        &.big
+          width: 460px
+          .poster
+            width: 460px
+            background-size: 400px
+          .title
+            width: 460px
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 460px
+      margin-right: 0px
+      margin-bottom: 20px
+    .info
+      .item
+        display: block
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+
+  .logo
+    padding: 10px
+    line-height: 70px
+
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  .head
+    min-height: 250px
+    > .right
+      float: left
+      .info
+        padding:
+          top: 10px
+          bottom: 10px
+        .item
+          border-right: 0
+          margin-top: 15px
+          width: 100%
+
+
+  .header.scroll-fix
+    .info
+      display: none
+
+  .wrapper
+    width: 360px
+  .menu
+    height: 45px
+    line-height: 45px
+    .list
+      display: none
+
+  .menu-phone
+    display: block
+    float: left
+    position: relative
+    &.open
+      > .items
+        display: inline-block
+
+    > .link
+      display: inline-block
+      cursor: pointer
+      padding:
+        left: 10px
+        right: 10px
+      height: 45px
+      &:hover
+        background-color: #e8b71f
+        > i
+          color: white
+        > span
+          color: white
+
+      > i
+        margin-right: 4px
+        cursor: pointer
+
+      > span
+        font-weight: bold
+        cursor: pointer
+    > .items
+      display: none
+      position: absolute
+      top: 45px
+      left: 0px
+      background-color: white
+
+      padding:
+        top: 10px
+        bottom: 10px
+
+        left: 20px
+        right: 20px
+
+
+      > li
+        line-height: 20px
+        padding:
+          left: 10px
+          right: 10px
+          top: 5px
+          bottom: 5px
+        &:hover
+  //text-decoration: underline
+
+
+
+  .content
+    .articles
+      .article
+        width: 340px
+        .poster
+          width: 340px
+        .title
+          width: 340px
+          margin-right: 0
+        &:nth-child(2n)
+          margin-right: 0
+        &:last-child
+          margin-right: 0
+        &:nth-child(3)
+          margin-right: 25px
+        &:nth-child(9)
+          margin-right: 25px
+        &.big
+          width: 340px
+          .poster
+            width: 340px
+            background-size: 300px
+          .title
+            width: 340px
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 340px
+      margin-right: 0px
+      margin-bottom: 20px
+    .info
+      .item
+        display: block
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+
+  .logo
+    padding: 10px
+    line-height: 70px
+
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  .head
+    min-height: 250px
+    > .right
+      float: left
+      .info
+        padding:
+          top: 10px
+          bottom: 10px
+        .item
+          border-right: 0
+          margin-top: 15px
+          width: 100%
+
+
+  .header.scroll-fix
+    .info
+      display: none
+
+  .wrapper
+    width: 320px
+  .menu
+    height: 45px
+    line-height: 45px
+    .list
+      display: none
+
+  .menu-phone
+    display: block
+    float: left
+    position: relative
+    &.open
+      > .items
+        display: inline-block
+
+    > .link
+      display: inline-block
+      cursor: pointer
+      padding:
+        left: 10px
+        right: 10px
+      height: 45px
+      &:hover
+        background-color: #e8b71f
+        > i
+          color: white
+        > span
+          color: white
+
+      > i
+        margin-right: 4px
+        cursor: pointer
+
+      > span
+        font-weight: bold
+        cursor: pointer
+    > .items
+      display: none
+      position: absolute
+      top: 45px
+      left: 0px
+      background-color: white
+
+      padding:
+        top: 10px
+        bottom: 10px
+
+        left: 20px
+        right: 20px
+
+
+      > li
+        line-height: 20px
+        padding:
+          left: 10px
+          right: 10px
+          top: 5px
+          bottom: 5px
+        &:hover
+  //text-decoration: underline
+
+
+
+  .content
+    .articles
+      .article
+        width: 300px
+        .poster
+          width: 300px
+        .title
+          width: 300px
+          margin-right: 0
+        &:nth-child(2n)
+          margin-right: 0
+        &:last-child
+          margin-right: 0
+        &:nth-child(3)
+          margin-right: 25px
+        &:nth-child(9)
+          margin-right: 25px
+        &.big
+          width: 300px
+          .poster
+            width: 300px
+            background-size: 250px
+          .title
+            width: 300px
+
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 300px
+      margin-right: 0px
+      margin-bottom: 20px
+    .info
+      .item
+        display: block
+
+@media only screen and (max-width: 319px)
+
+  .logo
+    padding: 10px
+    line-height: 70px
+
+  .container
+    padding:
+      left: 10px
+      right: 10px
+
+  .head
+    min-height: 250px
+    > .right
+      float: left
+      .info
+        padding:
+          top: 10px
+          bottom: 10px
+        .item
+          border-right: 0
+          margin-top: 15px
+          width: 100%
+
+
+  .header.scroll-fix
+    .info
+      display: none
+
+  .wrapper
+    width: 320px
+  .menu
+    height: 45px
+    line-height: 45px
+    .list
+      display: none
+
+  .menu-phone
+    display: block
+    float: left
+    position: relative
+    &.open
+      > .items
+        display: inline-block
+
+    > .link
+      display: inline-block
+      cursor: pointer
+      padding:
+        left: 10px
+        right: 10px
+      height: 45px
+      &:hover
+        background-color: #e8b71f
+        > i
+          color: white
+        > span
+          color: white
+
+      > i
+        margin-right: 4px
+        cursor: pointer
+
+      > span
+        font-weight: bold
+        cursor: pointer
+    > .items
+      display: none
+      position: absolute
+      top: 45px
+      left: 0px
+      background-color: white
+
+      padding:
+        top: 10px
+        bottom: 10px
+
+        left: 20px
+        right: 20px
+
+
+      > li
+        line-height: 20px
+        padding:
+          left: 10px
+          right: 10px
+          top: 5px
+          bottom: 5px
+        &:hover
+  //text-decoration: underline
+
+
+
+  .content
+    .articles
+      .article
+        width: 300px
+        .poster
+          width: 300px
+        .title
+          width: 300px
+          margin-right: 0
+        &:nth-child(2n)
+          margin-right: 0
+        &:last-child
+          margin-right: 0
+        &:nth-child(3)
+          margin-right: 25px
+        &:nth-child(9)
+          margin-right: 25px
+        &.big
+          width: 300px
+          .poster
+            width: 300px
+            background-size: 250px
+          .title
+            width: 300px
+
+
+  .footer
+    .logo
+      line-height: 62px
+      font-size: 18px
+    .tab
+      width: 300px
+      margin-right: 0px
+      margin-bottom: 20px
+    .info
+      .item
+        display: block

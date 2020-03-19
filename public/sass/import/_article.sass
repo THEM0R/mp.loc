@@ -1,0 +1,874 @@
+.smal
+  .article
+    width: 227.4px
+    height: 160px
+    > a
+      > .item-poster
+        width: 227.4px
+        height: 120px
+        > img
+          width: 227.4px
+          height: 120px
+  .item-link
+    width: 226px
+    height: 120px
+
+.big
+  .item
+    .article
+      width: 227.4px
+      height: 180px
+      > a
+        > .item-poster
+          width: 227.4px
+          height: 120px
+          > img
+            width: 227.4px
+            height: 120px
+      &.big
+        width: 485px
+        height: 370px
+        margin-right: 30px
+        > a
+          > .item-poster
+            width: 485px
+            height: 300px
+            > img
+              width: 485px
+              height: 300px
+
+    .itemcover
+      margin-right: 30px
+
+    .item-link
+      width: 226px
+      height: 300px
+
+
+.article
+  width: 176px
+  height: 330px
+  float: left
+  overflow: hidden
+  > a > .item-poster
+    width: 176px
+    height: 248px
+    overflow: hidden
+    position: relative
+    > #no-photo
+      &::before
+        mask-size: 120px
+    > img
+      width: 176px
+      height: 248px
+    > .overlay
+      position: absolute
+      top: 0px
+      left: 0px
+      width: 100%
+      height: 100%
+      background-color: rgba(0, 0, 0, 0.6)
+      opacity: 0
+      z-index: 900
+      @extend %transition-opacity
+      > .overlay-fav
+        width: 28px
+        height: 28px
+        background-color: white
+        -webkit-border-radius: 50%
+        border-radius: 50%
+        position: absolute
+        top: 10px
+        left: 10px
+        cursor: pointer
+
+        > .overlay-fav-icon
+          background:
+            size: 15px 11px
+            repeat: no-repeat
+            position: center
+
+          width: 20px
+          height: 20px
+          margin: 5px 0 0 5px
+          display: block
+
+        &.true
+          background:
+            color: $fiolet
+          > .overlay-fav-icon
+            background:
+              image: url(../img/favorite/4.png)
+
+          &:hover
+            background:
+              color: $white
+            > .overlay-fav-icon
+              background:
+                image: url(../img/favorite/3.png)
+
+        &.false
+          background:
+            color: $white
+          > .overlay-fav-icon
+            background:
+              image: url(../img/favorite/1.png)
+
+          &:hover
+            background:
+              color: $fiolet
+            > .overlay-fav-icon
+              background:
+                image: url(../img/favorite/2.png)
+
+
+      > .overlay-info
+        width: 24px
+        height: 24px
+        background-color: white
+        -webkit-border-radius: 50%
+        border-radius: 50%
+        position: absolute
+        top: 44px
+        left: 10px
+        cursor: pointer
+        > .overlay-info-icon
+          background-image: url(../img/info-large.png)
+          -webkit-background-size: 20px 20px
+          background-size: 20px 20px
+          width: 20px
+          height: 20px
+          margin: 2px 0 0 2px
+          display: block
+      > .overlay-play
+        position: absolute
+        margin-top: -25px
+        margin-left: -25px
+        -webkit-border-radius: 50%
+        border-radius: 50%
+        width: 50px
+        height: 50px
+        top: 50%
+        left: 50%
+        background-color: white
+        > .overlay-play-icon
+          margin: 16px 0 0 18px
+          width: 20px
+          height: 20px
+          background-image: url(../img/play20x20.png)
+          -webkit-background-size: 20px 20px
+          background-size: 20px 20px
+          display: block
+  &.hover
+    > a > .item-poster > .overlay
+      opacity: 1
+    .item-title-link
+      @extend %transition-color
+      color: #ec174f
+
+  > .bottom-info
+    max-height: 60px
+    margin: 10px 0
+    white-space: normal
+    > .item-title
+      margin: 2px 0
+      font-size: 16px
+      font-weight: 600
+      max-height: 20px
+      overflow: hidden
+      cursor: default
+    > .item-cats
+      max-height: 20px
+      overflow: hidden
+      margin: 2px 0
+      line-height: 18px
+      font-size: 14px
+      color: #a6a6a6
+      cursor: default
+
+
+
+
+.item-link
+  width: 176px
+  height: 248px
+  background: white
+  display: block
+  position: relative
+  border: 2px solid $fiolet
+  @extend %transition-background-color
+
+  &:hover
+    background-color: $fiolet
+    p
+      color: $white
+    i
+      background-color: $white
+      &:after
+        background-color: $white
+      &:before
+        background-color: $white
+
+  > i
+    width: 60px
+    position: absolute
+    right: 20px
+    bottom: 25px
+    height: 3px
+    background-color: $fiolet
+    display: block
+    @extend %transition-background-color
+
+    &:after
+      top: -5px
+      transform: rotate(45deg)
+    &:before
+      top: 5px
+      transform: rotate(-45deg)
+
+
+    &:after, &:before
+      z-index: 100
+      position: absolute
+      right: 0
+      content: ''
+      width: 12px
+      height: 3px
+      background-color: $fiolet
+      display: block
+      @extend %transition-background-color
+
+  > p
+    @extend %transition-color
+    margin-top: 15px
+    margin-left: 20px
+    height: auto
+    text-transform: uppercase
+    font-weight: 600
+
+    color: $fiolet
+    text-align: left
+    i
+      background-color: $fiolet
+      width: 50px
+      height: 50px
+      display: block
+      -webkit-border-radius: 50%
+      border-radius: 50%
+      color: white
+      line-height: 52px
+      text-align: center
+      font-size: 25px
+      margin: 15px auto
+      &:before
+        padding-left: 5px
+
+/* media */
+@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+  .article
+    width: 148.4px
+    height: 275px
+    > a
+      > .item-poster
+        width: 148.4px
+        height: 215px
+        > img
+          width: 148.4px
+          height: 215px
+
+  .smal
+    .article
+      width: 192.75px
+      height: 140px
+      > a > .item-poster
+        width: 192.75px
+        height: 100px
+        > img
+          width: 192.75px
+          height: 100px
+
+  .big
+    .item
+      .article
+        width: 192.75px
+        height: 160px
+        > a
+          > .item-poster
+            width: 192.75px
+            height: 100px
+            > img
+              width: 192.75px
+              height: 100px
+        &.big
+          width: 415px
+          height: 370px
+          margin-right: 30px
+          > a
+            > .item-poster
+              width: 415px
+              height: 260px
+              > img
+                width: 415px
+                height: 260px
+
+
+
+
+@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+  .article
+    width: 130.4px
+    height: 247px
+    > a
+      > .item-poster
+        width: 130.4px
+        height: 190px
+        > img
+          width: 130.4px
+          height: 190px
+
+    > .bottom-info
+      margin-top: 5px
+      .item-cats
+        line-height: 16px
+        font-size: 14px
+
+  .item-link
+    > p
+      font-size: 12px
+    i
+      width: 50px
+      height: 2px
+      &:before, &:after
+        height: 2px
+        width: 10px
+      &:before
+        top: 4px
+      &:after
+        top: -4px
+
+  .smal
+    .article
+      width: 183.3px
+      height: 140px
+      > a > .item-poster
+        width: 183.3px
+        height: 100px
+        > img
+          width: 183.3px
+          height: 100px
+
+  .big
+    .item
+      .article
+        width: 183.3px
+        height: 160px
+        > a
+          > .item-poster
+            width: 183.3px
+            height: 100px
+            > img
+              width: 183.3px
+              height: 100px
+        &.big
+          width: 396px
+          height: 370px
+          margin-right: 30px
+          > a
+            > .item-poster
+              width: 396px
+              height: 260px
+              > img
+                width: 396.7px
+                height: 260px
+
+      .itemcover
+        margin-right: 0
+        &:last-child
+          display: none
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  .article
+    width: 145px
+    height: 270px
+    > a
+      > .item-poster
+        width: 145px
+        height: 210px
+        > img
+          width: 145px
+          height: 210px
+
+  .smal
+    .article
+      width: 225px
+      height: 140px
+      > a > .item-poster
+        width: 225px
+        height: 100px
+        > img
+          width: 225px
+          height: 100px
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+  .article
+    > .bottom-info
+      margin-top: 5px
+
+  .article
+    width: 165px
+    height: 270px
+    > a
+      > .item-poster
+        width: 165px
+        height: 204px
+        > img
+          width: 165px
+          height: 204px
+
+  .smal
+    .article
+      width: 165px
+      height: 120px
+      > a > .item-poster
+        width: 165px
+        height: 80px
+        > img
+          width: 165px
+          height: 80px
+
+
+  .big
+    .item
+      .article
+        width: 165px
+        height: 135px
+        > a
+          > .item-poster
+            width: 165px
+            height: 80px
+            > img
+              width: 165px
+              height: 80px
+        &.big
+          width: 340px
+          height: 370px
+          margin-right: 30px
+          > a
+            > .item-poster
+              width: 340px
+              height: 215px
+              > img
+                width: 340px
+                height: 215px
+
+      .itemcover
+        margin-right: 0
+        &:last-child
+          display: none
+
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+
+  .article
+    > .bottom-info
+      margin-top: 5px
+
+  .article
+    width: 145px
+    height: 270px
+    > a
+      > .item-poster
+        width: 145px
+        height: 190px
+        > img
+          width: 145px
+          height: 190px
+
+  .smal
+    .article
+      width: 145px
+      height: 110px
+      > a > .item-poster
+        width: 145px
+        height: 70px
+        > .overlay
+          > .overlay-fav,.overlay-info
+            display: none
+        > img
+          width: 145px
+          height: 70px
+
+  .big
+    .item
+      .article
+        width: 145px
+        height: 125px
+        > a
+          > .item-poster
+            width: 145px
+            height: 70px
+            > img
+              width: 145px
+              height: 70px
+        &.big
+          width: 300px
+          height: 350px
+          margin-right: 10px
+          > a
+            > .item-poster
+              width: 300px
+              height: 195px
+              > img
+                width: 300px
+                height: 195px
+
+      .itemcover
+        margin-right: 0
+        &:last-child
+          display: none
+
+
+
+@media only screen and (max-width: 319px)
+
+  .article
+    > .bottom-info
+      margin-top: 5px
+
+  .article
+    width: 145px
+    height: 270px
+    > a
+      > .item-poster
+        width: 145px
+        height: 190px
+        > img
+          width: 145px
+          height: 190px
+
+  .smal
+    .article
+      width: 145px
+      height: 110px
+      > a > .item-poster
+        width: 145px
+        height: 70px
+        > .overlay
+          > .overlay-fav,.overlay-info
+            display: none
+        > img
+          width: 145px
+          height: 70px
+
+
+  .big
+    .item
+      .article
+        width: 145px
+        height: 125px
+        > a
+          > .item-poster
+            width: 145px
+            height: 70px
+            > img
+              width: 145px
+              height: 70px
+        &.big
+          width: 300px
+          height: 350px
+          margin-right: 10px
+          > a
+            > .item-poster
+              width: 300px
+              height: 195px
+              > img
+                width: 300px
+                height: 195px
+
+      .itemcover
+        margin-right: 0
+        &:last-child
+          display: none
+
+/* media */
+
+
+// article2
+.article2
+  margin-bottom: 30px
+  width: 670px
+  height: 248px
+  float: left
+  overflow: hidden
+  display: inline-block
+  > a
+    > .item-poster
+      @extend %fl-l
+      width: 176px
+      height: 248px
+      overflow: hidden
+      position: relative
+      > img
+        width: 176px
+        height: 248px
+      > .overlay
+        opacity: 0
+        @extend %transition-opacity
+        > .overlay-fav
+          width: 24px
+          height: 24px
+          background-color: white
+          -webkit-border-radius: 50%
+          border-radius: 50%
+          position: absolute
+          top: 10px
+          left: 10px
+          cursor: pointer
+          > .overlay-fav-icon
+            background-image: url(../img/fav/star-empty.png)
+            -webkit-background-size: 16px 16px
+            background-size: 16px 16px
+            width: 16px
+            height: 16px
+            margin: 4px 0 0 4px
+            display: block
+        > .overlay-info
+          width: 24px
+          height: 24px
+          background-color: white
+          -webkit-border-radius: 50%
+          border-radius: 50%
+          position: absolute
+          top: 44px
+          left: 10px
+          cursor: pointer
+          > .overlay-info-icon
+            background-image: url(../img/info-large.png)
+            -webkit-background-size: 20px 20px
+            background-size: 20px 20px
+            width: 20px
+            height: 20px
+            margin: 2px 0 0 2px
+            display: block
+        > .overlay-play
+          position: absolute
+          margin-top: -25px
+          margin-left: -25px
+          -webkit-border-radius: 50%
+          border-radius: 50%
+          width: 50px
+          height: 50px
+          top: 50%
+          left: 50%
+          background-color: white
+          > .overlay-play-icon
+            margin: 16px 0 0 18px
+            width: 20px
+            height: 20px
+            background-image: url(../img/play20x20.png)
+            -webkit-background-size: 20px 20px
+            background-size: 20px 20px
+            display: block
+
+  > .right
+    width: 479px
+    margin-left: 15px
+    @extend %fl-l
+    .tab
+      width: 100%
+      height: 32px
+      overflow: hidden
+      white-space: normal
+      display: inline-block
+      font-weight: 600
+      color: #696969
+      font-size: 14px
+      &.description
+        height: 95px
+      h3
+        height: 20px
+        overflow: hidden
+        width: 100%
+        margin-bottom: 10px
+        white-space: normal
+        a
+          font-size: 18px
+          color: $fiolet
+      .key
+        font-size: 14px
+        @extend %fl-l
+        width: 14%
+        line-height: 20px
+        color: #696969
+      .value
+        @extend %fl-l
+        width: 86%
+        a
+          font-size: 14px
+          @extend %fl-l
+          padding-left: 6px
+          padding-right: 6px
+          padding-top: 3px
+          padding-bottom: 3px
+          margin-right: 8px
+          margin-bottom: 8px
+          font-weight: normal
+          background-color: #EC174F
+          color: #fff
+          @extend %border-radius-2
+
+  &.hover
+    > a > .item-poster > .overlay
+      opacity: 1
+    .item-title-link
+      @extend %transition-color
+      color: #ec174f
+
+  > .bottom-info
+    max-height: 60px
+    margin: 10px 0
+    white-space: normal
+    > .item-title
+      margin: 2px 0
+      font-size: 16px
+      font-weight: 600
+      max-height: 20px
+      overflow: hidden
+      cursor: default
+    > .item-cats
+      max-height: 20px
+      overflow: hidden
+      margin: 2px 0
+      line-height: 18px
+      font-size: 14px
+      color: #a6a6a6
+      cursor: default
+
+
+/* media */
+//@media only screen and (min-width: 1030px) and (max-width: 1180px)
+
+
+
+
+//@media only screen and (min-width: 801px) and (max-width: 1029px)
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 800px)
+
+  .article2
+    width: 460px
+    height: 220px
+    > a > .item-poster
+      width: 145px
+      height: 210px
+    > .right
+      width: 300px
+      .tab
+        &.description
+          height: 55px
+        .key
+          width: 20%
+        .value
+          width: 80%
+
+
+@media only screen and (min-width: 360px) and (max-width: 479px)
+
+  .article2
+    width: 340px
+    height: 190px
+    > a > .item-poster
+      width: 120px
+      height: 180px
+      > .overlay
+        .overlay-fav,.overlay-info
+          display: none
+    > .right
+      width: 205px
+      .tab
+        height: 25px
+        h3
+          margin-bottom: 5px
+          a
+            font-size: 16px
+        &.description
+          font-size: 12px
+          height: 50px
+        .key
+          font-size: 12px
+          width: 25%
+        .value
+          width: 75%
+          a
+            font-size: 12px
+
+
+@media only screen and (min-width: 320px) and (max-width: 359px)
+
+  .article2
+    width: 300px
+    height: 175px
+    > a > .item-poster
+      width: 100px
+      height: 160px
+      > .overlay
+        .overlay-fav,.overlay-info
+          display: none
+    > .right
+      width: 185px
+      .tab
+        height: 25px
+        h3
+          margin-bottom: 5px
+          a
+            font-size: 16px
+        &.description
+          font-size: 12px
+          height: 50px
+        .key
+          font-size: 12px
+          width: 25%
+        .value
+          width: 75%
+          a
+            font-size: 12px
+
+
+
+
+@media only screen and (max-width: 319px)
+
+  .article2
+    width: 300px
+    height: 175px
+    > a > .item-poster
+      width: 100px
+      height: 160px
+      > .overlay
+        .overlay-fav,.overlay-info
+          display: none
+    > .right
+      width: 185px
+      .tab
+        height: 25px
+        h3
+          margin-bottom: 5px
+          a
+            font-size: 16px
+        &.description
+          font-size: 12px
+          height: 50px
+        .key
+          font-size: 12px
+          width: 25%
+        .value
+          width: 75%
+          a
+            font-size: 12px
+
+/* media */

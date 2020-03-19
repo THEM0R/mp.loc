@@ -1,0 +1,86 @@
+//menu-phone
+.menu-phone
+  @extend %fl-l
+  position: relative
+  @extend %cursor-p
+  @extend %display-n
+
+  > .link
+    @extend %fl-l
+    @extend %display-ib
+    padding-left: 15px
+    padding-right: 18px
+    height: 45px
+    @extend %transition-background-color
+
+    .block
+      @extend %fl-l
+      width: 18px
+      margin-top: 17px
+      margin-right: 10px
+
+      i
+        @extend %menu
+        margin-top: 3px
+        margin-bottom: 3px
+        @extend %transition-background-color
+
+      &:before
+        @extend %menu
+        @extend %transition-background-color
+
+      &:after
+        @extend %menu
+        @extend %transition-background-color
+
+    b
+      @extend %fl-l
+      color: $white
+
+
+
+  > .items
+    @extend %fl-l
+    background-color: $white
+    visibility: hidden
+    opacity: 0
+    position: absolute
+    top: 45px
+    padding:
+      top: 20px
+      bottom: 20px
+    @extend %cursor-d
+    @extend %modal-shadow
+    @extend %transition-opacity
+
+    > a
+      @extend %width-100
+      float: left
+      line-height: 35px
+      padding-left: 45px
+      padding-right: 45px
+      font-weight: normal
+
+      &:hover
+        color: $fiolet
+        @extend %transition-color
+
+  &.open
+    > .link
+      background-color: $white
+
+      .block
+        &:before
+          background-color: $black
+        &:after
+          background-color: $black
+        i
+          background-color: $black
+
+      b
+        color: $black
+        @extend %transition-color
+
+    > .items
+      opacity: 1
+      visibility: visible
