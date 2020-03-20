@@ -32,6 +32,10 @@ class AdminController extends AppController
 
   }
 
+  /*
+   * category
+   */
+
   public function categoryAction($model, $route)
   {
     $title = 'Категорії';
@@ -132,12 +136,15 @@ class AdminController extends AppController
   public function categoryDeleteAction($model, $route)
   {
     $category = \R::load('_category', $route['id']);
-    if(\R::trash( $category )){
-      $_SESSION['cat_add']['success'] = 'Категорія успішно видалена!';
-      App::redirect('/admin/category');
-    }
+    \R::trash($category);
+    $_SESSION['cat_add']['success'] = 'Категорія успішно видалена!';
+    App::redirect('/admin/category');
+
   }
 
+  /*
+   * articles
+   */
 
   public function articlesAction($model, $route)
   {
@@ -212,6 +219,63 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category', 'article'));
   }
 
+
+  /*
+   * page
+   */
+  public function pageAction($model, $route)
+  {
+
+    $title = 'Сторінки';
+    $this->meta($title . $this->title);
+    $this->theme = 'admin';
+    /*
+     * pages
+     */
+    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
+    $this->render(compact('title', 'description', 'pages'));
+  }
+
+  public function pageAddAction($model, $route)
+  {
+
+    $title = 'Добавлення Сторінки';
+    $this->meta($title . $this->title);
+    $this->theme = 'admin';
+    /*
+     * pages
+     */
+    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
+    $this->render(compact('title', 'description', 'pages'));
+  }
+
+  public function pageEditAction($model, $route)
+  {
+
+    $title = 'Редагування Сторінки';
+    $this->meta($title . $this->title);
+    $this->theme = 'admin';
+    /*
+     * pages
+     */
+    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
+    $this->render(compact('title', 'description', 'pages'));
+  }
+
+  public function pageDeleteAction($model, $route)
+  {
+    /*
+     * pages
+     */
+    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
+    $this->render(compact('title', 'description', 'pages'));
+  }
+
+
+  /*
+   * widgets
+   */
+
   public function widgetsAction($model, $route)
   {
     $title = 'Віджети';
@@ -271,27 +335,7 @@ class AdminController extends AppController
   }
 
 
-  public function pageAction($model, $route)
-  {
 
-    $title = 'Сторінки';
-
-    $this->meta($title . $this->title);
-
-    $this->theme = 'admin';
-
-    $description = $this->configs['about']['description2'];
-
-    /*
-     * articles
-     */
-    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
-
-
-    $this->render(compact('title', 'description', 'articles'));
-
-
-  }
 
 
 }

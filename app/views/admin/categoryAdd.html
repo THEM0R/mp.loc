@@ -1,0 +1,42 @@
+<div class="row">
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="" method="post">
+
+          <? if(!empty($_SESSION['cat_add']['error'])): ?>
+          <div class="form-group">
+            <div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+              <?=$_SESSION['cat_add']['error'];?>
+              <? $_SESSION['cat_add']['error'] = '';?>
+            </div>
+          </div>
+          <? endif; ?>
+
+          <div class="form-group">
+            <label for="inputName">Назва Матеріалу</label>
+            <input type="text" id="inputName" name="name" class="form-control"
+                   placeholder="Назва" required>
+          </div>
+          <div class="form-group">
+            <label for="inputUrl">Url Адрес</label>
+            <input type="text" id="inputUrl" name="url" class="form-control"
+                   placeholder="url" required>
+          </div>
+          <div class="form-group">
+            <label for="inputDesc">Інформація про Категорію</label>
+            <textarea id="inputDesc" name="description" class="form-control" rows="4"
+                      placeholder="Інформація"></textarea>
+          </div>
+          <div class="form-group border-top pt-3">
+            <a href="/admin/category" class="btn btn-secondary">Назад</a>
+            <input type="submit" name="category_add" value="Добавити" class="btn btn-success float-right">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

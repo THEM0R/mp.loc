@@ -15,41 +15,34 @@
         <th style="width: 20%">
           Назва (name)
         </th>
-        <th style="width: 30%">
+        <th style="width: 20%">
           Лінк (url)
         </th>
         <th style="width: 30%">
-          Категорія (url)
-        </th>
-        <th>
-          description
-        </th>
-        <th style="width: 22%">
         </th>
       </tr>
       </thead>
       <tbody>
 
-      <? foreach($articles2 as $article): ?>
+      <? foreach($pages as $page): ?>
       <tr>
-        <td><?=$article['id']?></td>
-        <td><?=$article['name']?>
+        <td><?=$page['id']?></td>
+        <td><?=$page['name']?>
         </td>
-        <td><?=$article['url']?></td>
-        <td><?=$category[$article['category']]['name']?></td>
+        <td><?=$page['url']?></td>
         <td></td>
         <td>
-          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+          <a class="btn btn-primary btn-sm" href="/admin/page/<?=$page['id']?>">
             <i class="fas fa-folder">
             </i>
             View
           </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
+          <a class="btn btn-info btn-sm" href="/admin/page/<?=$page['id']?>/edit">
             <i class="fas fa-pencil-alt">
             </i>
             Edit
           </a>
-          <a class="btn btn-danger btn-sm" href="/admin/articles/<?=$article['id']?>/delete">
+          <a class="btn btn-danger btn-sm" href="/admin/page/<?=$page['id']?>/delete">
             <i class="fas fa-trash">
             </i>
             Delete
