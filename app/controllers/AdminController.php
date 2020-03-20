@@ -114,6 +114,7 @@ class AdminController extends AppController
         $cat->description = $description;
 
         if (\R::store($cat)) {
+          $_SESSION['cat_add']['success'] = 'Категорія успішно оновлена!';
           App::redirect('/admin/category');
         }
       }
@@ -195,8 +196,89 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category', 'article'));
   }
 
+  public function articlesAddAction($model, $route)
+  {
+
+    if (isset($_POST['articles_add'])) {
+      $name = (string)$_POST['name'];
+      $alt_name = (string)$_POST['alt_name'];
+      $category = (int)$_POST['category'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+      if (!empty($name)) {
+
+        $count = \R::count('_articles', 'WHERE name = ?', [$name]);
+
+        if ($count > 0) {
+          $_SESSION['articles_add']['error'] = 'Такий Матеріал вже існує!';
+          App::redirect('/admin/articles/add');
+        }
+
+
+
+        $article = \R::xDispense('_articles');
+        $article->name = $name;
+        $article->alt_name = $alt_name;
+        $article->category = $category;
+        $article->url = $url;
+        $article->description = $description;
+        $article->views = 0;
+        $article->active = 1;
+
+        if (\R::store($article)) {
+          $_SESSION['articles_add']['success'] = 'Матеріал успішно добавлений!';
+          App::redirect('/admin/articles');
+        }
+      }
+
+    }
+
+    $title = 'Добавлення Матеріалу';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
+      $category[$cat['id']] = $cat;
+    }
+
+    $this->render(compact('title', 'description', 'category'));
+  }
+
   public function articlesEditAction($model, $route)
   {
+
+    if (isset($_POST['articles_edit'])) {
+
+      $id = (int)$_POST['id'];
+      $name = (string)$_POST['name'];
+      $alt_name = (string)$_POST['alt_name'];
+      $category = (int)$_POST['category'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+      if (!empty($name)) {
+        $article = \R::findOne('_articles', 'WHERE id = ?', [$id]);
+        $article->name = $name;
+        $article->alt_name = $alt_name;
+        $article->category = $category;
+        $article->url = $url;
+        $article->description = $description;
+        $article->active = 1;
+
+        if (\R::store($article)) {
+          $_SESSION['articles_add']['success'] = 'Категорія успішно оновлена!';
+          App::redirect('/admin/articles');
+        }
+      }
+    }
+
 
     $title = 'Редагування Матеріалу';
 
@@ -219,6 +301,14 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category', 'article'));
   }
 
+  public function articlesDeleteAction($model, $route)
+  {
+    $article = \R::load('_articles', $route['id']);
+    \R::trash($article);
+    $_SESSION['articles_add']['success'] = 'Матеріал успішно видалений!';
+    App::redirect('/admin/articles');
+  }
+
 
   /*
    * page
@@ -236,8 +326,51 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'pages'));
   }
 
+  public function pageViewAction($model, $route)
+  {
+
+
+    /*
+     * pages
+     */
+    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'],1]);
+
+    $title = $page['name'];
+
+    $this->meta($title . $this->title);
+    $this->theme = 'admin';
+
+    $this->render(compact('title', 'description', 'page'));
+  }
+
   public function pageAddAction($model, $route)
   {
+
+    if (isset($_POST['page_add'])) {
+
+      $name = (string)$_POST['name'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+      if (!empty($name)) {
+        $count = \R::count('_pages', 'WHERE name = ?', [$name]);
+        if ($count > 0) {
+          $_SESSION['page_add']['error'] = 'Така Сторінка вже існує!';
+          App::redirect('/admin/page/add');
+        }
+
+        $cat = \R::xDispense('_pages');
+        $cat->name = $name;
+        $cat->url = $url;
+        $cat->description = $description;
+
+        if (\R::store($cat)) {
+          $_SESSION['page_add']['success'] = 'Сторінка успішно добавлена!';
+          App::redirect('/admin/page');
+        }
+      }
+
+    }
 
     $title = 'Добавлення Сторінки';
     $this->meta($title . $this->title);
@@ -245,12 +378,36 @@ class AdminController extends AppController
     /*
      * pages
      */
-    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
-    $this->render(compact('title', 'description', 'pages'));
+    $page = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
+    $this->render(compact('title', 'description', 'page'));
   }
 
   public function pageEditAction($model, $route)
   {
+
+    if (isset($_POST['page_edit'])) {
+
+      $id = (int)$_POST['id'];
+      $name = (string)$_POST['name'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+
+      if (!empty($name)) {
+
+        $cat = \R::findOne('_pages', 'WHERE id = ?', [$id]);
+
+        $cat->name = $name;
+        $cat->url = $url;
+        $cat->description = $description;
+
+        if (\R::store($cat)) {
+          $_SESSION['page_add']['success'] = 'Сторінка успішно оновлена!';
+          App::redirect('/admin/page');
+        }
+      }
+
+    }
 
     $title = 'Редагування Сторінки';
     $this->meta($title . $this->title);
@@ -258,17 +415,16 @@ class AdminController extends AppController
     /*
      * pages
      */
-    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
-    $this->render(compact('title', 'description', 'pages'));
+    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'],1]);
+    $this->render(compact('title', 'description', 'page'));
   }
 
   public function pageDeleteAction($model, $route)
   {
-    /*
-     * pages
-     */
-    $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
-    $this->render(compact('title', 'description', 'pages'));
+    $page = \R::load('_pages', $route['id']);
+    \R::trash($page);
+    $_SESSION['page_add']['success'] = 'Сторінка успішно видалена!';
+    App::redirect('/admin/page');
   }
 
 
