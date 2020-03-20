@@ -15,7 +15,7 @@ class AdminController extends AppController
 
     $title = 'Головна';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -24,10 +24,10 @@ class AdminController extends AppController
     /*
      * articles
      */
-    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?',[1]);
+    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
 
 
-    $this->render(compact('title','description','articles'));
+    $this->render(compact('title', 'description', 'articles'));
 
 
   }
@@ -36,7 +36,7 @@ class AdminController extends AppController
   {
     $title = 'Категорії';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -45,15 +45,106 @@ class AdminController extends AppController
     $category = \R::getAll('SELECT * FROM _category');
 
 
-    $this->render(compact('title','description','category'));
+    $this->render(compact('title', 'description', 'category'));
   }
+
+  public function categoryAddAction($model, $route)
+  {
+
+    if (isset($_POST['category_add'])) {
+
+      $name = (string)$_POST['name'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+      if (!empty($name)) {
+        $count = \R::count('_category', 'WHERE name = ?', [$name]);
+        if ($count > 0) {
+          $_SESSION['cat_add']['error'] = 'Така Категорія вже існує!';
+          App::redirect('/admin/category/add');
+        }
+
+        $cat = \R::xDispense('_category');
+        $cat->name = $name;
+        $cat->url = $url;
+        $cat->description = $description;
+
+        if (\R::store($cat)) {
+          $_SESSION['cat_add']['success'] = 'Категорія успішно добавлена!';
+          App::redirect('/admin/category');
+        }
+      }
+
+    }
+
+    $title = 'Добавлення Категорії';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+    $category = \R::getAll('SELECT * FROM _category');
+
+
+    $this->render(compact('title', 'description', 'category'));
+  }
+
+  public function categoryEditAction($model, $route)
+  {
+    if (isset($_POST['category_edit'])) {
+
+      $id = (int)$_POST['id'];
+      $name = (string)$_POST['name'];
+      $url = (string)$_POST['url'];
+      $description = (string)$_POST['description'];
+
+
+      if (!empty($name)) {
+
+        $cat = \R::findOne('_category', 'WHERE id = ?', [$id]);
+
+        $cat->name = $name;
+        $cat->url = $url;
+        $cat->description = $description;
+
+        if (\R::store($cat)) {
+          App::redirect('/admin/category');
+        }
+      }
+
+    }
+
+    $title = 'Редагування Категорії';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+    $category = \R::getRow('SELECT * FROM _category WHERE id = ?', [$route['id']]);
+
+    $this->render(compact('title', 'description', 'category'));
+  }
+
+  public function categoryDeleteAction($model, $route)
+  {
+    $category = \R::load('_category', $route['id']);
+    if(\R::trash( $category )){
+      $_SESSION['cat_add']['success'] = 'Категорія успішно видалена!';
+      App::redirect('/admin/category');
+    }
+  }
+
 
   public function articlesAction($model, $route)
   {
 
     $title = 'Матеріали';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -61,7 +152,7 @@ class AdminController extends AppController
 
 
     $category = [];
-    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
       $category[$cat['id']] = $cat;
     }
 
@@ -70,14 +161,15 @@ class AdminController extends AppController
     $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
 
 
-    $this->render(compact('title','description','category','articles'));
+    $this->render(compact('title', 'description', 'category', 'articles'));
   }
+
   public function articlesViewAction($model, $route)
   {
 
     $title = 'Матеріал';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -85,22 +177,23 @@ class AdminController extends AppController
 
 
     $category = [];
-    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
       $category[$cat['id']] = $cat;
     }
 
     //pr1($category);
 
-    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'],1]);
+    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'], 1]);
 
-    $this->render(compact('title','description','category','article'));
+    $this->render(compact('title', 'description', 'category', 'article'));
   }
+
   public function articlesEditAction($model, $route)
   {
 
     $title = 'Редагування Матеріалу';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -108,22 +201,22 @@ class AdminController extends AppController
 
 
     $category = [];
-    foreach (\R::getAll('SELECT * FROM _category') as $cat){
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
       $category[$cat['id']] = $cat;
     }
 
     //pr1($category);
 
-    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'],1]);
+    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'], 1]);
 
-    $this->render(compact('title','description','category','article'));
+    $this->render(compact('title', 'description', 'category', 'article'));
   }
 
   public function widgetsAction($model, $route)
   {
     $title = 'Віджети';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -134,28 +227,28 @@ class AdminController extends AppController
     $count = \R::count('_widgets');
 
 
-    $this->render(compact('title','description','category','count'));
+    $this->render(compact('title', 'description', 'category', 'count'));
   }
 
 
   public function widgetsAddAction($model, $route)
   {
 
-    if(isset($_POST['add_widget'])){
+    if (isset($_POST['add_widget'])) {
 
       $name = (string)$_POST['name'];
       $position = (int)$_POST['position_sidebar'];
       $url = (string)$_POST['url'];
 
-      if(!empty($url)){
+      if (!empty($url)) {
 
-        $widget = \R::xDispense( '_widgets' );
+        $widget = \R::xDispense('_widgets');
 
         $widget->name = $name;
         $widget->position_sidebar = $position;
         $widget->url = $url;
 
-        if(\R::store($widget)){
+        if (\R::store($widget)) {
           App::redirect('/admin/widgets');
         }
 
@@ -174,7 +267,7 @@ class AdminController extends AppController
     $count = \R::count('_widgets');
 
 
-    $this->render(compact('title','description','category','count'));
+    $this->render(compact('title', 'description', 'category', 'count'));
   }
 
 
@@ -183,7 +276,7 @@ class AdminController extends AppController
 
     $title = 'Сторінки';
 
-    $this->meta($title.$this->title);
+    $this->meta($title . $this->title);
 
     $this->theme = 'admin';
 
@@ -192,14 +285,13 @@ class AdminController extends AppController
     /*
      * articles
      */
-    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?',[1]);
+    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
 
 
-    $this->render(compact('title','description','articles'));
+    $this->render(compact('title', 'description', 'articles'));
 
 
   }
-
 
 
 }

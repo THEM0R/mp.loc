@@ -1,3 +1,13 @@
+<? if(!empty($_SESSION['cat_add']['success'])): ?>
+<div class="form-group">
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+    <?=$_SESSION['cat_add']['success'];?>
+  </div>
+</div>
+<? $_SESSION['cat_add']['success'] = ''; endif; ?>
+
 <!-- Main content -->
 <div class="card">
   <div class="card-header">
@@ -15,13 +25,13 @@
         <th style="width: 20%">
           Назва (name)
         </th>
-        <th style="width: 30%">
+        <th style="width: 20%">
           Лінк (url)
         </th>
         <th>
           description
         </th>
-        <th style="width: 22%">
+        <th style="width: 25%">
         </th>
       </tr>
       </thead>
@@ -35,17 +45,17 @@
         <td><?=$cats['url']?></td>
         <td><?=$cats['description']?></td>
         <td>
-          <a class="btn btn-primary btn-sm" href="#">
+          <a class="btn btn-primary btn-sm" href="/admin/category/<?=$cats['id']?>">
             <i class="fas fa-folder">
             </i>
             View
           </a>
-          <a class="btn btn-info btn-sm" href="#">
+          <a class="btn btn-info btn-sm" href="/admin/category/<?=$cats['id']?>/edit">
             <i class="fas fa-pencil-alt">
             </i>
             Edit
           </a>
-          <a class="btn btn-danger btn-sm" href="#">
+          <a class="btn btn-danger btn-sm" href="/admin/category/<?=$cats['id']?>/delete">
             <i class="fas fa-trash">
             </i>
             Delete
