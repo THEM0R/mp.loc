@@ -9,6 +9,8 @@ session_start();
 define('REQUEST', 'http');
 // composer
 require ( '../vendor/autoload.php' );
+use Symfony\Component\Debug\Debug;
+Debug::enable();
 // define
 require('../engine/config/define.php');
 // require

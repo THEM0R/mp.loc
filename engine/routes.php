@@ -17,6 +17,10 @@ Router::add('admin/category/add', 'admin:categoryAdd','categoryAdd');
 Router::add('admin/category/(id:int)/edit', 'admin:categoryEdit','categoryEdit');
 Router::add('admin/category/(id:int)/delete', 'admin:categoryDelete','categoryDelete');
 /*
+ * upload
+ */
+Router::add('upload/url', 'upload:url');
+/*
  * articles
  */
 Router::add('admin/articles', 'admin:articles','articles');

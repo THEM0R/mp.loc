@@ -70,7 +70,8 @@ $(function () {
       console.log('document');
 
 
-      view_preview.css('background-image', "url('" + resp + "')").show();
+      // view_preview.css('background-image', "url('" + resp + "')").show();
+      view_preview.attr('src',resp).show();
       view_overlay.show();
 
       view_poster_input.attr('value', resp).attr('data-type', 'base64');
@@ -104,11 +105,11 @@ $(function () {
     enableExif: true,
     viewport: {
       width: 300,
-      height: 420,
+      height: 250,
       type: 'canvas'
     },
     boundary: {
-      width: 520,
+      width: 766,
       height: 450
     }
   });
@@ -129,7 +130,7 @@ $(function () {
 
       $.ajax({
         type: 'POST',
-        url: '/upload_url.php',
+        url: '/upload/url',
         data: {
           url: url
         },

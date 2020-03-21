@@ -15,11 +15,12 @@
       <div class="card-body">
         <div class="form-group">
           <!-- poster -->
-          <div class="poster window">
+          <div class="poster window w-100 h-100">
 
             <div class="image">
-
-              <div class="preview"></div>
+              <div class="text-center">
+                <img class="preview img-fluid" src="">
+              </div>
 
               <div class="overlay">
                 <div id="delete" class="" style="color: white">close</div>
@@ -30,10 +31,13 @@
 
             <div class="no-image">
 
-              <div id="no-image"></div>
+              <div class="text-center">
+                <img src="../../../public/admin/images/no-photo_1.png" class="img-fluid">
+              </div>
 
-              <div class="link">
-                <i class="icon-plus-circled"></i>
+
+              <div class="link text-center" title="Загрузити!">
+                <i class="fas fa-plus align-middle" style="color: white; margin-top: 2px"></i>
               </div>
 
             </div>
@@ -48,11 +52,11 @@
       <div class="card-body">
         <div class="form-group">
           <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+          <a class="btn btn-primary btn-sm" href="/admin/articles/id">
             <i class="fas fa-folder">
             </i>
           </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
+          <a class="btn btn-info btn-sm" href="/admin/articles/id/edit">
             <i class="fas fa-pencil-alt">
             </i>
           </a>
@@ -63,11 +67,11 @@
       <div class="card-body">
         <div class="form-group">
           <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+          <a class="btn btn-primary btn-sm" href="/admin/articles/id">
             <i class="fas fa-folder">
             </i>
           </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
+          <a class="btn btn-info btn-sm" href="/admin/articles/id/edit">
             <i class="fas fa-pencil-alt">
             </i>
           </a>
