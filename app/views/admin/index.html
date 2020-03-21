@@ -33,6 +33,13 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="/public/admin/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="/public/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+
+  <!-- themor -->
+  <link rel="stylesheet" href="/public/admin/themor/css/croppie.min.css">
+  <link rel="stylesheet" href="/public/admin/themor/css/add.css">
+  <!-- themor -->
+
 </head>
 <body class="hold-transition sidebar-mini layout-boxed" style="background-color: #dddddd">
 <div class="wrapper">
@@ -92,6 +99,11 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- modal -->
+<?php if(is_file($theme.'/modal/poster.html'))
+    require $theme.'/modal/poster.html';?>
+<!-- ./modal -->
+
 <!-- jQuery -->
 <script src="/public/admin/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -128,6 +140,11 @@
 <script src="/public/admin/js/demo.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
+
+<!-- themor -->
+<script src="/public/admin/themor/js/croppie.min.js"></script>
+<script src="/public/admin/themor/js/poster.upload.js"></script>
+<!-- themor -->
 
 
 <script>

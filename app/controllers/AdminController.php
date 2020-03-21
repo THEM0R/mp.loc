@@ -323,7 +323,7 @@ class AdminController extends AppController
      * pages
      */
     $pages = \R::getAll('SELECT * FROM _pages WHERE active = ?', [1]);
-    $this->render(compact('title', 'description', 'pages'));
+    $this->render(compact('title', 'pages'));
   }
 
   public function pageViewAction($model, $route)

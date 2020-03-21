@@ -14,6 +14,9 @@
     <div class="card col-12">
       <div class="card-body">
         <div class="form-group">
+
+          <img src="/public/images/articles/1.png" class="img-fluid" alt="">
+
           <!-- poster -->
           <div class="poster window">
 
@@ -40,6 +43,17 @@
 
           </div>
           <!-- poster end -->
+
+          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
+            <i class="fas fa-folder">
+            </i>
+            Upload
+          </a>
+          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
+            <i class="fas fa-pencil-alt">
+            </i>
+            Edit
+          </a>
 
         </div>
       </div>
