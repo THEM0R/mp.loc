@@ -1,59 +1,55 @@
-$(function () {
 
 
-  class imageUpload {
+class imageUpload {
 
 
-    // modal
-    static modal_selector = $('#modal-image .modal-dialog');
+  // modal
+  static modal_selector = $('#modal-image .modal-dialog');
 
-    modal_sm = $('#modal-image .sm');
-    modal_lg = $('#modal-image .lg');
+  static modal_sm = $('#modal-image .sm');
+  static modal_lg = $('#modal-image .lg');
 
-    modal_preview = $('#modal-image .preview');
+  static modal_preview = $('#modal-image .preview');
 
-    modal = $('#modal-image.modal');
+  static modal = $('#modal-image.modal');
 
-    // croppie
-    static modal_croppie = $('#modal-image .modal-body .croppie');
-
-    // ajax
-    static modal_button_croppie_upload = $('#modal-image .modal-body .croppie-upload');
-
-    // button
-    static modal_button_parsing = $('#modal-image .modal-body .btn-parsing');
-
-    static modal_button_file = $('#modal-image .modal-body #btn-upload-file');
-
-    static modal_button_url = $('#modal-image .modal-body .btn-upload-url');
-
-    constructor($image = false) {
-
-      // action
-
-      this.modal_preview
-        .hide()
-        .html('');
-
-      this.modal_lg
-        .hide();
-
-
-      console.log($image);
-    }
-
-
+  constructor($image = false) {
+    console.log($image);
   }
+}
 
 
-  new imageUpload('+1+2');
+new imageUpload('+1+2');
 
-
-});
 
 
 $(function () {
+  // modal
+  var modal_selector = $('#modal-image .modal-dialog');
 
+  var modal_sm = $('#modal-image .sm');
+  var modal_lg = $('#modal-image .lg');
+
+  var modal_preview = $('#modal-image .preview');
+
+  var modal = $('#modal-image.modal');
+
+  // croppie
+  var modal_croppie = $('#modal-image .modal-body .croppie');
+
+  // ajax
+  var modal_button_croppie_upload = $('#modal-image .modal-body .croppie-upload');
+
+  // button
+  var modal_button_parsing = $('#modal-image .modal-body .btn-parsing');
+
+  var modal_button_file = $('#modal-image .modal-body #btn-upload-file');
+
+  var modal_button_url = $('#modal-image .modal-body .btn-upload-url');
+
+  // action
+  modal_preview.hide().html('');
+  modal_lg.hide();
   // upload url
   modal_button_url.change(function () {
 
@@ -103,7 +99,6 @@ $(function () {
     }
 
   });
-
   // upload input
   modal_button_file.change(function () {
     var poster = this.files[0];
