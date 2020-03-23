@@ -168,7 +168,7 @@ class AdminController extends AppController
 
     //pr1($category);
 
-    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
+    $articles = \R::getAll('SELECT * FROM _articles');
 
 
     $this->render(compact('title', 'description', 'category', 'articles'));
@@ -198,88 +198,29 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category', 'article'));
   }
 
+
   public function articlesAddAction($model, $route)
   {
 
     //pr1(UPLOAD_IMG);
 
     if (isset($_POST['articles_add'])) {
-      $name = (string)$_POST['name'];
-      $alt_name = (string)$_POST['alt_name'];
-      $category = (int)$_POST['category'];
-      $url = (string)$_POST['url'];
-      $description = (string)$_POST['description'];
-      $poster = (string)$_POST['poster'];
 
-      if (!empty($name)) {
+      if (!empty($_POST['name'])) {
 
-        $count = \R::count('_articles', 'WHERE name = ?', [$name]);
+        $count = \R::count('_articles', 'WHERE name = ?', [$_POST['name']]);
 
         if ($count > 0) {
           $_SESSION['articles_add']['error'] = 'Такий Матеріал вже існує!';
           App::redirect('/admin/articles/add');
         }
 
-        if (!empty($poster)) {
-          //code
-
-          // Получаем расширение файла
-          $mime = 'jpg'; // webp
-
-          // Выделим данные
-          $data = explode(',', $poster);
-
-          // Декодируем данные, закодированные алгоритмом MIME base64
-          $encodedData = str_replace(' ', '+', $data[1]);
-          $decodedData = base64_decode($encodedData);
-
-          // Вы можете использовать данное имя файла, или создать произвольное имя.
-          // Мы будем создавать произвольное имя!
-          $random = substr_replace(sha1(microtime(true)), '', 12);
-          $randomName = $random . '.' . $mime;
-
-          // Создадим папку если её нет
-          if (!is_dir(UPLOAD_IMG. 'article/')) if (!mkdir(UPLOAD_IMG. 'article/')) exit('не удалось создать папку');
-          if (!chmod(UPLOAD_IMG. 'article/', 0777)) exit ('не удалось задать права 0777');
-
-          // Создаем изображение на сервере
-          if (file_put_contents(UPLOAD_IMG . 'article/' . $randomName, $decodedData)) {
-
-            // https://docs.spatie.be/image/v1/usage/saving-images/#saving-in-a-different-image-format
-            Image::load(UPLOAD_IMG . 'article/' . $randomName)
-              ->format(Manipulations::FORMAT_WEBP)
-              ->optimize()
-              ->save(UPLOAD_IMG . 'article/' . $random.'.webp');
-
-            //  Удаляет файл
-            unlink(UPLOAD_IMG . 'article/' . $randomName);
-
-            $poster = $random.'.webp';
-
-          } else {
-            // error
-            $poster = '';
-          }
-
-        } else {
-          // poster not found
-          $poster = '';
-        }
-
-
 
         $article = \R::xDispense('_articles');
-        $article->name = $name;
-        $article->alt_name = $alt_name;
-        $article->category = $category;
-        $article->url = $url;
-        $article->description = $description;
-        $article->views = 0;
-        $article->active = 1;
 
-        $article->poster = $poster;
+        $article = $this->articlesArray($article, $_POST);
 
-        if (\R::store($article)) {
+        if ($article) {
 
           $_SESSION['articles_add']['success'] = 'Матеріал успішно добавлений!';
           App::redirect('/admin/articles');
@@ -305,28 +246,44 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category'));
   }
 
+
+  private function articlesArray($article, $data)
+  {
+    $article->name = $data['name'];
+    $article->alt_name = $data['alt_name'];
+    $article->category = $data['category'];
+    $article->url = $data['url'];
+    $article->description = $data['description'];
+    $article->views = 0;
+
+    if ( isset($data['active']) and $data['active'] === 'on') {
+      $data['active'] = 1;
+    } else {
+      $data['active'] = 0;
+    }
+
+    $article->active = $data['active'];
+
+    $article->poster = App::imageUpload($data['poster'], UPL_ARTICLE);
+
+    if (\R::store($article)) {
+      return true;
+    }
+    return false;
+  }
+
   public function articlesEditAction($model, $route)
   {
 
     if (isset($_POST['articles_edit'])) {
 
-      $id = (int)$_POST['id'];
-      $name = (string)$_POST['name'];
-      $alt_name = (string)$_POST['alt_name'];
-      $category = (int)$_POST['category'];
-      $url = (string)$_POST['url'];
-      $description = (string)$_POST['description'];
+      if (!empty($_POST['name'])) {
 
-      if (!empty($name)) {
-        $article = \R::findOne('_articles', 'WHERE id = ?', [$id]);
-        $article->name = $name;
-        $article->alt_name = $alt_name;
-        $article->category = $category;
-        $article->url = $url;
-        $article->description = $description;
-        $article->active = 1;
+        $article = \R::findOne('_articles', 'WHERE id = ?', [$_POST['id']]);
 
-        if (\R::store($article)) {
+        $article = $this->articlesArray($article, $_POST);
+
+        if ($article) {
           $_SESSION['articles_add']['success'] = 'Категорія успішно оновлена!';
           App::redirect('/admin/articles');
         }
@@ -340,9 +297,6 @@ class AdminController extends AppController
 
     $this->theme = 'admin';
 
-    $description = $this->configs['about']['description2'];
-
-
     $category = [];
     foreach (\R::getAll('SELECT * FROM _category') as $cat) {
       $category[$cat['id']] = $cat;
@@ -352,7 +306,7 @@ class AdminController extends AppController
 
     $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'], 1]);
 
-    $this->render(compact('title', 'description', 'category', 'article'));
+    $this->render(compact('title', 'category', 'article'));
   }
 
   public function articlesDeleteAction($model, $route)
@@ -387,7 +341,7 @@ class AdminController extends AppController
     /*
      * pages
      */
-    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'],1]);
+    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'], 1]);
 
     $title = $page['name'];
 
@@ -469,7 +423,7 @@ class AdminController extends AppController
     /*
      * pages
      */
-    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'],1]);
+    $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'], 1]);
     $this->render(compact('title', 'description', 'page'));
   }
 
@@ -543,9 +497,6 @@ class AdminController extends AppController
 
     $this->render(compact('title', 'description', 'category', 'count'));
   }
-
-
-
 
 
 }

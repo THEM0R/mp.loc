@@ -4,9 +4,13 @@
 namespace app\controllers;
 
 use lib\App;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class UploadController extends AppController
 {
+
+
   public function urlAction($model, $route)
   {
     if (App::is_Post()) {
@@ -56,10 +60,45 @@ class UploadController extends AppController
       }
 
     }
-    /*
-     * articles
-     */
-    $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
 
   }
+
+
+
+
+  public function deleteAction($model, $route)
+  {
+    if (App::is_Post()) {
+
+      if (isset($_POST['url']) and isset($_POST['name'])) {
+
+        if (!empty($_POST['url']) and !empty($_POST['name'])) {
+
+          $url = trim($_POST['url']);
+          $name = trim($_POST['name']);
+
+          $file = $url . '/' . $name;
+
+          unset($url);
+          unset($name);
+          unset($_POST);
+
+          if (is_file($file)) {
+
+            // видаляєм файл
+            if (unlink($file)) {
+              exit(json_encode(['type' => 'success', 'data' => true]));
+            } else {
+              exit(json_encode(['type' => 'error', 'data' => false]));
+            }
+
+          }
+        }
+      }
+    }
+    exit(json_encode(['type' => 'error', 'data' => false]));
+  }
+
+
+  // controller end
 }

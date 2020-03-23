@@ -20,6 +20,7 @@ Router::add('admin/category/(id:int)/delete', 'admin:categoryDelete','categoryDe
  * upload
  */
 Router::add('upload/url', 'upload:url');
+Router::add('upload/delete', 'upload:delete');
 /*
  * articles
  */

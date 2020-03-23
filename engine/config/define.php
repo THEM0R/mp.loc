@@ -15,6 +15,8 @@ define('MOVE_DB', dirname(DIR).'/public/data/movie/' );
 define('CONF_DB', dirname(DIR).'/public/data/' );
 define('UPLOAD',  DIR.'/public/upload/' );
 define('UPLOAD_IMG',  DIR.'/public/upload/images/' );
+define('UPL_ARTICLE',  DIR.'/public/upload/images/articles' );
+define('URL_ARTICLE', '/public/upload/images/articles' );
 define('CONTENT', dirname(DIR).'/public/' );
 define('SCRIPT',  dirname(DIR).'/public/script/' );
 define('SCRIPT_LIB',  '/public/script/libs/' );

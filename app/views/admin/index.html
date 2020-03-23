@@ -110,7 +110,7 @@
 <script src="/public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-    $.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -139,18 +139,26 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/public/admin/js/demo.js"></script>
 <!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<script src="/public/admin/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/public/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
 <!-- themor -->
 <script src="/public/admin/themor/js/croppie.min.js"></script>
+<script src="/public/admin/themor/js/image.upload.js"></script>
 <script src="/public/admin/themor/js/poster.upload.js"></script>
 <!-- themor -->
 
 
 <script>
-    $(document).ready(function () {
-        $('.select2').select2();
+  $(document).ready(function () {
+    $('.select2').select2();
+
+    $("input[data-bootstrap-switch]").each(function () {
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
+
+  });
 </script>
 
 </body>
