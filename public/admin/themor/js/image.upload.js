@@ -1,11 +1,17 @@
+
+
 $(function () {
 
   // action
-  view.poster_link.click(function (event) {
+  view.link.click(function (event) {
 
-    event.preventDefault();
+    //event.preventDefault();
+    console.clear();
+    console.log('1: poster click link');
 
-    imageUpload(modal, view);
+    imageUpload(addPoster);
+
+    croppies({w: 300, h: 250}, {w: 700, h: 400});
 
     modal.modals
       .children('.modal-dialog')
@@ -17,11 +23,30 @@ $(function () {
   });
 
 
+
+
+  // modal.mcroppie.croppie({
+  //
+  //   enableExif: true,
+  //   viewport: {
+  //     width: 300,
+  //     height: 250,
+  //     type: 'canvas'
+  //   },
+  //   boundary: {
+  //     width: 766,
+  //     height: 450
+  //   }
+  // });
+
+
   // delete view.image_datatype
   view.button_delete.click(function () {
-    console.log('view button delete click');
-    console.log(view.data_type);
-    if (view.data_type == 'image') {
+
+    console.log('5: view button delete click');
+    //console.log(view.image_data_type);
+
+    if (view.image_data_type == 'image') {
       // remove image
       $.ajax({
         type: 'POST',
@@ -50,7 +75,7 @@ $(function () {
         }
       });
 
-    } else if (view.data_type == 'base64') {
+    } else if (view.image_data_type == 'base64') {
       // remove base64
 
       view.image.hide();

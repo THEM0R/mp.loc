@@ -23,11 +23,16 @@ var view = {
   preview: $('.poster .preview'),
   overlay: $('.poster .overlay'),
   error: $('.error'),
-  poster_link: $('.poster .link'),
+  link: $('.poster .link'),
   submit: $('input[type=submit]'),
   image_data_type: $('.poster .preview').attr('data-type'),
   image_data_name: $('.poster .preview').attr('data-name'),
   image_data_url: $('.poster .preview').attr('data-url'),
   button_delete: $('.poster .overlay .delete'),
   button_update: $('.poster .overlay .update'),
+};
+
+var screens = {
+  link: $("#screens .add-screen"),
+  images: $("#screens .screens"),
 };

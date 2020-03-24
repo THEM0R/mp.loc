@@ -11,6 +11,7 @@
   <? endif; ?>
 
   <div class="col-md-4">
+    <!-- poster -->
     <div class="card col-12">
       <div class="card-body">
         <div class="form-group">
@@ -22,8 +23,13 @@
                 <img class="preview img-fluid" src="">
               </div>
 
-              <div class="overlay">
-                <div id="delete" class="" style="color: white">close</div>
+              <div class="overlay text-center">
+                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                  <i class="far fa-trash-alt"></i> Видалити
+                </div>
+                <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
+                  <i class="fas fa-wrench"></i> Замінити
+                </div>
               </div>
 
               <input type="hidden" name="poster" value="">
@@ -32,12 +38,11 @@
             <div class="no-image" style="display: block">
 
               <div class="text-center">
-                <img src="../../../public/admin/images/no-photo_1.png" class="img-fluid">
+                <img src="<?=CONTENT_ADMIN;?>images/no-photo_1.png" class="img-fluid">
               </div>
 
-
-              <div class="link text-center" title="Загрузити!">
-                <i class="fas fa-plus align-middle" style="color: white; margin-top: 2px"></i>
+              <div class="link text-center btn btn-success">
+                <i class="fas fa-plus-circle"></i> Добавити
               </div>
 
             </div>
@@ -47,36 +52,50 @@
         </div>
       </div>
     </div>
-    <div class="card col-6 float-left">
-      <div class="card-body">
-        <div class="form-group">
-          <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/id">
-            <i class="fas fa-folder">
-            </i>
-          </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/id/edit">
-            <i class="fas fa-pencil-alt">
-            </i>
-          </a>
+    <!--./ poster -->
+    <!-- screens -->
+
+    <div id="screens">
+      <!-- add-screen -->
+      <div class="card col-12">
+        <div class="card-body">
+          <div class="add-screen btn btn-success w-100" style="cursor:pointer">Добавити зображення</div>
         </div>
       </div>
-    </div>
-    <div class="card col-6 float-right">
-      <div class="card-body">
-        <div class="form-group">
-          <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/id">
-            <i class="fas fa-folder">
-            </i>
-          </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/id/edit">
-            <i class="fas fa-pencil-alt">
-            </i>
-          </a>
+      <!--./ add-screen -->
+      <!-- screens -->
+      <div class="screens">
+        <!-- screen -->
+        <div style="" class="card col-6 float-left">
+          <div class="card-body">
+            <div class="form-group">
+              <img src="/public/images/articles/1.png" class="img-fluid" alt="">
+            </div>
+          </div>
         </div>
+        <!--./ screen -->
       </div>
+      <!--./ screens -->
+
     </div>
+
+    <!--    <div style="display: none" class="card col-6 float-left">-->
+    <!--      <div class="card-body">-->
+    <!--        <div class="form-group">-->
+    <!--          <img src="/public/images/articles/1.png" class="img-fluid" alt="">-->
+    <!--          <a class="btn btn-primary btn-sm" href="/admin/articles/id">-->
+    <!--            <i class="fas fa-folder">-->
+    <!--            </i>-->
+    <!--          </a>-->
+    <!--          <a class="btn btn-info btn-sm" href="/admin/articles/id/edit">-->
+    <!--            <i class="fas fa-pencil-alt">-->
+    <!--            </i>-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <!--./ screens -->
   </div>
 
   <div class="col-md-8">

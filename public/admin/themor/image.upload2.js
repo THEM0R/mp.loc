@@ -1,28 +1,5 @@
 
 
-class imageUpload {
-
-
-  // modal
-  static modal_selector = $('#modal-image .modal-dialog');
-
-  static modal_sm = $('#modal-image .sm');
-  static modal_lg = $('#modal-image .lg');
-
-  static modal_preview = $('#modal-image .preview');
-
-  static modal = $('#modal-image.modal');
-
-  constructor($image = false) {
-    console.log($image);
-  }
-}
-
-
-new imageUpload('+1+2');
-
-
-
 $(function () {
   // modal
   var modal_selector = $('#modal-image .modal-dialog');

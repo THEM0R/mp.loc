@@ -1,4 +1,4 @@
-function views(view, response) {
+function addPoster(response) {
   // view
   view.preview
     .attr('src', response)
@@ -7,15 +7,45 @@ function views(view, response) {
     .attr('data-type', 'base64')
     .show();
 
-  view.data_type = 'base64';
+  view.image_data_type = 'base64';
   view.poster_input.attr('value', response);
   view.image.show();
   view.no_image.hide();
 }
 
-function croppies(window, viewport = {w: 300, h: 250, t: 'canvas'}, boundary = {w: 766, h: 450}) {
+function addScreens(response) {
+  // Screens
 
-  window.croppie({
+  screens.images.append(
+    `<!-- screen -->
+        <div style="" class="card col-6 float-left">
+          <div class="card-body">
+            <div class="form-group">
+              <img src="`+response+`" class="img-fluid" alt="">
+            </div>
+          </div>
+        </div>
+        <!--./ screen -->`
+  );
+
+  modal.modals.modal('hide');
+
+  // view.preview
+  //   .attr('src', response)
+  //   .attr('data-name', '')
+  //   .attr('data-url', '')
+  //   .attr('data-type', 'base64')
+  //   .show();
+  //
+  // view.image_data_type = 'base64';
+  // view.poster_input.attr('value', response);
+  // view.image.show();
+  // view.no_image.hide();
+}
+
+function croppies(viewport = {w: 300, h: 250, t: 'canvas'}, boundary = {w: 766, h: 450}) {
+
+  modal.mcroppie.croppie({
 
     enableExif: true,
     viewport: {
@@ -36,7 +66,7 @@ function bindCroppie(data) {
   modal.mcroppie.croppie('bind', {
     url: data
   }).then(function () {
-    console.log('jQuery bind complete');
+    console.log('3: croppie bind complete');
   });
 
   modal.selector
@@ -65,7 +95,7 @@ function isValid(format) {
 
 }
 
-function imageUpload(modal, view) {
+function imageUpload(method) {
 
   // action
   modal.preview
@@ -78,9 +108,10 @@ function imageUpload(modal, view) {
   // upload input
   modal.button_file.change(function () {
 
+    console.log('2: change button_file');
+
     var poster = this.files[0];
     var format = poster.name.split('.').pop().toLowerCase();
-
     if (!isValid(format)) {
       $(this).val('');
     } else {
@@ -90,10 +121,11 @@ function imageUpload(modal, view) {
       };
       reader.readAsDataURL(poster);
     }
-
   });
   // upload url
   modal.button_url.change(function () {
+
+    console.log('2: change button_url');
 
     var url = $(this).val();
 
@@ -110,11 +142,8 @@ function imageUpload(modal, view) {
         },
         dataType: 'json',
         success: function (response) {
-
           if (response.type != 'error') {
-
             bindCroppie(response.data);
-
           }
         }
       });
@@ -126,6 +155,8 @@ function imageUpload(modal, view) {
   // ajax result
   modal.button_croppie_upload.click(function () {
 
+    console.log('4: click button_croppie_upload');
+
     modal.mcroppie.croppie('result', {
 
       type: 'base64',
@@ -135,7 +166,10 @@ function imageUpload(modal, view) {
     }).then(function (response) {
 
       // view
-      views(view, response);
+
+      console.log(method);
+
+      method(response);
 
       // modal
       modal.button_file.val('');
@@ -152,14 +186,33 @@ function imageUpload(modal, view) {
       modal.preview.html('');
 
       modal.mcroppie.hide();
-      modal.modals.modal('hide');
 
+      modal.mcroppie.croppie('destroy');
+
+      modal.modals.modal('hide');
     });
+
+
 
   });
 
   // others
-  croppies(modal.mcroppie, {w: 300, h: 250}, {w: 700, h: 400});
+
+  // modal.mcroppie.croppie({
+  //
+  //   enableExif: true,
+  //   viewport: {
+  //     width: 300,
+  //     height: 250,
+  //     type: 'canvas'
+  //   },
+  //   boundary: {
+  //     width: 766,
+  //     height: 450
+  //   }
+  // });
+
+  //croppies({w: 300, h: 250}, {w: 700, h: 400});
   // croppies(modal.mcroppie);
 
 }
