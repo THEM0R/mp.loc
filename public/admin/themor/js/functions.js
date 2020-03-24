@@ -215,4 +215,12 @@ function isValid(format) {
 
 }
 
+$(function () {
 
+  $(modal.modals).on('hide.bs.modal', function (e) {
+    // do something...
+      $(this).removeClass('screen')
+      .removeClass('poster');
+  })
+
+});

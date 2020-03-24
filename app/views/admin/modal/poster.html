@@ -1,5 +1,5 @@
 
-<div id="modal-image" class="modal fade" tabindex="-1" role="dialog">
+<div id="modal-poster" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,8 +14,8 @@
           <img src="" class="form-group preview img-fluid">
 
           <div class="form-group text-center">
-            <input type="file" id="btn-upload-file" class="d-none">
-            <label for="btn-upload-file" class="btn btn-primary w-100">Выбрать</label>
+            <input type="file" id="btn-upload-file-poster" class="d-none">
+            <label for="btn-upload-file-poster" class="btn btn-primary w-100">Выбрать</label>
           </div>
 
           <div class="form-group">
@@ -28,6 +28,48 @@
         </div>
         <div class="lg">
           <div class="form-group croppie"></div>
+
+          <div class="form-group text-center">
+            <button class="croppie-upload btn btn-success w-25 yes">Загрузить</button>
+            <button type="button" class="modal-close btn btn-danger w-25 no" data-dismiss="modal">Отменить</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="modal-screen" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Загрузка Зображення</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="sm">
+
+          <img src="" class="form-group preview img-fluid">
+
+          <div class="form-group text-center">
+            <input type="file" id="btn-upload-file-csreen" class="d-none">
+            <label for="btn-upload-file-csreen" class="btn btn-primary w-100">Выбрать</label>
+          </div>
+
+          <div class="form-group">
+            <input class="form-control btn-upload-url" type="text" name="url"
+                   placeholder="http://site.com/image.jpg">
+          </div>
+
+          <div class="form-group error"></div>
+
+        </div>
+        <div class="lg">
+          <div class="form-group croppie"></div>
+          <!--          <div class="form-group croppie2"></div>-->
 
           <div class="form-group text-center">
             <button class="croppie-upload btn btn-success w-25 yes">Загрузить</button>
