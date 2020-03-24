@@ -53,6 +53,50 @@
       </div>
     </div>
     <!--./ poster -->
+
+    <!-- drawing -->
+    <div class="card col-12">
+      <div class="card-body">
+        <div class="form-group">
+          <!-- drawing -->
+          <div class="drawing window w-100 h-100">
+
+            <div class="image" style="display: none">
+              <div class="text-center">
+                <img class="preview img-fluid" src="">
+              </div>
+
+              <div class="overlay text-center">
+                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                  <i class="far fa-trash-alt"></i> Видалити
+                </div>
+                <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
+                  <i class="fas fa-wrench"></i> Замінити
+                </div>
+              </div>
+
+              <input type="hidden" name="poster" value="">
+            </div>
+
+            <div class="no-image" style="display: block">
+
+              <div class="text-center">
+                <img src="<?=CONTENT_ADMIN;?>images/no-drawing.jpg" class="img-fluid">
+              </div>
+
+              <div class="link text-center btn btn-success">
+                <i class="fas fa-plus-circle"></i> Добавити
+              </div>
+
+            </div>
+
+          </div>
+          <!-- drawing end -->
+        </div>
+      </div>
+    </div>
+    <!--./ drawing -->
+
     <!-- screens -->
 
     <div id="screens">
@@ -64,17 +108,7 @@
       </div>
       <!--./ add-screen -->
       <!-- screens -->
-      <div class="screens">
-        <!-- screen -->
-        <div style="" class="card col-6 float-left">
-          <div class="card-body">
-            <div class="form-group">
-              <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-            </div>
-          </div>
-        </div>
-        <!--./ screen -->
-      </div>
+      <div class="screens"></div>
       <!--./ screens -->
 
     </div>

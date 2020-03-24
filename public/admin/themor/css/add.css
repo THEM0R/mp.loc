@@ -38,6 +38,14 @@
   cursor: pointer;
 }
 
+.screen{
+  display: block;
+}
+
+.screens .screen:hover{
+  opacity: 1;
+}
+
 .window {
   position: relative;
   border: 1px solid #ced4da;
@@ -108,57 +116,4 @@
 
 .poster-big:hover.overlay {
   opacity: 1;
-}
-
-.screens {
-  margin-top: 20px;
-}
-
-.screens #add {
-  width: 100%;
-  text-align: center;
-}
-
-.screens #add:hover {
-  background-color: #EC174F;
-  color: #fff;
-}
-
-.screens #add #screens {
-  width: 100%;
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.screens #add #screens > .screen {
-  position: relative;
-  width: 135px;
-  height: 50px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.screens #add #screens > .screen:nth-child(2n) {
-  margin-right: 0;
-}
-
-.screens #add #screens > .screen:hover .overlay {
-  opacity: 1;
-}
-
-.screens #add #screens > .screen .preview {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 135px auto;
-  width: 135px;
-  height: 50px;
-}
-
-.screens #add #screens > .screen .preview .overlay {
-  display: block;
-  opacity: 0;
 }

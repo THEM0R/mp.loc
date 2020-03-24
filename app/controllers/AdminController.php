@@ -202,9 +202,11 @@ class AdminController extends AppController
   public function articlesAddAction($model, $route)
   {
 
-    //pr1(UPLOAD_IMG);
+
 
     if (isset($_POST['articles_add'])) {
+
+      pr1($_POST);
 
       if (!empty($_POST['name'])) {
 

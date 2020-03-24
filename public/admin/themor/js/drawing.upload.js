@@ -2,39 +2,39 @@ $(function () {
 
   var modal = {
     // modal
-    selector: $('#modal-poster .modal-dialog'),
-    sm: $('#modal-poster .sm'),
-    lg: $('#modal-poster .lg'),
-    preview: $('#modal-poster .preview'),
-    modals: $('#modal-poster.modal'),
+    selector: $('#modal-drawing .modal-dialog'),
+    sm: $('#modal-drawing .sm'),
+    lg: $('#modal-drawing .lg'),
+    preview: $('#modal-drawing .preview'),
+    modals: $('#modal-drawing.modal'),
     modals2: $('#modal-screens.modal'),
     // croppie
-    mcroppie: $('#modal-poster .modal-body .croppie'),
-    mcroppie2: $('#modal-poster .modal-body .croppie2'),
+    mcroppie: $('#modal-drawing .modal-body .croppie'),
+    mcroppie2: $('#modal-drawing .modal-body .croppie2'),
     // ajax
-    button_croppie: $('#modal-poster .modal-body .croppie-upload'),
-    button_croppie_screen: $('#modal-poster.screen .modal-body .croppie-upload'),
+    button_croppie: $('#modal-drawing .modal-body .croppie-upload'),
+    button_croppie_screen: $('#modal-drawing.screen .modal-body .croppie-upload'),
     // button
-    button_parsing: $('#modal-poster .modal-body .btn-parsing'),
-    button_file: $('#modal-poster .modal-body #btn-upload-file-poster'),
-    button_url: $('#modal-poster .modal-body .btn-upload-url'),
+    button_parsing: $('#modal-drawing .modal-body .btn-parsing'),
+    button_file: $('#modal-drawing .modal-body #btn-upload-file-drawing'),
+    button_url: $('#modal-drawing .modal-body .btn-upload-url'),
   };
 
   var view = {
-    image: $(".poster .image"),
-    no_image: $(".poster .no-image"),
-    poster_input: $(".poster input[name=poster]"),
+    image: $(".drawing .image"),
+    no_image: $(".drawing .no-image"),
+    poster_input: $(".drawing input[name=poster]"),
     kpid: $('[name=kpid]'),
-    preview: $('.poster .preview'),
-    overlay: $('.poster .overlay'),
+    preview: $('.drawing .preview'),
+    overlay: $('.drawing .overlay'),
     error: $('.error'),
-    link: $('.poster .link'),
+    link: $('.drawing .link'),
     submit: $('input[type=submit]'),
-    image_data_type: $('.poster .preview').attr('data-type'),
-    image_data_name: $('.poster .preview').attr('data-name'),
-    image_data_url: $('.poster .preview').attr('data-url'),
-    button_delete: $('.poster .overlay .delete'),
-    button_update: $('.poster .overlay .update'),
+    image_data_type: $('.drawing .preview').attr('data-type'),
+    image_data_name: $('.drawing .preview').attr('data-name'),
+    image_data_url: $('.drawing .preview').attr('data-url'),
+    button_delete: $('.drawing .overlay .delete'),
+    button_update: $('.drawing .overlay .update'),
   };
 
   // action
@@ -42,7 +42,7 @@ $(function () {
     event.preventDefault();
 
     console.clear();
-    console.log('1: poster click link');
+    console.log('1: drawing click link');
 
     // modal.mcroppie2.croppie('destroy');
     // console.log('mcroppie2 destroy');
@@ -139,8 +139,8 @@ $(function () {
 
       type: 'base64',
       size: 'viewport',
-      format: 'webp',
-      //backgroundColor:'#fff',
+      format: 'png',
+      backgroundColor:'#fff'
 
     }).then(function (response) {
 
@@ -238,12 +238,12 @@ $(function () {
 
   // others
   modal.mcroppie.croppie({
-    format: 'webp',
-    //backgroundColor:'#fff',
+    format: 'png',
+    backgroundColor:'#fff',
     enableExif: true,
     viewport: {
-      width: 300,
-      height: 250,
+      width: 700,
+      height: 200,
       type: 'canvas'
     },
     boundary: {
