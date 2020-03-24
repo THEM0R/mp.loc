@@ -36,3 +36,4 @@ var screens = {
   link: $("#screens .add-screen"),
   images: $("#screens .screens"),
 };
+

@@ -17,14 +17,36 @@ $(function () {
 
       var poster = this.files[0];
       var format = poster.name.split('.').pop().toLowerCase();
+
       if (!isValid(format)) {
+
         $(this).val('');
+
       } else {
+
         var reader = new FileReader();
+
         reader.onload = function (e) {
-          bindCroppie(e.target.result);
+
+          modal.mcroppie.croppie('bind', {
+            url: e.target.result
+          }).then(function () {
+            console.log('3: croppie bind complete');
+          });
+
+          modal.selector
+            .removeClass('modal-sm')
+            .addClass('modal-lg');
+
+          modal.sm.hide();
+
+          modal.mcroppie.show();
+
+          modal.lg.show();
+
         };
         reader.readAsDataURL(poster);
+
       }
     });
     // upload url
@@ -37,8 +59,11 @@ $(function () {
       var format = url.split('.').pop().toLowerCase();
 
       if (!isValid(format)) {
+
         $(this).val('');
+
       } else {
+
         $.ajax({
           type: 'POST',
           url: '/upload/url',
@@ -48,7 +73,23 @@ $(function () {
           dataType: 'json',
           success: function (response) {
             if (response.type != 'error') {
-              bindCroppie(response.data);
+
+              modal.mcroppie.croppie('bind', {
+                url: response.data
+              }).then(function () {
+                console.log('3: croppie bind complete');
+              });
+
+              modal.selector
+                .removeClass('modal-sm')
+                .addClass('modal-lg');
+
+              modal.sm.hide();
+
+              modal.mcroppie.show();
+
+              modal.lg.show();
+
             }
           }
         });
@@ -74,7 +115,7 @@ $(function () {
 
         console.log(method);
 
-        method(response);
+        addScreens(response);
 
         // modal
         modal.button_file.val('');
@@ -97,29 +138,25 @@ $(function () {
         modal.modals.modal('hide');
       });
 
-
+      modal.mcroppie.croppie('destroy');
 
     });
 
     // others
+    modal.mcroppie.croppie({
 
-    // modal.mcroppie.croppie({
-    //
-    //   enableExif: true,
-    //   viewport: {
-    //     width: 300,
-    //     height: 250,
-    //     type: 'canvas'
-    //   },
-    //   boundary: {
-    //     width: 766,
-    //     height: 450
-    //   }
-    // });
+      enableExif: true,
+      viewport: {
+        width: 300,
+        height: 250,
+        type: 'canvas'
+      },
+      boundary: {
+        width: 766,
+        height: 450
+      }
+    });
 
-    //croppies({w: 300, h: 250}, {w: 700, h: 400});
-    // croppies(modal.mcroppie);
-    croppies({w: 300, h: 250}, {w: 700, h: 400});
 
 
   }
@@ -129,10 +166,7 @@ $(function () {
     console.clear();
     console.log('1: screens link click');
 
-
-    imageUpload(addScreens);
-
-
+    imageUpload();
 
     modal.modals
       .children('.modal-dialog')
