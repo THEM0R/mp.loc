@@ -243,7 +243,7 @@ $(function () {
     enableExif: true,
     maxZoomedCropWidth: 700,
     viewport: {
-      width: 400,
+      width: 500,
       height: 350,
       type: 'canvas'
     },
