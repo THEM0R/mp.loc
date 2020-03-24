@@ -241,9 +241,10 @@ $(function () {
     format: 'webp',
     //backgroundColor:'#fff',
     enableExif: true,
+    maxZoomedCropWidth: 700,
     viewport: {
-      width: 300,
-      height: 250,
+      width: 400,
+      height: 350,
       type: 'canvas'
     },
     boundary: {

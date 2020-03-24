@@ -21,6 +21,8 @@
                 <th style="width: 1%">
                     #ID
                 </th>
+                <th>
+                </th>
                 <th style="width: 20%">
                     Назва (name)
                 </th>
@@ -33,6 +35,7 @@
                 <th>
                     На сайті
                 </th>
+
                 <th style="width: 25%">
                 </th>
             </tr>
@@ -41,11 +44,13 @@
 
             <? foreach($articles as $article): ?>
             <tr>
-                <td><?=$article['id']?></td>
-                <td><?=$article['name']?>
+                <td><?=$article['id'];?></td>
+                <td><img class="img-fluid" src="<?=URL_ARTICLE;?>/<?=$article['poster'];?>"></td>
+                <td><?=$article['name'];?>
                 </td>
 <!--                <td><?=$article['url']?></td>-->
-                <td><?=$category[$article['category']]['name']?></td>
+                <td><?=$category[$article['category']]['name'];?></td>
+
                 <td>
                     <? if ($article['active'] == 1): ?>
                     <span class="badge badge-success">Активний</span>
