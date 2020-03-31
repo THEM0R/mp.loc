@@ -62,16 +62,7 @@ Router::add('about', 'about','about');
 
 // Material
 Router::add('(category:all)', 'category', 'category');
-Router::add('material/(product:all)', 'material:product','material_product');
-//Router::add('material/(product:all)/(url:all)', 'material:view','material_view');
-
-// metal
-Router::add('metal', 'metal', 'metal');
-Router::add('metal/prais', 'metal:prais','metal_prais');
-Router::add('metal/(url:all)', 'metal:view','metal_view');
-
-
-
+Router::add('(category:all)/(url:all)', 'Article:view','article');
 
 
 /* index */

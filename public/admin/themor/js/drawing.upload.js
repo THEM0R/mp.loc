@@ -38,6 +38,28 @@ $(function () {
   };
 
   // action
+
+  view.button_update.click(function (event) {
+    event.preventDefault();
+
+    console.clear();
+    console.log('1: drawing click button_update');
+
+    // modal.mcroppie2.croppie('destroy');
+    // console.log('mcroppie2 destroy');
+
+    // modal.mcroppie.croppie('destroy');
+    // console.log('mcroppie destroy');
+
+    modal.modals
+      .children('.modal-dialog')
+      .addClass('modal-sm');
+
+    modal.modals
+      .modal('show');
+
+  });
+
   view.link.click(function (event) {
     event.preventDefault();
 
@@ -229,10 +251,16 @@ $(function () {
 
   }
 
-  $(modal.modals).on('hide.bs.modal', function (e) {
-    // do something...
-    $(this).removeClass('screen')
-      .removeClass('poster');
+  modal.modals.on('hide.bs.modal', function (e) {
+    // action
+    modal.selector
+      .removeClass('modal-lg')
+      .addClass('modal-sm');
+
+    modal.sm.show();
+    modal.lg.hide();
+
+    modal.mcroppie.find('img.cr-image').attr('src','');
   });
 
 

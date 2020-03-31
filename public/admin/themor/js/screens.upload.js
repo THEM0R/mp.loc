@@ -25,25 +25,12 @@ $(function () {
     images: $("#screens .screens"),
     screen: $("#screens .screens .screen"),
     overlay: $("#screens .screens .screen .overlay"),
+    count_screen: $("#screens .screens .screen").length,
+    count: 2,
   };
 
 
-  screens.link.click(function (event) {
 
-    event.preventDefault();
-
-    console.clear();
-    console.log('1: screens link click');
-
-
-    modal.modals
-      .children('.modal-dialog')
-      .addClass('modal-sm');
-
-    modal.modals
-      .modal('show');
-
-  });
 
   // action
   modal.preview
@@ -52,6 +39,39 @@ $(function () {
 
   modal.lg
     .hide();
+
+
+  if(screens.count_screen > screens.count){
+    screens.link.parents('.card').hide();
+  }
+
+  screens.link.click(function (event) {
+
+    event.preventDefault();
+
+    if(screens.count_screen > screens.count){
+
+      console.clear();
+      console.log('1: screens full block');
+      screens.link.parents('.card').hide();
+
+    }else{
+
+      console.clear();
+      console.log('1: screens link click');
+
+      console.log(screens.count_screen);
+
+
+      modal.modals
+        .children('.modal-dialog')
+        .addClass('modal-sm');
+
+      modal.modals
+        .modal('show');
+    }
+
+  });
 
   // upload input
   modal.button_file.change(function () {
@@ -158,14 +178,20 @@ $(function () {
 
       // view
 
+      var count_screens = $("#screens .screens .screen").length;
+
+      screens.count_screen = count_screens;
+
+      console.log(screens.count_screen);
+
       screens.images.append(
         `<!-- screen -->
-        <div class="screen card col-6 float-left">
+        <div class="screen screen-`+screens.count_screen+` card col-6 float-left">
           <div class="card-body">
             <div class="form-group">
               <img src="` + response + `" class="img-fluid" alt="">
               
-              <div class="overlay text-center" style="opacity: 1">
+              <div class="overlay text-center">
                 <div class="delete btn btn-primary" style="color: white; cursor: pointer">
                   <i class="fas fa-search"></i>
                 </div>
@@ -176,7 +202,8 @@ $(function () {
               
             </div>
           </div>
-          <input type="hidden" name="screens[]" value="` + response + `">
+          <input type="hidden" name="screens[`+screens.count_screen+`][data-type]" value="base64">
+          <input type="hidden" name="screens[`+screens.count_screen+`][image]" value="` + response + `">
         </div>
         <!--./ screen -->`
       );
@@ -201,6 +228,22 @@ $(function () {
       //modal.mcroppie.croppie('destroy');
 
       modal.modals.modal('hide');
+
+
+      if(screens.count_screen > screens.count){
+        screens.link.parents('.card').hide();
+      }
+
+      $("#screens").find('.screen').mouseover(function () {
+        console.log('screen mouseover');
+        $(this).find('.overlay').css({'opacity': '1'});
+      });
+
+      $("#screens").find('.screen').mouseout(function () {
+        console.log('screen mouseout');
+        $(this).find('.overlay').css({'opacity': '0'});
+      });
+
     });
 
     //modal.mcroppie.croppie('destroy');
@@ -242,6 +285,18 @@ $(function () {
   // $('.screen .overlay').mouseover(function () {
   //   $(this).addClass('add');
   // });
+
+  modal.modals.on('hide.bs.modal', function (e) {
+    // action
+    modal.selector
+      .removeClass('modal-lg')
+      .addClass('modal-sm');
+
+    modal.sm.show();
+    modal.lg.hide();
+
+    modal.mcroppie.find('img.cr-image').attr('src','');
+  });
 
 
   screens.screen.on('mouseover', function () {

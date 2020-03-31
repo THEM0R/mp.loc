@@ -21,11 +21,11 @@ class MainController extends AppController
 
         //pr1($products);
 
-        //$slider = \R::getAll('SELECT * FROM _material WHERE active = 1 AND slider = 1');
+        $slider = \R::getAll('SELECT * FROM _material WHERE active = 1 AND slider = 1');
 
         $gallery = $this->gallery(\R::getAll('SELECT * FROM _gallery WHERE type = 77'));
 
-        $this->render(compact('products', 'slider', 'gallery'));
+        $this->render(compact('products', 'slider','gallery'));
 
     }
 

@@ -1,11 +1,12 @@
 <form action="" method="post" class="row">
 
   <div class="col-md-4">
+    <!-- poster -->
     <div class="card col-12">
       <div class="card-body">
         <div class="form-group">
           <!-- poster -->
-          <? if( isset($article['poster']) and $article['poster'] != '' and is_file(UPL_ARTICLE.'/'.$article['poster']) ) : ?>
+          <? if( isset($article['poster']) and $article['poster'] != '' ) : ?>
           <div class="poster window w-100 h-100">
             <div class="image" style="display: block">
               <div class="text-center">
@@ -26,6 +27,7 @@
               </div>
 
               <input type="hidden" name="poster" value="<?=$article['poster'];?>">
+              <input type="hidden" name="poster-data-type" value="image">
             </div>
 
             <div class="no-image" style="display: none">
@@ -59,6 +61,7 @@
               </div>
 
               <input type="hidden" name="poster" value="">
+              <input type="hidden" name="poster-data-type" value="">
             </div>
 
             <div class="no-image" style="display: block">
@@ -78,6 +81,7 @@
         </div>
       </div>
     </div>
+    <!--./ poster -->
     <div class="card col-6 float-left">
       <div class="card-body">
         <div class="form-group">

@@ -10,13 +10,18 @@
 
     <h4 class="title">
         <a href="#" class=""><?=$category['name'];?> <i class="icon-right-open"></i></a>
+
+        <?pr($route);?>
+
     </h4>
     <div class="articles">
         <? if($articles): ?>
         <? foreach($articles as $item): ?>
         <div class="article">
-            <a href="/<?=$route['view'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
-                <div class="poster" style="background-image: url('/public/images/articles/material/<?=$item['id'];?>.png')"></div>
+            <a href="/<?=$route['category'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
+                <div class="poster"
+                     style="background-image: url('<?=URL_ARTICLE;?>/<?=$item['poster'];?>')">
+                </div>
                 <div class="title"><?=$item['name'];?></div>
             </a>
         </div>

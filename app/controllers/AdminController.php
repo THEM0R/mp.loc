@@ -206,7 +206,7 @@ class AdminController extends AppController
 
     if (isset($_POST['articles_add'])) {
 
-      pr1($_POST);
+      //pr1($_POST);
 
       if (!empty($_POST['name'])) {
 
@@ -266,7 +266,43 @@ class AdminController extends AppController
 
     $article->active = $data['active'];
 
-    $article->poster = App::imageUpload($data['poster'], UPL_ARTICLE);
+    if($data['poster-data-type'] == 'base64'){
+      $article->poster = App::Base64ImageUpload($data['poster'], UPL_ARTICLE);
+    }else if($data['poster-data-type'] == 'image'){
+      if($article->poster == $data['poster']){
+        $article->poster = $data['poster'];
+      }else{
+        //upload poster
+
+      }
+    }
+
+    // screens
+
+    if(isset($data['screens']) and $data['screens'] != []) {
+
+      $screens = (array)$data['screens'];
+
+      $_screens = [];
+
+      foreach ($screens as $screen) {
+
+        if ($screen['data-type'] == 'base64') {
+
+          $_screens[] = App::Base64ImageUpload($screen['image'], UPL_ARTICLE_SCR);
+
+        } elseif ($screen['data-type'] == 'image') {
+
+        }
+      }
+
+    }else{
+      $_screens = null;
+    }
+
+    pr1($_screens);
+
+
 
     if (\R::store($article)) {
       return true;

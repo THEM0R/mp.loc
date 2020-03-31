@@ -18,6 +18,10 @@ define('UPLOAD',  DIR.'/public/upload/' );
 define('UPLOAD_IMG',  DIR.'/public/upload/images/' );
 define('UPL_ARTICLE',  DIR.'/public/upload/images/articles' );
 define('URL_ARTICLE', '/public/upload/images/articles' );
+
+define('UPL_ARTICLE_SCR',  DIR.'/public/upload/images/articles/screens' );
+define('URL_ARTICLE_SCR', '/public/upload/images/articles/screens' );
+
 define('CONTENT', DOMEN.'/public/' );
 define('CONTENT_ADMIN', DOMEN.'/public/admin/' );
 define('SCRIPT',  dirname(DIR).'/public/script/' );
