@@ -119,6 +119,10 @@ class App
 
   ];
 
+  public static function imageUpload(){
+
+  }
+
   public static function Base64ImageUpload($image, $folder)
   {
     if (!empty($image)) {

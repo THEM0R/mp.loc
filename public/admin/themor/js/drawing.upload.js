@@ -23,7 +23,8 @@ $(function () {
   var view = {
     image: $(".drawing .image"),
     no_image: $(".drawing .no-image"),
-    poster_input: $(".drawing input[name=poster]"),
+    drawing_input: $(".drawing input[name=drawing]"),
+    drawing_data_type: $(".drawing input[name=drawing-data-type]"),
     kpid: $('[name=kpid]'),
     preview: $('.drawing .preview'),
     overlay: $('.drawing .overlay'),
@@ -209,7 +210,8 @@ $(function () {
       .show();
 
     view.image_data_type = 'base64';
-    view.poster_input.attr('value', response);
+    view.drawing_input.attr('value', response);
+    view.drawing_data_type.attr('value', 'base64');
     view.image.show();
     view.no_image.hide();
 
@@ -311,7 +313,7 @@ $(function () {
               .attr('data-url', '')
               .attr('data-type', '');
 
-            view.poster_input.val('');
+            view.drawing_input.val('');
 
           }
         }
@@ -330,7 +332,7 @@ $(function () {
         .attr('data-type', '')
         .hide();
 
-      view.poster_input.val('');
+      view.drawing_input.val('');
     }
 
   });

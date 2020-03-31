@@ -203,7 +203,6 @@ class AdminController extends AppController
   {
 
 
-
     if (isset($_POST['articles_add'])) {
 
       //pr1($_POST);
@@ -248,40 +247,12 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category'));
   }
 
-
-  private function articlesArray($article, $data)
+  private static function addScreens($screens)
   {
-    $article->name = $data['name'];
-    $article->alt_name = $data['alt_name'];
-    $article->category = $data['category'];
-    $article->url = $data['url'];
-    $article->description = $data['description'];
-    $article->views = 0;
 
-    if ( isset($data['active']) and $data['active'] === 'on') {
-      $data['active'] = 1;
-    } else {
-      $data['active'] = 0;
-    }
+    if (isset($screens) and $screens != []) {
 
-    $article->active = $data['active'];
-
-    if($data['poster-data-type'] == 'base64'){
-      $article->poster = App::Base64ImageUpload($data['poster'], UPL_ARTICLE);
-    }else if($data['poster-data-type'] == 'image'){
-      if($article->poster == $data['poster']){
-        $article->poster = $data['poster'];
-      }else{
-        //upload poster
-
-      }
-    }
-
-    // screens
-
-    if(isset($data['screens']) and $data['screens'] != []) {
-
-      $screens = (array)$data['screens'];
+      $screens = (array)$screens;
 
       $_screens = [];
 
@@ -289,20 +260,89 @@ class AdminController extends AppController
 
         if ($screen['data-type'] == 'base64') {
 
-          $_screens[] = App::Base64ImageUpload($screen['image'], UPL_ARTICLE_SCR);
+          $_screens[] = App::Base64ImageUpload($screen['image'], UPL_ART_SCR);
 
         } elseif ($screen['data-type'] == 'image') {
 
         }
       }
 
-    }else{
-      $_screens = null;
+      $_screens_str = '';
+      foreach ($_screens as $item) {
+        $_screens_str .= $item . '|';
+      }
+
+      return rtrim($_screens_str, '|');
+
+
+    } else {
+      return NULL;
     }
 
-    pr1($_screens);
+  }
+
+  private static function addPoster($poster, $data)
+  {
+
+    if (isset($data['poster']) and $data['poster'] != '') {
+
+      if ($data['poster-data-type'] == 'base64') {
+        $_poster = App::Base64ImageUpload($data['poster'], UPL_ART);
+      } else if ($data['poster-data-type'] == 'image') {
+        if ($poster == $data['poster']) {
+          $_poster = $data['poster'];
+        }
+        //upload poster
+      }
+
+      return $_poster;
+
+    }
+    return NULL;
+  }
+
+  private static function addDrawing($data){
+
+    if (isset($data['drawing']) and $data['drawing'] === '') {
+
+      if ($data['drawing-data-type'] == 'base64') {
+        $drawing = App::Base64ImageUpload($data['drawing'], UPL_DRA);
+      } else if ($data['drawing-data-type'] == 'image') {
+        // upload image
+      }
+    } else {
+      $drawing = NULL;
+    }
+
+    return $drawing;
+
+  }
 
 
+  private function articlesArray($article, $data)
+  {
+
+    $article->name = $data['name'];
+    $article->alt_name = $data['alt_name'];
+    $article->category = $data['category'];
+    $article->url = $data['url'];
+    $article->description = $data['description'];
+    $article->views = 0;
+
+    // poster
+    $article->poster = self::addPoster($article->poster, $data);
+    // drawing
+    $article->drawing = self::addDrawing($data);
+    // screens
+    $article->screens = self::addScreens($data['screens']);
+
+
+    if (isset($data['active']) and $data['active'] === 'on') {
+      $data['active'] = 1;
+    } else {
+      $data['active'] = 0;
+    }
+    $article->active = $data['active'];
 
     if (\R::store($article)) {
       return true;

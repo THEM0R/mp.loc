@@ -16,11 +16,16 @@ define('CONF_DB', dirname(DIR).'/public/data/' );
 define('PUBLIC',  DIR.'/public/' );
 define('UPLOAD',  DIR.'/public/upload/' );
 define('UPLOAD_IMG',  DIR.'/public/upload/images/' );
-define('UPL_ARTICLE',  DIR.'/public/upload/images/articles' );
-define('URL_ARTICLE', '/public/upload/images/articles' );
 
-define('UPL_ARTICLE_SCR',  DIR.'/public/upload/images/articles/screens' );
-define('URL_ARTICLE_SCR', '/public/upload/images/articles/screens' );
+
+define('UPL_ART',  DIR.'/public/upload/images/articles/posters' );
+define('URL_ART', '/public/upload/images/articles/posters' );
+
+define('UPL_DRA',  DIR.'/public/upload/images/articles/drawings' );
+define('URL_DRA', '/public/upload/images/articles/drawings' );
+
+define('UPL_ART_SCR',  DIR.'/public/upload/images/articles/screens' );
+define('URL_ART_SCR', '/public/upload/images/articles/screens' );
 
 define('CONTENT', DOMEN.'/public/' );
 define('CONTENT_ADMIN', DOMEN.'/public/admin/' );
