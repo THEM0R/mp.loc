@@ -42,8 +42,10 @@ Router::add('admin/page/(id:int)/delete', 'admin:pageDelete','pageDelete');
  */
 Router::add('admin/widgets', 'admin:widgets','widgets');
 Router::add('admin/widgets/add', 'admin:widgetsAdd','widgetsAdd');
-
-
+/*
+ * prais
+ */
+Router::add('admin/prais', 'admin:prais','prais');
 /*
  * site
  */

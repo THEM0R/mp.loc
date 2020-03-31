@@ -247,28 +247,30 @@ class AdminController extends AppController
     $this->render(compact('title', 'description', 'category'));
   }
 
-  private static function addScreens($screens)
+  private static function addScreens($data)
   {
 
-    if (isset($screens) and $screens != []) {
+    if (isset($data['screens']) and $data['screens'] != []) {
 
-      $screens = (array)$screens;
+      $screens = (array)$data['screens'];
 
       $_screens = [];
+      $_screens2 = [];
+      $_screens3 = [];
 
       foreach ($screens as $screen) {
 
         if ($screen['data-type'] == 'base64') {
-
           $_screens[] = App::Base64ImageUpload($screen['image'], UPL_ART_SCR);
-
         } elseif ($screen['data-type'] == 'image') {
-
+          $_screens2[] = $screen['image'];
         }
       }
 
+      $_screens3 = array_merge($_screens,$_screens2);
+
       $_screens_str = '';
-      foreach ($_screens as $item) {
+      foreach ($_screens3 as $item) {
         $_screens_str .= $item . '|';
       }
 
@@ -303,18 +305,18 @@ class AdminController extends AppController
 
   private static function addDrawing($data){
 
-    if (isset($data['drawing']) and $data['drawing'] === '') {
+    if (isset($data['drawing']) and $data['drawing'] != '') {
 
       if ($data['drawing-data-type'] == 'base64') {
-        $drawing = App::Base64ImageUpload($data['drawing'], UPL_DRA);
+        return App::Base64ImageUpload($data['drawing'], UPL_DRA);
       } else if ($data['drawing-data-type'] == 'image') {
         // upload image
       }
     } else {
-      $drawing = NULL;
+      return NULL;
     }
 
-    return $drawing;
+    return NULL;
 
   }
 
@@ -334,7 +336,7 @@ class AdminController extends AppController
     // drawing
     $article->drawing = self::addDrawing($data);
     // screens
-    $article->screens = self::addScreens($data['screens']);
+    $article->screens = self::addScreens($data);
 
 
     if (isset($data['active']) and $data['active'] === 'on') {
@@ -382,7 +384,13 @@ class AdminController extends AppController
 
     //pr1($category);
 
-    $article = \R::getRow('SELECT * FROM _articles WHERE id = ? AND active = ?', [$route['id'], 1]);
+    $article = \R::getRow('SELECT * FROM _articles WHERE id = ?', [$route['id']]);
+
+
+
+    if($article['screens'] !== null) {
+      $article['screens'] = explode('|', $article['screens']);
+    }
 
     $this->render(compact('title', 'category', 'article'));
   }

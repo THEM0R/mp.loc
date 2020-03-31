@@ -82,40 +82,150 @@
       </div>
     </div>
     <!--./ poster -->
-    <div class="card col-6 float-left">
+    <!-- drawing -->
+    <div class="card col-12">
       <div class="card-body">
         <div class="form-group">
-          <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
-            <i class="fas fa-folder">
-            </i>
-          </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
-            <i class="fas fa-pencil-alt">
-            </i>
-          </a>
+          <!-- drawing -->
+          <? if( isset($article['drawing']) and $article['drawing'] != '' ) : ?>
+          <div class="drawing window w-100 h-100">
+
+            <div class="image" style="display: block">
+              <div class="text-center">
+                <img class="preview img-fluid" src="<?=URL_DRA;?>/<?=$article['drawing'];?>">
+              </div>
+
+              <div class="overlay text-center">
+                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                  <i class="far fa-trash-alt"></i> Видалити
+                </div>
+                <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
+                  <i class="fas fa-wrench"></i> Замінити
+                </div>
+              </div>
+
+              <input type="hidden" name="drawing" value="">
+              <input type="hidden" name="drawing-data-type" value="">
+
+            </div>
+
+            <div class="no-image" style="display: none">
+
+              <div class="text-center">
+                <img src="<?=CONTENT_ADMIN;?>images/no-drawing.jpg" class="img-fluid">
+              </div>
+
+              <div class="link text-center btn btn-success">
+                <i class="fas fa-plus-circle"></i> Добавити
+              </div>
+
+            </div>
+
+          </div>
+          <? else : ?>
+          <div class="drawing window w-100 h-100">
+
+            <div class="image" style="display: none">
+              <div class="text-center">
+                <img class="preview img-fluid" src="">
+              </div>
+
+              <div class="overlay text-center">
+                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                  <i class="far fa-trash-alt"></i> Видалити
+                </div>
+                <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
+                  <i class="fas fa-wrench"></i> Замінити
+                </div>
+              </div>
+
+              <input type="hidden" name="drawing" value="">
+              <input type="hidden" name="drawing-data-type" value="">
+
+            </div>
+
+            <div class="no-image" style="display: block">
+
+              <div class="text-center">
+                <img src="<?=CONTENT_ADMIN;?>images/no-drawing.jpg" class="img-fluid">
+              </div>
+
+              <div class="link text-center btn btn-success">
+                <i class="fas fa-plus-circle"></i> Добавити
+              </div>
+
+            </div>
+
+          </div>
+          <? endif; ?>
+          <!-- drawing end -->
         </div>
       </div>
     </div>
-    <div class="card col-6 float-right">
-      <div class="card-body">
-        <div class="form-group">
-          <img src="/public/images/articles/1.png" class="img-fluid" alt="">
-          <a class="btn btn-primary btn-sm" href="/admin/articles/<?=$article['id']?>">
-            <i class="fas fa-folder">
-            </i>
-          </a>
-          <a class="btn btn-info btn-sm" href="/admin/articles/<?=$article['id']?>/edit">
-            <i class="fas fa-pencil-alt">
-            </i>
-          </a>
+    <!--./ drawing -->
+    <!-- screens -->
+    <div id="screens">
+
+      <? if($article['screens']) : ?>
+
+      <? if( count($article['screens']) < COUNT_ART_SCR ) : ?>
+      <!-- add-screen -->
+      <div class="card col-12">
+        <div class="card-body">
+          <div class="add-screen btn btn-success w-100" style="cursor:pointer">Добавити зображення</div>
         </div>
       </div>
+      <!--./ add-screen -->
+      <? endif; ?>
+      <? else: ?>
+      <!-- add-screen -->
+      <div class="card col-12">
+        <div class="card-body">
+          <div class="add-screen btn btn-success w-100" style="cursor:pointer">Добавити зображення</div>
+        </div>
+      </div>
+      <!--./ add-screen -->
+      <? endif; ?>
+      <!-- screens -->
+      <div class="screens">
+        <? if($article['screens']) : ?>
+        <? $i=0; foreach($article['screens'] as $screen) : ?>
+        <!-- screen -->
+        <div class="screen screen-<? $i++; echo $i; ?> card col-6 float-left">
+          <div class="card-body">
+            <div class="form-group">
+              <img src="<?=URL_ART_SCR;?>/<?=$screen;?>" class="img-fluid" alt="">
+
+              <div class="overlay text-center">
+                <div class="view btn btn-primary" data-img="<?=URL_ART_SCR;?>/<?=$screen;?>" style="color: white; cursor: pointer">
+                  <i class="fas fa-search"></i>
+                </div>
+                <div class="delete btn btn-danger ml-2" style="color: white; cursor: pointer">
+                  <i class="far fa-trash-alt"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <input type="hidden" name="screens[<?=$i;?>][data-type]" value="image">
+          <input type="hidden" name="screens[<?=$i;?>][image]" value="<?=$screen;?>">
+        </div>
+        <!--./ screen -->
+        <? endforeach; ?>
+        <? endif; ?>
+      </div>
+      <!--./ screens -->
+
     </div>
+    <!--./ screens -->
+
   </div>
 
   <div class="col-md-8">
     <div class="card">
+
+      <?//pr($article);?>
+
       <div class="card-body">
         <div class="form-group">
           <input name="id" type="hidden" value="<?=$article['id'];?>">

@@ -8,6 +8,7 @@ $(function () {
     preview: $('#modal-screen .preview'),
     modals: $('#modal-screen.modal'),
     modals2: $('#modal-screens.modal'),
+    modals_view: $('#view-image.modal'),
     // croppie
     mcroppie: $('#modal-screen .modal-body .croppie'),
     mcroppie2: $('#modal-screen .modal-body .croppie2'),
@@ -25,11 +26,10 @@ $(function () {
     images: $("#screens .screens"),
     screen: $("#screens .screens .screen"),
     overlay: $("#screens .screens .screen .overlay"),
+    view: $("#screens .screens .screen .overlay .view"),
     count_screen: $("#screens .screens .screen").length,
-    count: 2,
+    count: screens_count,
   };
-
-
 
 
   // action
@@ -40,8 +40,24 @@ $(function () {
   modal.lg
     .hide();
 
+  modal.modals_view
+    .find('.view > img')
+    .attr('src','');
 
-  if(screens.count_screen > screens.count){
+  screens.view.click(function () {
+
+    var img = $(this).attr('data-img');
+
+    modal.modals_view
+      .find('.view > img')
+      .attr('src',img);
+
+    modal.modals_view.modal('show');
+
+  });
+
+
+  if (screens.count_screen > screens.count) {
     screens.link.parents('.card').hide();
   }
 
@@ -49,13 +65,15 @@ $(function () {
 
     event.preventDefault();
 
-    if(screens.count_screen > screens.count){
+    console.log(screens.count_screen);
+
+    if (screens.count_screen > screens.count) {
 
       console.clear();
       console.log('1: screens full block');
       screens.link.parents('.card').hide();
 
-    }else{
+    } else {
 
       console.clear();
       console.log('1: screens link click');
@@ -70,6 +88,7 @@ $(function () {
       modal.modals
         .modal('show');
     }
+
 
   });
 
@@ -180,13 +199,13 @@ $(function () {
 
       var count_screens = $("#screens .screens .screen").length;
 
-      screens.count_screen = count_screens;
+      screens.count_screen = count_screens + 1;
 
       console.log(screens.count_screen);
 
       screens.images.append(
         `<!-- screen -->
-        <div class="screen screen-`+screens.count_screen+` card col-6 float-left">
+        <div class="screen screen-` + screens.count_screen + ` card col-6 float-left">
           <div class="card-body">
             <div class="form-group">
               <img src="` + response + `" class="img-fluid" alt="">
@@ -202,8 +221,8 @@ $(function () {
               
             </div>
           </div>
-          <input type="hidden" name="screens[`+screens.count_screen+`][data-type]" value="base64">
-          <input type="hidden" name="screens[`+screens.count_screen+`][image]" value="` + response + `">
+          <input type="hidden" name="screens[` + screens.count_screen + `][data-type]" value="base64">
+          <input type="hidden" name="screens[` + screens.count_screen + `][image]" value="` + response + `">
         </div>
         <!--./ screen -->`
       );
@@ -230,17 +249,15 @@ $(function () {
       modal.modals.modal('hide');
 
 
-      if(screens.count_screen > screens.count){
+      if (screens.count_screen > screens.count) {
         screens.link.parents('.card').hide();
       }
 
       $("#screens").find('.screen').mouseover(function () {
-        console.log('screen mouseover');
         $(this).find('.overlay').css({'opacity': '1'});
       });
 
       $("#screens").find('.screen').mouseout(function () {
-        console.log('screen mouseout');
         $(this).find('.overlay').css({'opacity': '0'});
       });
 
@@ -295,15 +312,15 @@ $(function () {
     modal.sm.show();
     modal.lg.hide();
 
-    modal.mcroppie.find('img.cr-image').attr('src','');
+    modal.mcroppie.find('img.cr-image').attr('src', '');
   });
 
 
   screens.screen.on('mouseover', function () {
-    this.find('.overlay').css({'opacity': '1'});
+    $(this).find('.overlay').css({'opacity': '1'});
   });
   screens.screen.on('mouseout', function () {
-    this.find('.overlay').css({'opacity': '0'});
+    $(this).find('.overlay').css({'opacity': '0'});
   });
   screens.overlay.mouseover(function () {
     $(this).css({'opacity': '1'});

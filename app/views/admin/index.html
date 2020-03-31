@@ -102,6 +102,8 @@
 <!-- modal -->
 <?php if(is_file($theme.'/modal/poster.html'))
     require $theme.'/modal/poster.html';?>
+<?php if(is_file($theme.'/modal/viewImage.html'))
+    require $theme.'/modal/viewImage.html';?>
 <!-- ./modal -->
 
 <!-- jQuery -->
@@ -144,7 +146,7 @@
 <script src="/public/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
 <!-- themor -->
-<!--<script src="/public/admin/themor/js/parameter.js"></script>-->
+<script src="/public/admin/themor/js/parameter.js"></script>
 <!--<script src="/public/admin/themor/js/functions.js"></script>-->
 <script src="/public/admin/themor/js/croppie.min.js"></script>
 <script src="/public/admin/themor/js/image.upload.js"></script>
@@ -153,6 +155,9 @@
 <!--<script src="/public/admin/themor/js/poster.upload.js"></script>-->
 <!-- themor -->
 
+<script>
+  var screens_count = '<?=COUNT_ART_SCR;?>';
+</script>
 
 <script>
   $(document).ready(function () {

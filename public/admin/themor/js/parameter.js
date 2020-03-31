@@ -35,8 +35,5 @@ var view = {
   button_update: $('.poster .overlay .update'),
 };
 
-var screens = {
-  link: $("#screens .add-screen"),
-  images: $("#screens .screens"),
-};
+
 

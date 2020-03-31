@@ -27,6 +27,8 @@ define('URL_DRA', '/public/upload/images/articles/drawings' );
 define('UPL_ART_SCR',  DIR.'/public/upload/images/articles/screens' );
 define('URL_ART_SCR', '/public/upload/images/articles/screens' );
 
+define('COUNT_ART_SCR', 5);
+
 define('CONTENT', DOMEN.'/public/' );
 define('CONTENT_ADMIN', DOMEN.'/public/admin/' );
 define('SCRIPT',  dirname(DIR).'/public/script/' );
