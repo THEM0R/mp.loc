@@ -2,6 +2,7 @@
 
 namespace lib;
 
+use PHPExcel_IOFactory;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 use Statickidz\GoogleTranslate;
@@ -119,7 +120,85 @@ class App
 
   ];
 
-  public static function imageUpload(){
+  public static function utf8_converter($array)
+  {
+    array_walk_recursive($array, function (&$item, $key) {
+      if (!mb_detect_encoding($item, 'utf-8', true)) {
+        $item = utf8_encode($item);
+      }
+    });
+
+    return $array;
+  }
+
+  public static function xlsxToArray($xlsx, $page = 0)
+  {
+
+    if ($xlsx) {
+      if (is_file($xlsx)) {
+        $filename = $xlsx;
+        $filetype = phpexcel_IOFactory::identify($filename);
+        $objReader = phpexcel_IOFactory::createReader($filetype);
+        $objPHPExcel = $objReader->load($filename);
+
+        //
+
+        // convert one sheet
+        $sheet = $objPHPExcel->getSheet($page);
+
+        return $sheet->toArray();
+      }
+    }
+    return false;
+
+  }
+
+  public static function exelToArray($file = false)
+  {
+
+    if ($file) {
+
+      if (is_file($file)) {
+
+
+        $csv = file_get_contents($file);
+
+        pr1($csv);
+
+      }
+    }
+  }
+
+  public static function csvToJson($file = false)
+  {
+
+    if ($file) {
+
+      if (is_file($file)) {
+
+
+        $csv = file_get_contents($file);
+
+        //$csv = mb_convert_encoding($csv, "WINDOWS-1251", "UTF-8");
+
+        $array = array_map("str_getcsv", explode("\n", $csv));
+        $json = json_encode($array);
+        //print_r($json);
+
+        //pr1($json);
+        //pr1(self::utf8_converter($array));
+
+
+        return $json;
+      }
+
+    }
+    return false;
+
+  }
+
+  public static function imageUpload()
+  {
 
   }
 

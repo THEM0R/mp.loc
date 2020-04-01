@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use lib\App;
+use PHPExcel_IOFactory;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 use function GuzzleHttp\Psr7\str;
@@ -15,6 +16,46 @@ class AdminController extends AppController
   public function indexAction($model, $route)
   {
 
+    //$exels = App::xlsxToArray(UPL_CSV . '/777.xlsx');
+
+//    foreach ($exels as $exel) {
+//
+//      foreach($exel as $k => $v){
+//        if ($v != null) {
+//          pr($v);
+//        }
+//      }
+//
+//
+//    }
+
+//    $result= array();
+//    foreach($exels as $key=>$value){
+//
+//      $keys = array_slice($value,0,1);
+//
+//      $values = array_slice($value,1);
+//
+//      foreach($values as $val){
+//
+//        pr1($val);
+//
+//        $result[$key][] = array_combine($keys,$val);
+//
+//      }
+//
+//    }
+
+//
+//
+//
+//    pr1($exels);
+//
+//    exit;
+
+
+    //////////
+
     $title = 'Головна';
 
     $this->meta($title . $this->title);
@@ -22,6 +63,11 @@ class AdminController extends AppController
     $this->theme = 'admin';
 
     $description = $this->configs['about']['description2'];
+
+
+    $csv = App::exelToArray(UPL_CSV.'/2.csv');
+
+    pr1(json_decode($csv));
 
     /*
      * articles
@@ -631,14 +677,14 @@ class AdminController extends AppController
 
       if (isset($_POST['save-price'])) {
 
-        $price = \R::load('_price',$_POST['id']);
+        $price = \R::load('_price', $_POST['id']);
 
         $price->name = trim($_POST['name']);
         $price->type = trim($_POST['type']);
         $price->price_1 = trim($_POST['price_1']);
         $price->price_2 = trim($_POST['price_2']);
 
-        if( \R::store($price) ){
+        if (\R::store($price)) {
           App::redirect();
         }
       }

@@ -5,7 +5,8 @@
     "samdark/sitemap": "^2.2",
     "spatie/image": "^1.6",
     "symfony/debug": "^4.4",
-    "symfony/var-dumper": "^4.4"
+    "symfony/var-dumper": "^4.4",
+    "phpoffice/phpexcel": "^1.8"
   },
   "autoload": {
     "psr-4": {
