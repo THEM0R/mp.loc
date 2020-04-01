@@ -60,21 +60,22 @@ Router::add('admin/price/(id:int)/save', 'admin:priceSave');
  * site
  */
 
-// test
-Router::add('contact', 'main:contact','contact');
-Router::add('prais', 'main:prais','prais');
+//// test
+//Router::add('contact', 'main:contact','contact');
+//Router::add('prais', 'main:prais','prais');
+//
+//
+//// gallery
+//Router::add('gallery', 'gallery', 'gallery');
+//
+//// about
+//Router::add('about', 'about','about');
 
 
-// gallery
-Router::add('gallery', 'gallery', 'gallery');
-
-// about
-Router::add('about', 'about','about');
-
-
-// Material
+// category
 Router::add('(category:all)', 'category', 'category');
-Router::add('(category:all)/(url:all)', 'Article:view','article');
+// view
+Router::add('(category:all)/(url:all)', 'article','article');
 
 
 /* index */

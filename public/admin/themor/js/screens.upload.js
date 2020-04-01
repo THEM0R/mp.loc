@@ -287,13 +287,13 @@ $(function () {
 
     enableExif: true,
     viewport: {
-      width: 300,
-      height: 250,
+      width: 700,
+      height: 500,
       type: 'canvas'
     },
     boundary: {
       width: 766,
-      height: 450
+      height: 700
     }
 
   });

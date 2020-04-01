@@ -24,20 +24,26 @@ class CategoryController extends AppController
      */
     $category = \R::getRow('SELECT * FROM _category WHERE url = ?', [$route['category']]);
 
-    $name = (string)$category['name'];
-    $url = (string)$category['url'];
-    $id = (int)$category['id'];
+    if ($category) {
 
-    $category['name'] = $name;
-    $category['url'] = $url;
-    $category['id'] = $id;
-    /*
-     * articles
-     */
-    $articles = \R::getAll('SELECT * FROM _articles WHERE category = ? AND active = ?', [$id, 1]);
-    /*
-     * render
-     */
-    $this->render(compact('articles','category'));
+      $name = (string)$category['name'];
+      $url = (string)$category['url'];
+      $id = (int)$category['id'];
+
+      $category['name'] = $name;
+      $category['url'] = $url;
+      $category['id'] = $id;
+      /*
+       * articles
+       */
+      $articles = \R::getAll('SELECT * FROM _articles WHERE category = ? AND active = ?', [$id, 1]);
+      /*
+       * render
+       */
+      $this->render(compact('articles', 'category'));
+
+    } else {
+      App::notFound();
+    }
   }
 }

@@ -88,9 +88,9 @@ class AdminController extends AppController
   public function indexAction($model, $route)
   {
 
-    if(!isset($_SESSION['admin']['auth'])){
-      App::redirect('/admin/auth');
-    }
+//    if(!isset($_SESSION['admin']['auth'])){
+//      App::redirect('/admin/auth');
+//    }
 
 
     //$exels = App::xlsxToArray(UPL_CSV . '/777.xlsx');
@@ -338,7 +338,7 @@ class AdminController extends AppController
         if ($article) {
 
           $_SESSION['articles_add']['success'] = 'Матеріал успішно добавлений!';
-          App::redirect('/admin/articles');
+          App::redirect('/admin/articles/1');
         }
       }
 
@@ -426,6 +426,7 @@ class AdminController extends AppController
         return App::Base64ImageUpload($data['drawing'], UPL_DRA);
       } else if ($data['drawing-data-type'] == 'image') {
         // upload image
+        return $data['drawing'];
       }
     } else {
       return NULL;
@@ -480,7 +481,7 @@ class AdminController extends AppController
 
         if ($article) {
           $_SESSION['articles_add']['success'] = 'Категорія успішно оновлена!';
-          App::redirect('/admin/articles');
+          App::redirect('/admin/articles/1');
         }
       }
     }
@@ -514,7 +515,7 @@ class AdminController extends AppController
     $article = \R::load('_articles', $route['id']);
     \R::trash($article);
     $_SESSION['articles_add']['success'] = 'Матеріал успішно видалений!';
-    App::redirect('/admin/articles');
+    App::redirect('/admin/articles/1');
   }
 
 

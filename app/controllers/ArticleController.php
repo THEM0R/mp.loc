@@ -7,19 +7,44 @@ use lib\App;
 class ArticleController extends AppController
 {
 
-    public $title = ' Приватне Підприємство МЕТАЛІК-PLUS';
+  public $title = ' Приватне Підприємство МЕТАЛІК-PLUS';
 
 
-    public function indexAction($model, $route)
-    {
+  public function indexAction($model, $route)
+  {
 
-        $title = 'МЕТАЛІК-PLUS |' . $this->title;
+    $title = 'МЕТАЛІК-PLUS |' . $this->title;
 
-        $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
+    $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
 
-        $products = \R::getAll('SELECT id,name,url FROM _material WHERE active = 1');
+    $article = \R::getRow('SELECT * FROM _articles WHERE url = ? AND active = ?', [$route['url'], 1]);
 
-        $this->render(compact('products'));
+    if ($article) {
 
+      $category = \R::getRow('SELECT * FROM _category WHERE id = ?', [$article['category']]);
+
+      if ($category['url'] == 'material') {
+
+      }
+
+      if ($category['url'] == 'metal') {
+
+        $this->view = 'article2';
+
+      }
+
+      if ($article['screens'] !== null) {
+        $article['screens'] = explode('|', $article['screens']);
+      }
+
+      $prices = \R::getAll('SELECT * FROM _price WHERE article = ? ', [$article['id']]);
+
+      $this->render(compact('article', 'prices'));
+    }else{
+      App::notFound();
     }
+
+
+
+  }
 }

@@ -1,0 +1,129 @@
+<!-- prais -->
+<div class="view content container" style="margin-top: 65px">
+
+  <div class="base">
+
+    <div class="left">
+      <div class="poster">
+        <a href="<?=URL_ART;?>/<?=$article['poster'];?>"
+           class="js-img-viwer"
+           data-group="view" data-id="0" data-index="0">
+          <img src="<?=URL_ART;?>/<?=$article['poster'];?>" alt="">
+        </a>
+      </div>
+      <div class="screens-mini" style="margin-bottom: 15px">
+        <!--Глянцеве покриття-->
+        <a href="<?=URL_DRA;?>/<?=$article['drawing'];?>" title=""
+           class="js-img-viwer" data-group="view"
+           data-id="1" data-index="1">
+          <img src="<?=URL_DRA;?>/<?=$article['drawing'];?>">
+        </a>
+      </div>
+    </div>
+
+    <div class="right">
+
+
+      <h4 class="name"><?=$article['name'];?></h4>
+      <h2
+        style="color: #999999;
+        border-bottom: 1px solid #999999;
+        padding-bottom: 10px;margin-bottom: 10px">
+        <?=$article['alt_name'];?>
+      </h2>
+
+      <? if($article['screens'] != []) : ?>
+      <div class="screens" style="margin-bottom: 15px">
+
+        <? $i = 0; foreach($article['screens'] as $img) : ?>
+        <? $i++; if($i > 5) : ?>
+        <a style="display: none" href="<?=URL_ART_SCR;?>/<?=$img;?>" title="" class="js-img-viwer" data-group="view">
+          <img src="<?=URL_ART_SCR;?>/<?=$img;?>">
+        </a>
+        <? else: ?>
+        <a href="<?=URL_ART_SCR;?>/<?=$img;?>" title="" class="js-img-viwer" data-group="view">
+          <img src="<?=URL_ART_SCR;?>/<?=$img;?>">
+        </a>
+        <? endif; ?>
+        <? endforeach; ?>
+
+      </div>
+      <? endif; ?>
+
+
+      <div class="clear"></div>
+
+      <div class="description"><?=$article['description'];?></div>
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+
+  <!--  <div class="price" style="position: relative;background-color: #FF6E47">-->
+  <div class="price" style="position: relative;">
+
+    <h5 style="color: #999999;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 20px">
+      Прайс
+    </h5>
+
+    <style>
+      .overlay {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-image: url(../i/3.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        opacity: .2;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      table {
+        border-radius: 3px;
+      }
+
+      table, th, td {
+        border: 2px solid #FF6E47;
+      }
+
+      table th, table td, th th, th td, td th, td td {
+        color: #FF6E47;
+      }
+
+    </style>
+
+    <div class="overlay"></div>
+    <table style="width:100%; margin-bottom: 40px">
+      <tbody>
+      <tr>
+        <th>Назва</th>
+        <th>Тип</th>
+        <th>Од. вимір.</th>
+        <th>ціна</th>
+      </tr>
+
+      <? foreach($prices as $price) : ?>
+
+      <tr>
+        <td width="35%"><?=$price['name']?></td>
+        <td width="10%"><?=$price['type']?></td>
+        <td width="10%"><?=$price['price_1']?></td>
+        <td width="10%"><?=$price['price_2']?></td>
+      </tr>
+
+      <? endforeach; ?>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- prais -->
