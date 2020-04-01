@@ -1,0 +1,79 @@
+<div class="row">
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="" method="post">
+
+          <? if(!empty($_SESSION['cat_add']['error'])): ?>
+          <div class="form-group">
+            <div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+              <?=$_SESSION['cat_add']['error'];?>
+              <? $_SESSION['cat_add']['error'] = '';?>
+            </div>
+          </div>
+          <? endif; ?>
+
+          <div class="form-group">
+            <label for="inputName">Назва</label>
+            <input type="text" id="inputName" name="name" class="form-control"
+                   placeholder="Назва" required>
+          </div>
+          <div class="form-group">
+            <label for="type">Тип / Ціна за 1т. з ПДВ</label>
+            <input type="text" id="type" name="type" class="form-control"
+                   placeholder="Тип / Ціна за 1т. з ПДВ">
+          </div>
+
+          <div class="form-group">
+            <label for="price_1">Од. вимір. / Вага 1м.п.</label>
+            <input type="text" id="price_1" name="price_1" class="form-control"
+                   placeholder="Од. вимір. / Вага 1м.п.">
+          </div>
+
+          <div class="form-group">
+            <label for="price_2">ціна / Ціна за 1м.п.</label>
+            <input type="text" id="price_2" name="price_2" class="form-control"
+                   placeholder="ціна / Ціна за 1м.п.">
+          </div>
+
+          <div class="form-group">
+            <label for="selectCategory">Категорія</label>
+            <select
+              name="category"
+              id="selectCategory"
+              class="form-control custom-select"
+              style="width: 100%;">
+              <option disabled selected>Вибрати</option>
+              <? foreach($category as $cat) : ?>
+              <option value="<?=$cat['id'];?>"><?=$cat['name'];?></option>
+              <? endforeach; ?>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="selectArticle">Матеріал</label>
+            <select
+              name="article"
+              id="selectArticle"
+              class="form-control custom-select"
+              style="width: 100%;">
+              <option disabled selected>Вибрати</option>
+              <? foreach($article as $cat) : ?>
+              <option value="<?=$cat['id'];?>"><?=$cat['name'];?></option>
+              <? endforeach; ?>
+            </select>
+          </div>
+
+
+          <div class="form-group border-top pt-3">
+            <a href="/admin/price" class="btn btn-secondary">Назад</a>
+            <input type="submit" name="add-price" value="Добавити" class="btn btn-success float-right">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

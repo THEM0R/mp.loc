@@ -17,43 +17,7 @@ class AdminController extends AppController
   {
 
     //$exels = App::xlsxToArray(UPL_CSV . '/777.xlsx');
-
-//    foreach ($exels as $exel) {
-//
-//      foreach($exel as $k => $v){
-//        if ($v != null) {
-//          pr($v);
-//        }
-//      }
-//
-//
-//    }
-
-//    $result= array();
-//    foreach($exels as $key=>$value){
-//
-//      $keys = array_slice($value,0,1);
-//
-//      $values = array_slice($value,1);
-//
-//      foreach($values as $val){
-//
-//        pr1($val);
-//
-//        $result[$key][] = array_combine($keys,$val);
-//
-//      }
-//
-//    }
-
-//
-//
-//
-//    pr1($exels);
-//
-//    exit;
-
-
+    //pr1($exels);
     //////////
 
     $title = 'Головна';
@@ -64,7 +28,7 @@ class AdminController extends AppController
 
     $description = $this->configs['about']['description2'];
 
-//    $arr = require PUBLICS.'test.php';
+//    $arr = require PUBLICS.'test2.php';
 //
 //    foreach ($arr as $item){
 //
@@ -84,8 +48,8 @@ class AdminController extends AppController
 //
 //
 //    }
-
-//    exit;
+//
+//exit;
 //
 //    pr1($arr);
 
@@ -675,13 +639,13 @@ class AdminController extends AppController
 
 
     $_article = [];
-    foreach (\R::getAll('SELECT * FROM _price') as $pric) {
+    foreach (\R::getAll('SELECT * FROM _price WHERE category = ?',[$route['category']]) as $pric) {
       $_article[$pric['article']][] = $pric;
     }
 
     // article2
     $_article2 = [];
-    foreach (\R::getAll('SELECT * FROM _articles') as $article) {
+    foreach (\R::getAll('SELECT * FROM _articles WHERE category = ?',[$route['category']]) as $article) {
       if (isset($_article[$article['id']])) {
         $_article2[$article['id']] = $article;
       }
@@ -693,8 +657,59 @@ class AdminController extends AppController
       $prices[$ir['id']]['price'] = $_article[$ir['id']];
     }
 
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
+      $category[$cat['id']] = $cat;
+    }
 
-    $this->render(compact('title', 'prices'));
+
+    $this->render(compact('title', 'prices','category'));
+  }
+
+  public function priceAddAction($model, $route){
+
+
+    if (App::is_Post()) {
+
+      if (isset($_POST['add-price'])) {
+
+        $price = \R::xDispense('_price');
+
+        $price->category = trim($_POST['category']);
+        $price->article = trim($_POST['article']);
+        $price->name = trim($_POST['name']);
+        $price->type = trim($_POST['type']);
+        $price->price_1 = trim($_POST['price_1']);
+        $price->price_2 = trim($_POST['price_2']);
+
+        if (\R::store($price)) {
+          App::redirect('/admin/price');
+        }
+      }
+
+    }
+
+
+    $title = 'Додати Прайс';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
+      $category[$cat['id']] = $cat;
+    }
+
+    $article = [];
+
+    foreach (\R::getAll('SELECT * FROM _articles') as $cat) {
+      $article[$cat['id']] = $cat;
+    }
+
+
+    $this->render(compact('title','category','article'));
   }
 
   public function priceSaveAction($model, $route)

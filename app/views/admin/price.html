@@ -10,13 +10,35 @@
 
 <?//pr($prices)?>
 
+<div class="card">
+  <div class="card-header">
+
+    <? foreach($category as $cat) :?>
+    <? if( $cat['id'] == $route['category'] ) :?>
+    <a class="btn btn-success btn-sm float-left mr-3 disabled" href="/admin/price/<?=$cat['id']?>">
+      <?=$cat['name']?>
+    </a>
+    <? else:?>
+    <a class="btn btn-primary btn-sm float-left mr-3" href="/admin/price/<?=$cat['id']?>">
+      <?=$cat['name']?>
+    </a>
+    <? endif;?>
+    <? endforeach;?>
+
+
+    <a class="btn btn-primary btn-sm float-right" href="/admin/price/add">
+      <i class="fas fa-folder"></i> Добавити Прайс лист
+    </a>
+  </div>
+</div>
+
 <!-- Main content -->
 <? foreach($prices as $price): ?>
 <div class="card">
   <div class="card-header">
-<!--    <a class="btn btn-primary btn-sm" href="/admin/price/add">-->
-<!--      <i class="fas fa-folder"></i> Добавити-->
-<!--    </a>-->
+    <!--    <a class="btn btn-primary btn-sm" href="/admin/price/add">-->
+    <!--      <i class="fas fa-folder"></i> Добавити-->
+    <!--    </a>-->
 
     <h4 class="font-weight-bold"><?=$price['name'];?></h4>
   </div>
@@ -63,60 +85,60 @@
 
       <? foreach($price['price'] as $pric): ?>
       <form action="/admin/price/<?=$pric['id']?>/save" method="post">
-      <tr>
-        <td>
-          <input
-            type="hidden"
-            name="id"
-            value="<?=$pric['id']?>">
-          <input
-          class="form-control"
-          type="text"
-          name="name"
-          value="<?=$pric['name']?>">
-        </td>
-        <td>
+        <tr>
+          <td>
+            <input
+              type="hidden"
+              name="id"
+              value="<?=$pric['id']?>">
+            <input
+              class="form-control"
+              type="text"
+              name="name"
+              value="<?=$pric['name']?>">
+          </td>
+          <td>
 
-          <!--<select class="form-control custom-select">
-            <option value="1" selected></option>
-            <option value="2">Оцинкований</option>
-            <option value="3">Глянцевий</option>
-            <option value="4">Матовий</option>
-            <option value="4">Двохсторонній</option>
-          </select>-->
+            <!--<select class="form-control custom-select">
+              <option value="1" selected></option>
+              <option value="2">Оцинкований</option>
+              <option value="3">Глянцевий</option>
+              <option value="4">Матовий</option>
+              <option value="4">Двохсторонній</option>
+            </select>-->
 
-          <input
-            class="form-control"
-            type="text"
-            name="type"
-            value="<?=$pric['type']?>">
-        </td>
-        <td>
-          <input
-          class="form-control"
-          type="text"
-          name="price_1"
-          value="<?=$pric['price_1']?>">
-        </td>
-        <td>
-          <input
-          class="form-control"
-          type="text"
-          name="price_2"
-          value="<?=$pric['price_2']?>">
-        </td>
-        <td>
-          <button type="submit" name="save-price" class="btn btn-info btn-sm">
-            <i class="fas fa-save"></i>
-            Зберегти
-          </button>
-          <!-- href="/admin/price/<?=$pric['id']?>/delete" -->
-          <a class="btn btn-danger btn-sm" href="#">
-            <i class="fas fa-trash"></i>
-            <!-- Видалити -->
-          </a>
-        </td>
-      </tr>
+            <input
+              class="form-control"
+              type="text"
+              name="type"
+              value="<?=$pric['type']?>">
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              name="price_1"
+              value="<?=$pric['price_1']?>">
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              name="price_2"
+              value="<?=$pric['price_2']?>">
+          </td>
+          <td>
+            <button type="submit" name="save-price" class="btn btn-info btn-sm">
+              <i class="fas fa-save"></i>
+              Зберегти
+            </button>
+            <!-- href="/admin/price/<?=$pric['id']?>/delete" -->
+            <a class="btn btn-danger btn-sm" href="#">
+              <i class="fas fa-trash"></i>
+              <!-- Видалити -->
+            </a>
+          </td>
+        </tr>
       </form>
       <? endforeach; ?>
       </tbody>

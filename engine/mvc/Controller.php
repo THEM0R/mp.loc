@@ -173,6 +173,9 @@ abstract class Controller
   ];
 
 
+  public $categoryes = [];
+
+
   public function __construct($model, $route)
   {
 
@@ -190,6 +193,10 @@ abstract class Controller
     if (!$this->theme) $this->theme = THEME;
 
     //pr1($this->configs);
+
+
+    $this->categoryes = \R::getAll('SELECT * FROM _category');
+
 
 
   }
@@ -211,6 +218,10 @@ abstract class Controller
     $meta = $this->meta;
     $route = $this->route;
     $controller = $this->controller;
+
+    // $this->categoryes
+
+    $categories = $this->categoryes;
 
 
     $md = \R::getAll('SELECT * FROM _module');
@@ -243,7 +254,7 @@ abstract class Controller
     //pr1($module);
 
 
-    $all = compact('theme', 'route', 'meta', 'configs', 'controller', 'modules');
+    $all = compact('theme', 'route', 'meta', 'configs', 'controller', 'modules','categories');
 
     if ($this->vars) {
       $array = array_merge($all, $this->vars);

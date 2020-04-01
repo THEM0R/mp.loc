@@ -49,9 +49,30 @@
           <i class="nav-icon fas fa-receipt"></i>
           <p>
             Прайс Лист
+            <i class="fas fa-angle-left right"></i>
             <span class="right badge badge-danger">31.03.20</span>
           </p>
         </a>
+        <ul class="nav nav-treeview">
+
+          <? foreach($categories as $category) : ?>
+          <? if($category['id'] == $route['category']) : ?>
+          <li class="nav-item">
+            <a href="/admin/price/<?=$category['id']?>" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p><?=$category['name']?></p>
+            </a>
+          </li>
+          <? else: ?>
+          <li class="nav-item">
+            <a href="/admin/price/<?=$category['id']?>" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><?=$category['name']?></p>
+            </a>
+          </li>
+          <? endif; ?>
+          <? endforeach; ?>
+        </ul>
       </li>
 
       <li class="nav-item">
