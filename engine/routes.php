@@ -45,7 +45,9 @@ Router::add('admin/widgets/add', 'admin:widgetsAdd','widgetsAdd');
 /*
  * prais
  */
-Router::add('admin/prais', 'admin:prais','prais');
+Router::add('admin/price', 'admin:price','price');
+Router::add('admin/price/(id:int)/save', 'admin:priceSave');
+
 /*
  * site
  */

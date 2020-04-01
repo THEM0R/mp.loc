@@ -267,7 +267,7 @@ class AdminController extends AppController
         }
       }
 
-      $_screens3 = array_merge($_screens,$_screens2);
+      $_screens3 = array_merge($_screens, $_screens2);
 
       $_screens_str = '';
       foreach ($_screens3 as $item) {
@@ -303,7 +303,8 @@ class AdminController extends AppController
     return NULL;
   }
 
-  private static function addDrawing($data){
+  private static function addDrawing($data)
+  {
 
     if (isset($data['drawing']) and $data['drawing'] != '') {
 
@@ -387,8 +388,7 @@ class AdminController extends AppController
     $article = \R::getRow('SELECT * FROM _articles WHERE id = ?', [$route['id']]);
 
 
-
-    if($article['screens'] !== null) {
+    if ($article['screens'] !== null) {
       $article['screens'] = explode('|', $article['screens']);
     }
 
@@ -582,6 +582,69 @@ class AdminController extends AppController
 
 
     $this->render(compact('title', 'description', 'category', 'count'));
+  }
+
+
+  /*
+   * price
+   */
+
+  public function priceAction($model, $route)
+  {
+
+    $title = 'Прайс Лист';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+    $description = $this->configs['about']['description2'];
+
+
+    $_article = [];
+    foreach (\R::getAll('SELECT * FROM _price') as $pric) {
+      $_article[$pric['article']][] = $pric;
+    }
+
+    // article2
+    $_article2 = [];
+    foreach (\R::getAll('SELECT * FROM _articles') as $article) {
+      if (isset($_article[$article['id']])) {
+        $_article2[$article['id']] = $article;
+      }
+    }
+
+    $prices = [];
+    foreach ($_article2 as $ir) {
+      $prices[$ir['id']] = $ir;
+      $prices[$ir['id']]['price'] = $_article[$ir['id']];
+    }
+
+
+    $this->render(compact('title', 'prices'));
+  }
+
+  public function priceSaveAction($model, $route)
+  {
+
+    if (App::is_Post()) {
+
+      if (isset($_POST['save-price'])) {
+
+        $price = \R::load('_price',$_POST['id']);
+
+        $price->name = trim($_POST['name']);
+        $price->type = trim($_POST['type']);
+        $price->price_1 = trim($_POST['price_1']);
+        $price->price_2 = trim($_POST['price_2']);
+
+        if( \R::store($price) ){
+          App::redirect();
+        }
+      }
+
+    }
+
   }
 
 
