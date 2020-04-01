@@ -64,15 +64,42 @@ class AdminController extends AppController
 
     $description = $this->configs['about']['description2'];
 
+//    $arr = require PUBLICS.'test.php';
+//
+//    foreach ($arr as $item){
+//
+//      foreach ($item['price'] as $pric){
+//
+//        $price = \R::xDispense('_price');
+//        $price->article = $item['article'];
+//        $price->category = $item['category'];
+//        $price->name = $pric['name'];
+//        $price->type = $pric['type'];
+//        $price->price_1 = $pric['price_1'];
+//        $price->price_2 = $pric['price_2'];
+//
+//        \R::store($price);
+//
+//      }
+//
+//
+//    }
 
-    $csv = App::exelToArray(UPL_CSV.'/2.csv');
+//    exit;
+//
+//    pr1($arr);
 
-    pr1(json_decode($csv));
+
+//    $csv = App::exelToArray(UPL_CSV.'/2.csv');
+//
+//    pr1(json_decode($csv));
 
     /*
      * articles
      */
     $articles = \R::getAll('SELECT * FROM _articles WHERE active = ?', [1]);
+
+    //pr1($articles);
 
 
     $this->render(compact('title', 'description', 'articles'));

@@ -13,7 +13,7 @@ define('LIB',     FW.'/libs/' );
 define('CONF',    FW.'/config/' );
 define('MOVE_DB', dirname(DIR).'/public/data/movie/' );
 define('CONF_DB', dirname(DIR).'/public/data/' );
-define('PUBLIC',  DIR.'/public/' );
+define('PUBLICS',  DIR.'/public/' );
 define('UPLOAD',  DIR.'/public/upload/' );
 define('UPLOAD_IMG',  DIR.'/public/upload/images/' );
 

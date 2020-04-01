@@ -1,0 +1,128 @@
+<? if(!empty($_SESSION['price_add']['success'])): ?>
+<div class="form-group">
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+    <?=$_SESSION['price_add']['success'];?>
+  </div>
+</div>
+<? $_SESSION['price_add']['success'] = ''; endif; ?>
+
+<?//pr($prices)?>
+
+<!-- Main content -->
+<? foreach($prices as $price): ?>
+<div class="card">
+  <div class="card-header">
+<!--    <a class="btn btn-primary btn-sm" href="/admin/price/add">-->
+<!--      <i class="fas fa-folder"></i> Добавити-->
+<!--    </a>-->
+
+    <h4 class="font-weight-bold"><?=$price['name'];?></h4>
+  </div>
+  <div class="card-body p-0" style="display: block;">
+    <table class="table table-striped projects">
+      <thead>
+      <? if($price['category'] == 1) : ?>
+      <tr>
+        <th style="width: 20%">
+          Назва
+        </th>
+        <th style="width: 15%">
+          Тип
+        </th>
+        <th style="width: 10%">
+          Од. вимір.
+        </th>
+        <th style="width: 5%">
+          ціна
+        </th>
+        <th style="width: 8%">
+        </th>
+      </tr>
+      <? elseif($price['category'] == 2) : ?>
+      <tr>
+        <th style="width: 20%">
+          Назва металопрокату
+        </th>
+        <th style="width: 15%">
+          Ціна за 1т. з ПДВ
+        </th>
+        <th style="width: 10%">
+          Вага 1м.п.
+        </th>
+        <th style="width: 5%">
+          Ціна за 1м.п.
+        </th>
+        <th style="width: 8%">
+        </th>
+      </tr>
+      <? endif; ?>
+      </thead>
+      <tbody>
+
+      <? foreach($price['price'] as $pric): ?>
+      <form action="/admin/price/<?=$pric['id']?>/save" method="post">
+      <tr>
+        <td>
+          <input
+            type="hidden"
+            name="id"
+            value="<?=$pric['id']?>">
+          <input
+          class="form-control"
+          type="text"
+          name="name"
+          value="<?=$pric['name']?>">
+        </td>
+        <td>
+
+          <!--<select class="form-control custom-select">
+            <option value="1" selected></option>
+            <option value="2">Оцинкований</option>
+            <option value="3">Глянцевий</option>
+            <option value="4">Матовий</option>
+            <option value="4">Двохсторонній</option>
+          </select>-->
+
+          <input
+            class="form-control"
+            type="text"
+            name="type"
+            value="<?=$pric['type']?>">
+        </td>
+        <td>
+          <input
+          class="form-control"
+          type="text"
+          name="price_1"
+          value="<?=$pric['price_1']?>">
+        </td>
+        <td>
+          <input
+          class="form-control"
+          type="text"
+          name="price_2"
+          value="<?=$pric['price_2']?>">
+        </td>
+        <td>
+          <button type="submit" name="save-price" class="btn btn-info btn-sm">
+            <i class="fas fa-save"></i>
+            Зберегти
+          </button>
+          <!-- href="/admin/price/<?=$pric['id']?>/delete" -->
+          <a class="btn btn-danger btn-sm" href="#">
+            <i class="fas fa-trash"></i>
+            <!-- Видалити -->
+          </a>
+        </td>
+      </tr>
+      </form>
+      <? endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<? endforeach; ?>
+
+<!-- /.content -->
