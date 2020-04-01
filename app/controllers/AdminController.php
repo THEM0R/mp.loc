@@ -13,8 +13,85 @@ class AdminController extends AppController
 
   public $title = ' | Адмін Панель - MetallicPlus.Com.Ua';
 
+  /*
+   * auth
+   */
+  public function authAction($model, $route)
+  {
+
+    if(App::is_Post()){
+
+      if(!isset($_POST['admin-auth'])){
+        return false;
+      }else{
+        // code
+
+        $login = (string)trim($_POST['login']);
+        $password = (string)trim($_POST['password']);
+
+        if(!empty($login) and !empty($password)) {
+
+          // singup
+          $user = \R::findOne('_users', " login = ?", [$login]);
+
+          if ($user) {
+
+            if ( password_verify($password, $user->password) ) {
+
+              // все хорошо нужно авторизоваться
+              $_SESSION['admin']['auth'] = $user->export();
+              App::redirect('/admin');
+            }
+
+          }
+
+          // singup
+          // $user = \R::xDispense('_users');
+          // $user->login = $login;
+          // $user->password = password_hash($password, PASSWORD_DEFAULT);
+          // $user->data = time();
+          //
+          // if (\R::store($user)) {
+          //  $_SESSION['admin']['auth'] = $user;
+          // }
+
+        }
+
+      }
+
+    }
+
+    //
+
+    $title = 'Авторизація';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'auth';
+
+    $description = $this->configs['about']['description2'];
+
+    $category = \R::getAll('SELECT * FROM _category');
+
+
+    $this->render(compact('title', 'description', 'category'));
+  }
+
+  public function logoutAction($model, $route)
+  {
+    // code
+    unset($_SESSION['admin']['auth']);
+    App::redirect('/admin');
+  }
+
+
   public function indexAction($model, $route)
   {
+
+    if(!isset($_SESSION['admin']['auth'])){
+      App::redirect('/admin/auth');
+    }
+
 
     //$exels = App::xlsxToArray(UPL_CSV . '/777.xlsx');
     //pr1($exels);
@@ -205,7 +282,7 @@ class AdminController extends AppController
 
     //pr1($category);
 
-    $articles = \R::getAll('SELECT * FROM _articles');
+    $articles = \R::getAll('SELECT * FROM _articles WHERE category = ?',[$route['cat']]);
 
 
     $this->render(compact('title', 'description', 'category', 'articles'));
@@ -547,7 +624,7 @@ class AdminController extends AppController
      * pages
      */
     $page = \R::getRow('SELECT * FROM _pages WHERE id = ? AND active = ?', [$route['id'], 1]);
-    $this->render(compact('title', 'description', 'page'));
+    $this->render(compact('title', 'page'));
   }
 
   public function pageDeleteAction($model, $route)

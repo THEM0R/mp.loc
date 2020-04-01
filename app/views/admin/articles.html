@@ -1,3 +1,5 @@
+<? //pr1($articles);?>
+
 <? if(!empty($_SESSION['articles_add']['success'])): ?>
 <div class="form-group">
     <div class="alert alert-success alert-dismissible">
@@ -8,19 +10,33 @@
 </div>
 <? $_SESSION['articles_add']['success'] = ''; endif; ?>
 <!-- Main content -->
+
 <div class="card">
     <div class="card-header">
-        <a class="btn btn-primary btn-sm" href="/admin/articles/add">
+
+        <? foreach($category as $cat) :?>
+        <? if( $cat['id'] == $route['cat'] ) :?>
+        <a class="btn btn-success btn-sm float-left mr-3 disabled" href="/admin/articles/<?=$cat['id']?>">
+            <?=$cat['name']?>
+        </a>
+        <? else:?>
+        <a class="btn btn-success btn-sm float-left mr-3" href="/admin/articles/<?=$cat['id']?>">
+            <?=$cat['name']?>
+        </a>
+        <? endif;?>
+        <? endforeach;?>
+
+        <a class="btn btn-primary btn-sm float-right" href="/admin/articles/add">
             <i class="fas fa-folder"></i> Добавити
         </a>
     </div>
+</div>
+
+<div class="card">
     <div class="card-body p-0" style="display: block;">
         <table class="table table-striped projects">
             <thead>
             <tr>
-                <th style="width: 1%">
-                    #ID
-                </th>
                 <th>
                 </th>
                 <th style="width: 20%">
@@ -44,7 +60,6 @@
 
             <? foreach($articles as $article): ?>
             <tr>
-                <td><?=$article['id'];?></td>
                 <td><img class="img-fluid" src="<?=URL_ART;?>/<?=$article['poster'];?>"></td>
                 <td><?=$article['name'];?>
                 </td>

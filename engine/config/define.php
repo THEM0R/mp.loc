@@ -33,7 +33,7 @@ define('URL_CSV', '/public/upload/csv' );
 define('COUNT_ART_SCR', 5);
 
 define('CONTENT', DOMEN.'/public/' );
-define('CONTENT_ADMIN', DOMEN.'/public/admin/' );
+define('CONTENT_ADMIN', DOMEN.'/public/admin' );
 define('SCRIPT',  dirname(DIR).'/public/script/' );
 define('SCRIPT_LIB',  '/public/script/libs/' );
 define('SCRIPT_JS',  '/public/script/js/' );

@@ -8,7 +8,11 @@ use core\Router;
 /*
  * index
  */
+
+
 Router::add('admin', 'admin:index','main');
+Router::add('admin/auth', 'admin:auth','auth');
+Router::add('admin/logout', 'admin:logout');
 /*
  * category
  */
@@ -24,9 +28,12 @@ Router::add('upload/delete', 'upload:delete');
 /*
  * articles
  */
-Router::add('admin/articles', 'admin:articles','articles');
+
+Router::add('admin/articles/(cat:int)', 'admin:articles','articles');
+
+//Router::add('admin/articles', 'admin:articles','articles');
 Router::add('admin/articles/add', 'admin:articlesAdd','articlesAdd');
-Router::add('admin/articles/(id:int)', 'admin:articlesView','articlesView');
+//Router::add('admin/articles/(id:int)', 'admin:articlesView','articlesView');
 Router::add('admin/articles/(id:int)/edit', 'admin:articlesEdit','articlesEdit');
 Router::add('admin/articles/(id:int)/delete', 'admin:articlesDelete','articlesDelete');
 /*

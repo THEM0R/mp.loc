@@ -1,20 +1,33 @@
+<!-- sidebar -->
 <div class="sidebar">
-  <!-- Sidebar user panel (optional) -->
+
+  <!-- user panel -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
       <img src="/public/admin/images/admin.jpg" class="img-circle elevation-2" alt="User Image">
     </div>
-    <div class="info">
-      <a href="#" class="d-block">THEM0R</a>
+    <div class="info w-100 float-left">
+      <? if(isset($_SESSION['admin']['auth'])) : ?>
+<!--      <span class="text-white">Вітаю!</span>-->
+      <a href="#" class="d-block">
+        <h4 class="font-weight-bold"><?=$_SESSION['admin']['auth']['login'];?></h4>
+      </a>
+      <? endif; ?>
+    </div>
+    <div class="float-right">
+      <a href="/admin/logout" class="btn btn-danger">
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
     </div>
   </div>
+  <!--./ user panel -->
 
   <!-- Sidebar Menu -->
   <nav class="mt-2">
+    <!-- nav-pills -->
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
-      <?//pr($route);?>
+
+      <!-- category -->
       <li class="nav-item">
         <a href="/admin/category" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
@@ -24,17 +37,46 @@
           </p>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="/admin/articles" class="nav-link">
+      <!--./ category -->
+
+      <!-- article -->
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link">
           <i class="nav-icon fas fa-table"></i>
           <p>
             Товари
+            <i class="fas fa-angle-left right"></i>
             <span class="right badge badge-danger">New</span>
           </p>
         </a>
-      </li>
+        <!-- nav -->
+        <ul class="nav nav-treeview">
+          <? foreach($categories as $category) : ?>
 
-      <li class="nav-item has-treeview">
+          <? if( isset($route['cat']) and $category['id'] == $route['cat']) : ?>
+          <li class="nav-item">
+            <a href="/admin/articles/<?=$category['id']?>" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p><?=$category['name']?></p>
+            </a>
+          </li>
+          <? else: ?>
+          <li class="nav-item">
+            <a href="/admin/articles/<?=$category['id']?>" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><?=$category['name']?></p>
+            </a>
+          </li>
+          <? endif; ?>
+
+          <? endforeach; ?>
+        </ul>
+        <!--./ nav -->
+      </li>
+      <!--./ article -->
+
+      <!-- page -->
+      <li class="nav-item">
         <a href="/admin/page" class="nav-link">
           <i class="nav-icon fas fa-book"></i>
           <p>
@@ -43,9 +85,11 @@
           </p>
         </a>
       </li>
+      <!--./ page -->
 
-      <li class="nav-item has-treeview">
-        <a href="/admin/price" class="nav-link">
+      <!-- price -->
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link">
           <i class="nav-icon fas fa-receipt"></i>
           <p>
             Прайс Лист
@@ -53,10 +97,11 @@
             <span class="right badge badge-danger">31.03.20</span>
           </p>
         </a>
+        <!-- nav -->
         <ul class="nav nav-treeview">
-
           <? foreach($categories as $category) : ?>
-          <? if($category['id'] == $route['category']) : ?>
+
+          <? if( isset($route['category']) and $category['id'] == $route['category']) : ?>
           <li class="nav-item">
             <a href="/admin/price/<?=$category['id']?>" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
@@ -71,10 +116,14 @@
             </a>
           </li>
           <? endif; ?>
+
           <? endforeach; ?>
         </ul>
+        <!--./ nav -->
       </li>
+      <!--./ price -->
 
+      <!-- Widgets -->
       <li class="nav-item">
         <a href="/admin/widgets" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
@@ -84,6 +133,9 @@
           </p>
         </a>
       </li>
+      <!--./ Widgets -->
+
+      <!-- Gallery -->
       <li class="nav-item">
         <a href="pages/gallery.html" class="nav-link">
           <i class="nav-icon far fa-image"></i>
@@ -92,6 +144,9 @@
           </p>
         </a>
       </li>
+      <!--./ Gallery -->
+
+      <!-- Mailbox -->
       <li class="nav-item has-treeview">
         <a href="#" class="nav-link">
           <i class="nav-icon far fa-envelope"></i>
@@ -100,6 +155,7 @@
             <i class="fas fa-angle-left right"></i>
           </p>
         </a>
+        <!-- nav -->
         <ul class="nav nav-treeview">
           <li class="nav-item">
             <a href="pages/mailbox/mailbox.html" class="nav-link">
@@ -120,8 +176,13 @@
             </a>
           </li>
         </ul>
+        <!--./ nav -->
       </li>
+      <!--./ Mailbox -->
+
     </ul>
+    <!--./ nav-pills -->
   </nav>
   <!-- /.sidebar-menu -->
 </div>
+<!--./ sidebar -->
