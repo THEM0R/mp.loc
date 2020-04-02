@@ -15,13 +15,13 @@ class MainController extends AppController
 
         $title = 'МЕТАЛІК-PLUS |' . $this->title;
 
-        $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
+        $this->meta($title);
 
         $products = \R::getAll('SELECT id,name,url FROM _material WHERE active = 1');
 
         //pr1($products);
 
-        $slider = \R::getAll('SELECT * FROM _material WHERE active = 1 AND slider = 1');
+        $slider = \R::getAll('SELECT * FROM _articles WHERE active = 1 AND slider = 1');
 
         $gallery = $this->gallery(\R::getAll('SELECT * FROM _gallery WHERE type = 77'));
 
@@ -63,7 +63,7 @@ class MainController extends AppController
             $html .= '<!-- content --><div class="content">';
             $html .= '<h3 class="name">' . $item['name'] . '</h3>';
             $html .= '<h1 class="alt_name">Металевий</h1>';
-            $html .= '<p class="description">' . $item['info'] . '</p>';
+            $html .= '<p class="description">' . $item['description'] . '</p>';
             $html .= '<img class="slider-logo" src="/public/images/articles/material/' . $item['id'] . '.png" alt="">';
             $html .= '</div><!-- content --></div></a></li>';
 

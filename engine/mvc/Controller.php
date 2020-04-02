@@ -175,6 +175,7 @@ abstract class Controller
 
   public $categories = [];
   public $articles = [];
+  public $settings = [];
 
 
   public function __construct($model, $route)
@@ -197,6 +198,9 @@ abstract class Controller
     $this->categories['assoc'] = \R::getAssoc('SELECT * FROM _category');
     $this->categories['array'] = \R::getAll('SELECT * FROM _category');
     $this->articles = \R::getAll('SELECT * FROM _articles WHERE active = 1');
+
+
+    $this->settings = \R::getRow('SELECT * FROM _settings');
 
     //pr1($this->categories);
 
@@ -298,9 +302,12 @@ abstract class Controller
 
   public function Meta($title = null, $description = null, $keywords = null)
   {
-    $this->meta['title'] = $title ?: META_TITLE;
+
+    //pr1($this->settings['meta_title']);
+
+    $this->meta['title'] = $title ?: $this->settings['meta_title'];
     $this->meta['keywords'] = $keywords ?: $this->keywords();
-    $this->meta['description'] = $description ?: $this->configs['about']['description'];
+    $this->meta['description'] = $description ?: $this->settings['meta_description'];
 
     // unset optimize
     unset($title);
@@ -311,22 +318,21 @@ abstract class Controller
   public function keywords()
   {
 
-    $string = null;
+    $string = '';
 
-    foreach ($this->configs['products'] as $tiem) {
-      $string .= $tiem . ',';
-    }
+    $product = $this->settings['meta_keywords_product']. ', ';
+    $sity = $this->settings['meta_keywords_sity']. ', ';
 
-    foreach ($this->configs['sity'] as $sity) {
+    foreach (explode(', ',$sity) as $sity) {
 
-      foreach ($this->configs['products'] as $tiem) {
-        $string .= $sity . ' ' . $tiem . ',';
+      foreach (explode(', ',$product) as $tiem) {
+        $string .= $sity . ' ' . $tiem . ', ';
       }
 
 
     }
 
-    return rtrim($string, ',');
+    return rtrim($string, ', ');
 
   }
 

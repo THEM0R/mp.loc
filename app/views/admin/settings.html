@@ -1,0 +1,117 @@
+<div class="row">
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="" method="post">
+
+          <? if(!empty($_SESSION['settings']['error'])): ?>
+          <div class="form-group">
+            <div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+              <?=$_SESSION['settings']['error'];?>
+              <? $_SESSION['settings']['error'] = '';?>
+            </div>
+          </div>
+          <? endif; ?>
+
+          <? if(!empty($_SESSION['settings']['success'])): ?>
+          <div class="form-group">
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+              <?=$_SESSION['settings']['success'];?>
+              <? $_SESSION['settings']['success'] = '';?>
+            </div>
+          </div>
+          <? endif; ?>
+
+          <? //pr($settings);?>
+
+          <input type="hidden" name="id" value="<?=$settings['id'];?>">
+
+          <div class="form-group">
+            <label for="sitename">Назва Сайту</label>
+            <input type="text" id="sitename"
+                   name="sitename" class="form-control"
+                   placeholder="Назва Сайту" required
+                   value="<?=$settings['sitename'];?>">
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефони</label>
+            <input type="text" id="phone" name="phone"
+                   class="form-control"
+                   placeholder="Телефони" required
+                   value="<?=$settings['phone'];?>">
+          </div>
+
+          <div class="form-group">
+            <label for="mail">Email</label>
+            <input type="text" id="mail" name="mail"
+                   class="form-control"
+                   placeholder="Email" required
+                   value="<?=$settings['mail'];?>">
+          </div>
+
+          <div class="form-group">
+            <label for="home">Адреса</label>
+            <input type="text" id="home" name="home" class="form-control"
+                   placeholder="Адреса"
+                   value="<?=$settings['home'];?>">
+          </div>
+
+          <div class="form-group">
+            <label for="work">Години роботи</label>
+            <input type="text" id="work" name="work" class="form-control"
+                   placeholder="Адреса"
+                   value="<?=$settings['work'];?>">
+          </div>
+
+          <div class="form-group">
+            <label for="meta_title">Назва сайту (meta title)</label>
+            <input type="text" id="meta_title" name="meta_title" class="form-control"
+                   placeholder="Адреса"
+                   value="<?=$settings['meta_title'];?>">
+          </div>
+
+          <div class="form-group">
+            <label for="meta_description">Опис (meta description)</label>
+
+            <textarea id="meta_description"
+                      class="form-control"
+                      name="meta_description"
+                      rows="8"
+                      placeholder="Опис"><?=$settings['meta_description'];?></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="meta_keywords_sity">Хештеги Міста (meta keywords)</label>
+
+            <textarea id="meta_keywords_sity"
+                      class="form-control"
+                      name="meta_keywords_sity"
+                      rows="2"
+                      placeholder="Хештеги"><?=$settings['meta_keywords_sity'];?></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="meta_keywords_product">Хештеги Матеріали (meta keywords)</label>
+
+            <textarea id="meta_keywords_product"
+                      class="form-control"
+                      name="meta_keywords_product"
+                      rows="2"
+                      placeholder="Хештеги"><?=$settings['meta_keywords_product'];?></textarea>
+          </div>
+
+
+          <div class="form-group border-top pt-3">
+            <a href="/admin" class="btn btn-secondary">Назад</a>
+            <input type="submit" name="settings-save" value="Зберегти" class="btn btn-success float-right">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,15 +2,22 @@
     <ul class="rslides">
 
         <? foreach ($slider as $item) :?>
-        <li>
-            <a href="<?=$item['url'];?>">
-                <div class="img" style=''>
+        <li >
+            <a href="/<?=$categories['assoc'][$item['category']]['url'];?>/<?=$item['url'];?>">
+                <!-- <?=URL_SLID;?>/'<?=$item['id'];?>'.jpg -->
+                <div class="img" style="cursor: pointer;background-image: url(<?=URL_SLID;?>/<?=$item['id'];?>.jpg)">
                     <!-- content -->
-                    <div class="content">
+                    <div class="content" style="cursor: pointer;">
+
+                        <? if(iconv_strlen($item['name']) > 13) : ?>
+                        <h3 class="name"><?=substr($item['name'], 0, 12);?>...</h3>
+                        <? else : ?>
                         <h3 class="name"><?=$item['name'];?></h3>
-                        <h1 class="alt_name">Металевий</h1>
-                        <p class="description"><?=$item['info'];?></p>
-                        <img class="slider-logo" src="/public/images/articles/material/'<?=$item['id'];?>'.png" alt="">
+                        <? endif; ?>
+
+                        <h1 class="alt_name"><?=$item['alt_name'];?></h1>
+                        <p class="description"><?=$item['description'];?></p>
+                        <img class="slider-logo" src="<?=URL_ART;?>/<?=$item['poster'];?>" alt="">
                     </div>
                     <!-- content -->
                 </div>

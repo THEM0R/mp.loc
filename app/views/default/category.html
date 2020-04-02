@@ -9,10 +9,14 @@
 <div class="content container category bg-style">
 
     <h4 class="title">
-        <a href="#" class=""><?=$category['name'];?> <i class="icon-right-open"></i></a>
-
+        <a href="#" class="">
+            <?=$category['name'];?>
+        </a>
+        <i class="probel"> | </i>
+        <a href="/<?=$category['url'];?>/price" class="">
+            Прайс
+        </a>
         <?//pr($route);?>
-
     </h4>
     <div class="articles">
         <? if($articles): ?>

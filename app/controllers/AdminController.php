@@ -19,24 +19,24 @@ class AdminController extends AppController
   public function authAction($model, $route)
   {
 
-    if(App::is_Post()){
+    if (App::is_Post()) {
 
-      if(!isset($_POST['admin-auth'])){
+      if (!isset($_POST['admin-auth'])) {
         return false;
-      }else{
+      } else {
         // code
 
         $login = (string)trim($_POST['login']);
         $password = (string)trim($_POST['password']);
 
-        if(!empty($login) and !empty($password)) {
+        if (!empty($login) and !empty($password)) {
 
           // singup
           $user = \R::findOne('_users', " login = ?", [$login]);
 
           if ($user) {
 
-            if ( password_verify($password, $user->password) ) {
+            if (password_verify($password, $user->password)) {
 
               // все хорошо нужно авторизоваться
               $_SESSION['admin']['auth'] = $user->export();
@@ -105,7 +105,7 @@ class AdminController extends AppController
 
     $description = $this->configs['about']['description2'];
 
-    $arr = require PUBLICS.'test3.php';
+    $arr = require PUBLICS . 'test3.php';
 
     //pr1($arr);
 
@@ -280,7 +280,7 @@ class AdminController extends AppController
 
     //pr1($category);
 
-    $articles = \R::getAll('SELECT * FROM _articles WHERE category = ?',[$route['cat']]);
+    $articles = \R::getAll('SELECT * FROM _articles WHERE category = ?', [$route['cat']]);
 
 
     $this->render(compact('title', 'description', 'category', 'articles'));
@@ -715,13 +715,13 @@ class AdminController extends AppController
 
 
     $_article = [];
-    foreach (\R::getAll('SELECT * FROM _price WHERE category = ?',[$route['category']]) as $pric) {
+    foreach (\R::getAll('SELECT * FROM _price WHERE category = ?', [$route['category']]) as $pric) {
       $_article[$pric['article']][] = $pric;
     }
 
     // article2
     $_article2 = [];
-    foreach (\R::getAll('SELECT * FROM _articles WHERE category = ?',[$route['category']]) as $article) {
+    foreach (\R::getAll('SELECT * FROM _articles WHERE category = ?', [$route['category']]) as $article) {
       if (isset($_article[$article['id']])) {
         $_article2[$article['id']] = $article;
       }
@@ -739,10 +739,11 @@ class AdminController extends AppController
     }
 
 
-    $this->render(compact('title', 'prices','category'));
+    $this->render(compact('title', 'prices', 'category'));
   }
 
-  public function priceAddAction($model, $route){
+  public function priceAddAction($model, $route)
+  {
 
 
     if (App::is_Post()) {
@@ -785,7 +786,7 @@ class AdminController extends AppController
     }
 
 
-    $this->render(compact('title','category','article'));
+    $this->render(compact('title', 'category', 'article'));
   }
 
   public function priceSaveAction($model, $route)
@@ -801,6 +802,7 @@ class AdminController extends AppController
         $price->type = trim($_POST['type']);
         $price->price_1 = trim($_POST['price_1']);
         $price->price_2 = trim($_POST['price_2']);
+        $price->header = trim($_POST['header']);
 
         if (\R::store($price)) {
           App::redirect();
@@ -809,6 +811,62 @@ class AdminController extends AppController
 
     }
 
+  }
+
+  /*
+   * settings
+   */
+
+  public function settingsAction($model, $route)
+  {
+
+    if(App::is_Post()){
+      if(isset($_POST['settings-save'])){
+
+        $id = trim($_POST['id']);
+        $sitename = trim($_POST['sitename']);
+        $phone = trim($_POST['phone']);
+        $mail = trim($_POST['mail']);
+        $home = trim($_POST['home']);
+        $work = trim($_POST['work']);
+        $hashtag_sity = trim($_POST['meta_keywords_sity']);
+        $hashtag_product = trim($_POST['meta_keywords_product']);
+        $description = trim($_POST['meta_description']);
+        $meta_title = trim($_POST['meta_title']);
+
+        $seting = \R::load('_settings',$id);
+
+        $seting->sitename = $sitename;
+        $seting->phone = $phone;
+        $seting->mail = $mail;
+        $seting->home = $home;
+        $seting->work = $work;
+        $seting->meta_title = $meta_title;
+        $seting->meta_keywords_sity = $hashtag_sity;
+        $seting->meta_keywords_product = $hashtag_product;
+        $seting->meta_description = $description;
+
+        if( \R::store($seting) ){
+
+          $_SESSION['settings']['success'] = 'Настройки успішно збережені!';
+          App::redirect();
+        }
+
+      }
+    }
+
+    $title = 'Настройки';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+
+    $settings = \R::getRow('SELECT * FROM _settings');
+
+    $this->render(compact(
+      'title', 'settings'
+    ));
   }
 
 

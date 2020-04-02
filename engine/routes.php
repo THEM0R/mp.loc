@@ -81,7 +81,9 @@ Router::add('admin/settings', 'admin:settings','settings');
 // category
 Router::add('(category:all)', 'category', 'category');
 // view
+Router::add('(category:all)/price', 'category:price','price');
 Router::add('(category:all)/(url:all)', 'article','article');
+
 
 
 /* index */

@@ -30,6 +30,9 @@ define('URL_ART_SCR', '/public/upload/images/articles/screens' );
 define('UPL_CSV',  DIR.'/public/upload/csv' );
 define('URL_CSV', '/public/upload/csv' );
 
+define('UPL_SLID',  DIR.'/public/upload/images/slider' );
+define('URL_SLID', '/public/upload/images/slider' );
+
 define('COUNT_ART_SCR', 5);
 
 define('CONTENT', DOMEN.'/public/' );
