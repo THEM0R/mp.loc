@@ -23,10 +23,13 @@ class MainController extends AppController
 
     $gallery = \R::getAll('SELECT * FROM _gallery WHERE type = ? LIMIT ?', [1, 10]);
 
+    $about = \R::getRow('SELECT * FROM _pages WHERE url = ? AND active = ?', ['about', 1]);
+
     $this->render(compact(
       'products',
       'slider',
-      'gallery'
+      'gallery',
+      'about'
     ));
 
   }

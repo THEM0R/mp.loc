@@ -8,7 +8,7 @@
 <div class="content container">
 
     <h4 class="title">
-        <a href="/material" class="">МАТЕРІАЛИ <i class="icon-right-open"></i></a>
+        <a href="/material" class="">Матеріали <i class="icon-right-open"></i></a>
     </h4>
     <div class="articles">
         <? if($articles): ?>
@@ -33,11 +33,11 @@
 <div class="content container" style="background-color: #f2f2f2;background-image: url(/public/images/bg_fon.png)">
 
     <h4 class="title">
-        <a href="/metal" class="">МЕТАЛОПРОКАТ <i class="icon-right-open"></i></a>
+        <a href="/metal" class="">Металопрокат <i class="icon-right-open"></i></a>
     </h4>
     <div class="articles">
         <div class="article big">
-            <a href="/metal" title="Арматура">
+            <a href="/metal">
                 <div class="poster" style="background-image: url('/public/images/articles/metal/logo.png')"></div>
                 <div class="title">Металопрокат</div>
             </a>
@@ -47,29 +47,29 @@
 <!-- content end -->
 
 <!-- about -->
-<div class="about container">
+<div class="about container category">
     <!-- title -->
     <h4 class="title">
-        <a><?=$configs['about']['title'];?></a>
+        <a><?=$about['name'];?></a>
     </h4>
     <!-- title end -->
     <!-- iframe -->
-    <?=$configs['about']['iframe'];?>
+    <?=$about['description'];?>
     <!-- iframe end -->
     <!-- description -->
     <div class="text">
-        <?=$configs['about']['description2'];?>
+        <?=$about['description_2'];?>
     </div>
     <!-- description end -->
 </div>
-<!-- about -->
+<!-- about end -->
 
 
 <!-- gallery -->
 <div class="gallery gallery-mini content container">
 
     <h4 class="title">
-        <a href="/gallery" class="">ГАЛЕРЕЯ
+        <a href="/gallery" class="">Галерея
             <i class="icon-right-open"></i>
         </a>
     </h4>
