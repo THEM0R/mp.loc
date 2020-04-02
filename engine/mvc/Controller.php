@@ -197,7 +197,7 @@ abstract class Controller
     $this->categories = \R::getAssoc('SELECT * FROM _category');
     $this->articles = \R::getAll('SELECT * FROM _articles WHERE active = 1');
 
-    pr1($this->categories);
+    //pr1($this->categories);
 
   }
 

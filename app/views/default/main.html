@@ -1,6 +1,7 @@
 <!-- content -->
 
 <!-- slider -->
+<?= pr($slider); ?>
 <!-- slider end -->
 
 <!-- content -->
@@ -14,7 +15,7 @@
         <? foreach($articles as $item): ?>
         <? if($item['category'] == 1): ?>
         <div class="article">
-            <a href="/<?=$categories[$item['category']];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
+            <a href="/<?=$categories[$item['category']]['url'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
                 <div class="poster"
                      style="background-image: url('<?=URL_ART;?>/<?=$item['poster'];?>')">
                 </div>
