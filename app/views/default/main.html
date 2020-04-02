@@ -4,21 +4,24 @@
 <!-- slider end -->
 
 <!-- content -->
-<div class="content container">
+<div class="content container" style="margin-top: 70px">
 
     <h4 class="title">
         <a href="/material" class="">МАТЕРІАЛИ <i class="icon-right-open"></i></a>
     </h4>
     <div class="articles">
-        <? if($products): ?>
-        <? foreach($products as $item): ?>
+        <? if($articles): ?>
+        <? foreach($articles as $item): ?>
+        <? if($item['category'] == 1): ?>
         <div class="article">
-            <a href="/material/<?=$item['url'];?>" title="<?=$item['name'];?>">
+            <a href="/<?=$categories[$item['category']];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
                 <div class="poster"
-                     style="background-image: url('/public/images/articles/material/<?=$item['id'];?>.png')"></div>
+                     style="background-image: url('<?=URL_ART;?>/<?=$item['poster'];?>')">
+                </div>
                 <div class="title"><?=$item['name'];?></div>
             </a>
         </div>
+        <? endif; ?>
         <? endforeach; ?>
         <? endif; ?>
     </div>

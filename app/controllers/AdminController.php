@@ -105,27 +105,25 @@ class AdminController extends AppController
 
     $description = $this->configs['about']['description2'];
 
-//    $arr = require PUBLICS.'test2.php';
-//
+    $arr = require PUBLICS.'test3.php';
+
+    //pr1($arr);
+
 //    foreach ($arr as $item){
-//
 //      foreach ($item['price'] as $pric){
-//
 //        $price = \R::xDispense('_price');
 //        $price->article = $item['article'];
 //        $price->category = $item['category'];
 //        $price->name = $pric['name'];
-//        $price->type = $pric['type'];
+////        $price->type = $pric['type'];
+//        $price->type = $item['name'];
 //        $price->price_1 = $pric['price_1'];
 //        $price->price_2 = $pric['price_2'];
 //
 //        \R::store($price);
-//
 //      }
-//
-//
 //    }
-//
+
 //exit;
 //
 //    pr1($arr);
@@ -761,7 +759,7 @@ class AdminController extends AppController
         $price->price_2 = trim($_POST['price_2']);
 
         if (\R::store($price)) {
-          App::redirect('/admin/price');
+          App::redirect('/admin');
         }
       }
 

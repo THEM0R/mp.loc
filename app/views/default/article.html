@@ -11,6 +11,9 @@
           <img src="<?=URL_ART;?>/<?=$article['poster'];?>" alt="">
         </a>
       </div>
+
+      <? if($article['drawing'] != '') : ?>
+
       <div class="screens-mini" style="margin-bottom: 15px">
         <!--Глянцеве покриття-->
         <a href="<?=URL_DRA;?>/<?=$article['drawing'];?>" title=""
@@ -19,6 +22,9 @@
           <img src="<?=URL_DRA;?>/<?=$article['drawing'];?>">
         </a>
       </div>
+
+      <? endif; ?>
+
     </div>
 
     <div class="right">
@@ -61,7 +67,7 @@
   <div class="clear"></div>
 
   <!--  <div class="price" style="position: relative;background-color: #FF6E47">-->
-  <div class="price" style="position: relative;">
+  <div class="price" style="position: relative;margin-top: 20px">
 
     <h5 style="color: #999999;
     border-bottom: 1px solid #999999;

@@ -173,7 +173,8 @@ abstract class Controller
   ];
 
 
-  public $categoryes = [];
+  public $categories = [];
+  public $articles = [];
 
 
   public function __construct($model, $route)
@@ -195,9 +196,10 @@ abstract class Controller
     //pr1($this->configs);
 
 
-    $this->categoryes = \R::getAll('SELECT * FROM _category');
+    $this->categories = \R::getAssoc('SELECT * FROM _category');
+    $this->articles = \R::getAll('SELECT * FROM _articles WHERE active = 1');
 
-
+    pr1($this->categories);
 
   }
 
@@ -219,9 +221,10 @@ abstract class Controller
     $route = $this->route;
     $controller = $this->controller;
 
-    // $this->categoryes
+    // $this->categories
 
-    $categories = $this->categoryes;
+    $categories = $this->categories;
+    $articles = $this->articles;
 
 
     $md = \R::getAll('SELECT * FROM _module');
@@ -233,16 +236,16 @@ abstract class Controller
 
     foreach ($md as $m) {
 
-      if($m['controller'] == 'all'){
+      if ($m['controller'] == 'all') {
 
-      //pr1($theme . 'module/' . $m['position'] . '.html');
+        //pr1($theme . 'module/' . $m['position'] . '.html');
 
-      if (is_file($theme . 'module/' . $m['position'] . '.html')) {
-        $modules[$m['position']] = $theme . 'module/' . $m['position'] . '.html';
-      } else {
-        $modules[$m['position']] = false;
-      }
-      }else if($m['controller'] == $controller){
+        if (is_file($theme . 'module/' . $m['position'] . '.html')) {
+          $modules[$m['position']] = $theme . 'module/' . $m['position'] . '.html';
+        } else {
+          $modules[$m['position']] = false;
+        }
+      } else if ($m['controller'] == $controller) {
         if (is_file($theme . 'module/' . $m['position'] . '.html')) {
           $modules[$m['position']] = $theme . 'module/' . $m['position'] . '.html';
         } else {
@@ -254,7 +257,16 @@ abstract class Controller
     //pr1($module);
 
 
-    $all = compact('theme', 'route', 'meta', 'configs', 'controller', 'modules','categories');
+    $all = compact(
+      'theme',
+      'route',
+      'meta',
+      'configs',
+      'controller',
+      'modules',
+      'categories',
+      'articles'
+    );
 
     if ($this->vars) {
       $array = array_merge($all, $this->vars);
