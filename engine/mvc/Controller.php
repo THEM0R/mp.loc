@@ -188,8 +188,6 @@ abstract class Controller
     $this->controller = App::lowerCamelCase($route['controller']);
     $this->view = $route['view'];
     // Language
-
-
     // theme
     if (!$this->theme) $this->theme = THEME;
 
