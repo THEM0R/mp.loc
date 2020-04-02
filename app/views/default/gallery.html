@@ -2,13 +2,19 @@
 <div class="gallery category content container">
 
     <h4 class="title">
-        <a class="">ГАЛЕРЕЯ</a>
+        <a class="">Галерея</a>
     </h4>
 
     <div class="photos">
 
-        <? if($images): ?>
-        <?=$images;?>
+        <? if($images and $images != []) : ?>
+        <? foreach($images as $image) : ?>
+        <!-- photo -->
+        <a href="<?=URL_GALR;?>/<?=$image['img'];?>"
+           class="photo js-img-viwer" data-group="view">
+            <img class="poster" src="<?=URL_GALR;?>/<?=$image['img'];?>">
+        </a><!-- photo end -->
+        <? endforeach; ?>
         <? endif; ?>
     </div>
 </div>

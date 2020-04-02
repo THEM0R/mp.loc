@@ -1,0 +1,65 @@
+<? if(!empty($_SESSION['articles_add']['error'])): ?>
+<div class="form-group">
+  <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+    <?=$_SESSION['articles_add']['error'];?>
+    <? $_SESSION['articles_add']['error'] = '';?>
+  </div>
+</div>
+<? endif; ?>
+
+<div class="card">
+
+  <div class="card-header">
+
+    <button class="image-add btn btn-primary btn-sm">
+      <i class="fas fa-folder"></i> Добавити
+    </button>
+
+  </div>
+
+  <? if($images and $images != []) : ?>
+  <div class="row card-body images">
+    <? foreach($images as $image) : ?>
+    <!-- col -->
+    <div class="col-4">
+      <div class="form-group">
+        <!-- image -->
+        <div class="image window w-100 h-100">
+
+          <div class="text-center">
+            <img class="preview img-fluid" src="<?=URL_GALR;?>/<?=$image['img'];?>">
+          </div>
+
+          <div class="overlay text-center">
+            <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+              <i class="far fa-trash-alt"></i> Видалити
+            </div>
+            <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
+              <i class="fas fa-wrench"></i> Замінити
+            </div>
+          </div>
+
+        </div>
+        <!-- image end -->
+      </div>
+    </div>
+    <!--./ col -->
+    <? endforeach; ?>
+  </div>
+  <? else : ?>
+  <div class="col-12 mt-3">
+    <div class=" alert alert-warning alert-dismissible">
+      <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+      Зображень поки немає!
+    </div>
+  </div>
+  <? endif; ?>
+
+</div>
+
+
+
+
+

@@ -7,17 +7,9 @@ use lib\App;
 class CategoryController extends AppController
 {
 
-  public $title = ' Приватне Підприємство МЕТАЛІК-PLUS';
-
-
   public function indexAction($model, $route)
   {
-    /*
-     * meta
-     */
-    $title = 'МЕТАЛІК-PLUS |' . $this->title;
 
-    $this->meta($title);
 
     /*
      * category
@@ -33,6 +25,14 @@ class CategoryController extends AppController
       $category['name'] = $name;
       $category['url'] = $url;
       $category['id'] = $id;
+
+      /*
+     * meta
+     */
+      $title = $category['name'] . ' |' . $this->title;
+
+      $this->meta($title);
+
       /*
        * articles
        */

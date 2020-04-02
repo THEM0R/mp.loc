@@ -8,9 +8,6 @@ use Spatie\Image\Image;
 class GalleryController extends AppController
 {
 
-  public $title = ' Приватне Підприємство МЕТАЛІК-PLUS';
-
-
   public function indexAction($model, $route)
   {
 
@@ -18,7 +15,7 @@ class GalleryController extends AppController
 
     $this->meta($title);
 
-    $images = $this->getImages();
+    $images = \R::getAll('SELECT * FROM _gallery');
 
     $this->render(compact('images'));
   }

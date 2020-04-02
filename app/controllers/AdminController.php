@@ -872,4 +872,52 @@ class AdminController extends AppController
   }
 
 
+  /*
+   * gallery
+   */
+  public function galleryAction($model, $route)
+  {
+
+    if(App::is_Post()){
+
+      if(isset($_POST['settings-save'])){
+
+        $id = trim($_POST['id']);
+        $sitename = trim($_POST['sitename']);
+        $phone = trim($_POST['phone']);
+
+        $seting = \R::load('_settings',$id);
+
+        $seting->sitename = $sitename;
+        $seting->phone = $phone;
+
+        if( \R::store($seting) ){
+
+          $_SESSION['settings']['success'] = 'Настройки успішно збережені!';
+          App::redirect();
+        }
+
+      }
+    }
+
+    $title = 'Галерея';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+
+    $images = \R::getAll('SELECT * FROM _gallery');
+
+    $this->render(compact(
+      'title',
+      'images'
+    ));
+  }
+
+
+
+
+
+
 }

@@ -7,15 +7,10 @@ use lib\App;
 class ArticleController extends AppController
 {
 
-  public $title = ' Приватне Підприємство МЕТАЛІК-PLUS';
-
 
   public function indexAction($model, $route)
   {
 
-    $title = 'МЕТАЛІК-PLUS |' . $this->title;
-
-    $this->meta($title);
 
     $article = \R::getRow('SELECT * FROM _articles WHERE url = ? AND active = ?', [$route['url'], 1]);
 
@@ -33,6 +28,25 @@ class ArticleController extends AppController
 
       }
 
+      /*
+       * meta
+       */
+      $title = $article['name'] . ' |' . $this->title;
+      if($article['description'] != '') {
+
+        $str = str_replace('<p>', '', $article['description']);
+        $str = str_replace('</p>', ' ', $str);
+
+        $description = $str . ' ' . $this->settings['meta_description'];
+      }else{
+        $description = $this->settings['meta_description'];
+      }
+
+      $this->meta($title,$description);
+      /*
+       * meta end
+       */
+
       if ($article['screens'] !== null) {
         $article['screens'] = explode('|', $article['screens']);
       }
@@ -40,10 +54,9 @@ class ArticleController extends AppController
       $prices = \R::getAll('SELECT * FROM _price WHERE article = ? ', [$article['id']]);
 
       $this->render(compact('article', 'prices'));
-    }else{
+    } else {
       App::notFound();
     }
-
 
 
   }

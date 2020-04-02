@@ -104,6 +104,7 @@ abstract class Controller
   public $settings = [];
 
   public $menu = [];
+  public $title = '';
 
 
   public function __construct($model, $route)
@@ -133,7 +134,34 @@ abstract class Controller
     $this->menu[0]['url'] = ['/'];
     $this->menu[0]['name'] = ['Головна'];
 
+    $this->title = ' ' . $this->settings['sitename'];
+
     //pr1($this->categories);
+
+
+    ///
+    ///
+
+//    $images = \R::getAll('SELECT id,screens FROM _articles');
+//
+//    $image = [];
+//
+//    foreach ($images as $item) {
+//      if ($item['screens'] != '') {
+//        $image[$item['id']] = explode('|', $item['screens']);
+//      }
+//    }
+//    foreach ($image as $k => $v) {
+//      foreach ($v as $item) {
+//        $gallery = \R::xDispense('_gallery');
+//        $gallery->type = 1;
+//        $gallery->img = $item;
+//        $gallery->article = $k;
+//        \R::store($gallery);
+//      }
+//    }
+
+
 
   }
 
@@ -254,12 +282,12 @@ abstract class Controller
 
     $string = '';
 
-    $product = $this->settings['meta_keywords_product']. ', ';
-    $sity = $this->settings['meta_keywords_sity']. ', ';
+    $product = $this->settings['meta_keywords_product'] . ', ';
+    $sity = $this->settings['meta_keywords_sity'] . ', ';
 
-    foreach (explode(', ',$sity) as $sity) {
+    foreach (explode(', ', $sity) as $sity) {
 
-      foreach (explode(', ',$product) as $tiem) {
+      foreach (explode(', ', $product) as $tiem) {
         $string .= $sity . ' ' . $tiem . ', ';
       }
 

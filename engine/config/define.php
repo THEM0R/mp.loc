@@ -24,14 +24,17 @@ define('URL_ART', '/public/upload/images/articles/posters' );
 define('UPL_DRA',  DIR.'/public/upload/images/articles/drawings' );
 define('URL_DRA', '/public/upload/images/articles/drawings' );
 
-define('UPL_ART_SCR',  DIR.'/public/upload/images/articles/screens' );
-define('URL_ART_SCR', '/public/upload/images/articles/screens' );
+define('UPL_ART_SCR',  DIR.'/public/upload/images/gallery' );
+define('URL_ART_SCR', '/public/upload/images/gallery' );
 
 define('UPL_CSV',  DIR.'/public/upload/csv' );
 define('URL_CSV', '/public/upload/csv' );
 
 define('UPL_SLID',  DIR.'/public/upload/images/slider' );
 define('URL_SLID', '/public/upload/images/slider' );
+
+define('UPL_GALR',  DIR.'/public/upload/images/gallery' );
+define('URL_GALR', '/public/upload/images/gallery' );
 
 define('COUNT_ART_SCR', 5);
 

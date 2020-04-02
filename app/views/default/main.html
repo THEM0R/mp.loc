@@ -76,9 +76,15 @@
 
     <!-- photos -->
     <div class="photos">
-<!--        <? if($gallery): ?>-->
-<!--        <?=$gallery;?>-->
-<!--        <? endif; ?>-->
+        <? if($gallery and $gallery != []) : ?>
+        <? foreach($gallery as $image) : ?>
+        <!-- photo -->
+        <a href="<?=URL_GALR;?>/<?=$image['img'];?>"
+           class="photo js-img-viwer" data-group="view">
+            <img class="poster" src="<?=URL_GALR;?>/<?=$image['img'];?>">
+        </a><!-- photo end -->
+        <? endforeach; ?>
+        <? endif; ?>
     </div>
 </div>
 <!-- gallery end -->

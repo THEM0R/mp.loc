@@ -61,6 +61,11 @@ Router::add('admin/price/(id:int)/save', 'admin:priceSave');
  */
 Router::add('admin/settings', 'admin:settings','settings');
 
+/*
+ * gallery
+ */
+
+Router::add('admin/gallery','admin:gallery','gallery');
 
 /*
  * site
@@ -78,6 +83,8 @@ Router::add('admin/settings', 'admin:settings','settings');
 //Router::add('about', 'about','about');
 
 // page
+Router::add('gallery', 'gallery', 'gallery');
+
 Router::add('page/(page:all)', 'page', 'page');
 
 // category
