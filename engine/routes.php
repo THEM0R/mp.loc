@@ -57,6 +57,12 @@ Router::add('admin/price/(category:int)', 'admin:price','price');
 Router::add('admin/price/(id:int)/save', 'admin:priceSave');
 
 /*
+ * settings
+ */
+Router::add('admin/settings', 'admin:settings','settings');
+
+
+/*
  * site
  */
 

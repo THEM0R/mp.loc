@@ -194,7 +194,8 @@ abstract class Controller
     //pr1($this->configs);
 
 
-    $this->categories = \R::getAssoc('SELECT * FROM _category');
+    $this->categories['assoc'] = \R::getAssoc('SELECT * FROM _category');
+    $this->categories['array'] = \R::getAll('SELECT * FROM _category');
     $this->articles = \R::getAll('SELECT * FROM _articles WHERE active = 1');
 
     //pr1($this->categories);

@@ -15,7 +15,7 @@
         <? foreach($articles as $item): ?>
         <? if($item['category'] == 1): ?>
         <div class="article">
-            <a href="/<?=$categories[$item['category']]['url'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
+            <a href="/<?=$categories['assoc'][$item['category']]['url'];?>/<?=$item['url'];?>" title="<?=$item['name'];?>">
                 <div class="poster"
                      style="background-image: url('<?=URL_ART;?>/<?=$item['poster'];?>')">
                 </div>
@@ -76,9 +76,9 @@
 
     <!-- photos -->
     <div class="photos">
-        <? if($gallery): ?>
-        <?=$gallery;?>
-        <? endif; ?>
+<!--        <? if($gallery): ?>-->
+<!--        <?=$gallery;?>-->
+<!--        <? endif; ?>-->
     </div>
 </div>
 <!-- gallery end -->

@@ -34,6 +34,7 @@
           <p>
             Категорії
             <span class="badge badge-info right">6</span>
+            <span class="right badge badge-success">active</span>
           </p>
         </a>
       </li>
@@ -46,12 +47,12 @@
           <p>
             Товари
             <i class="fas fa-angle-left right"></i>
-            <span class="right badge badge-danger">New</span>
+            <span class="right badge badge-success">active</span>
           </p>
         </a>
         <!-- nav -->
         <ul class="nav nav-treeview">
-          <? foreach($categories as $category) : ?>
+          <? foreach($categories['array'] as $category) : ?>
 
           <? if( isset($route['cat']) and $category['id'] == $route['cat']) : ?>
           <li class="nav-item">
@@ -82,6 +83,7 @@
           <p>
             Сторінки
             <span class="badge badge-info right">6</span>
+            <span class="right badge badge-success">active</span>
           </p>
         </a>
       </li>
@@ -94,12 +96,12 @@
           <p>
             Прайс Лист
             <i class="fas fa-angle-left right"></i>
-            <span class="right badge badge-danger">31.03.20</span>
+            <span class="right badge badge-success">31.03.20</span>
           </p>
         </a>
         <!-- nav -->
         <ul class="nav nav-treeview">
-          <? foreach($categories as $category) : ?>
+          <? foreach($categories['array'] as $category) : ?>
 
           <? if( isset($route['category']) and $category['id'] == $route['category']) : ?>
           <li class="nav-item">
@@ -123,13 +125,25 @@
       </li>
       <!--./ price -->
 
+      <!-- settings -->
+      <li class="nav-item">
+        <a href="/admin/settings" class="nav-link">
+          <i class="nav-icon fas fa-tools"></i>
+          <p>
+            Настройки
+            <span class="right badge badge-success">active</span>
+          </p>
+        </a>
+      </li>
+      <!--./ settings -->
+
       <!-- Widgets -->
       <li class="nav-item">
         <a href="/admin/widgets" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
           <p>
             Widgets
-            <span class="right badge badge-danger">New</span>
+            <span class="right badge badge-danger">disable</span>
           </p>
         </a>
       </li>
@@ -141,6 +155,7 @@
           <i class="nav-icon far fa-image"></i>
           <p>
             Gallery
+            <span class="right badge badge-danger">disable</span>
           </p>
         </a>
       </li>
@@ -152,6 +167,7 @@
           <i class="nav-icon far fa-envelope"></i>
           <p>
             Mailbox
+            <span class="right badge badge-danger">disable</span>
             <i class="fas fa-angle-left right"></i>
           </p>
         </a>
