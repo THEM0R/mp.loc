@@ -17,7 +17,7 @@ class CategoryController extends AppController
      */
     $title = 'МЕТАЛІК-PLUS |' . $this->title;
 
-    $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
+    $this->meta($title);
 
     /*
      * category
@@ -89,7 +89,7 @@ class CategoryController extends AppController
         }
       }
 
-      $prices = array_chunk($prices, count($prices) / 2);
+//      $allprices = array_chunk($prices, count($prices) / 2);
 
 
       /*

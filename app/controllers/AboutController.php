@@ -13,14 +13,12 @@ class AboutController extends AppController
   public function indexAction($model, $route)
   {
 
-    $this->meta($this->title, $this->title . ' ' . $this->configs['about']['description']);
-
-    $description = $this->configs['about']['description2'];
+    $this->meta($this->title);
 
     $gallery = $this->gallery(\R::getAll('SELECT * FROM _gallery WHERE type = 77'));
 
 
-    $this->render(compact('description', 'gallery'));
+    $this->render(compact( 'gallery'));
 
 
   }

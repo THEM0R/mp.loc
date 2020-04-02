@@ -77,6 +77,8 @@ Router::add('admin/settings', 'admin:settings','settings');
 //// about
 //Router::add('about', 'about','about');
 
+// page
+Router::add('page/(page:all)', 'page', 'page');
 
 // category
 Router::add('(category:all)', 'category', 'category');

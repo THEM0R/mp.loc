@@ -2088,6 +2088,12 @@ table th, table td, th th, th td, td th, td td {
   color: #696969;
 }
 
+.view .right .description p{
+  font-size: 18px;
+  color: #696969;
+}
+
+
 .about {
   background-color: #FF6E47;
   position: relative;
@@ -2143,6 +2149,16 @@ table th, table td, th th, th td, td th, td td {
   font-size: 20px;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
+
+.about > .text > p{
+  display: block;
+  width: 100%;
+  height: auto;
+  color: white;
+  font-size: 20px;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
 
 /*
   * media

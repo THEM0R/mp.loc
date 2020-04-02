@@ -31,28 +31,34 @@
     <!-- tab end -->
     <!-- tab info -->
     <div class="tab info">
+
         <!-- item -->
         <div class="item phone">
             <i class="fas fa-phone-square"></i>
-            <h4><?=$configs['about']['phone1'];?></h4>
-            <h4><?=$configs['about']['phone2'];?></h4>
-            <span><?=$configs['about']['email'];?></span>
+            <h4><?=explode('|',$settings['phone'])[0];?></h4>
+            <h4><?=explode('|',$settings['phone'])[1];?></h4>
+            <span><?=$settings['mail'];?></span>
         </div>
         <!-- item end -->
+
         <!-- item -->
         <div class="item home">
-            <i class="fas fa-home"></i>
-            <h4><?=$configs['about']['street'];?></h4>
-            <span><?=$configs['about']['sity'];?></span>
+            <i class="fas fa-home"></i> <!-- fab fa-font-awesome-alt -->
+            <h4><?=explode('|',$settings['home'])[0];?></h4>
+            <span><?=explode('|',$settings['home'])[1];?></span>
         </div>
         <!-- item end -->
+
         <!-- item -->
         <div class="item clock">
-            <i class="fas fa-clock"></i>
-            <h4><?=$configs['about']['work'];?></h4>
-            <span><?=$configs['about']['outgoing'];?></span>
+            <i class="fas fa-clock"></i> <!-- far fa-clock -->
+            <h4><?=explode('|',$settings['work'])[0];?></h4>
+            <h4><?=explode('|',$settings['work'])[1];?></h4>
+            <span><?=explode('|',$settings['work'])[2];?></span>
         </div>
-        <!-- item end -->
+        <!-- info end -->
+
+
     </div>
     <!-- tab info end -->
 </div>

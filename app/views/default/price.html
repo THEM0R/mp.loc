@@ -1,49 +1,57 @@
 <!-- prais -->
 <style>
   table, th, td {
-    border: 1px solid black;
+    border: 2px solid white;
     border-collapse: collapse;
   }
+
   th, td {
     padding: 10px;
     text-align: left;
   }
 </style>
 
-<div class="about container category">
+<div class="about container category" style="padding-top: 30px">
 
-  <table style="width:50%">
-    <tr>
-      <th>Назва Металопрокату</th>
-      <th>Ціна за 1т з ПДВ</th>
-      <th>Вага 1 м.п</th>
-      <th>Ціна за 1 м.п</th>
-      <!--<th colspan="4">Ціна за 1 м.п</th>-->
-    </tr>
+  <h4 class="title">
+    <a href="/<?=$category['url'];?>"><?=$category['name'];?></a><i class="probel" style="color: white"> | </i><a class="">Прайс лист</a>
+  </h4>
 
-    <? foreach($prices as $price) : ?>
+  <div class="text">
 
-    <? //pr1($price)?>
+    <table style="width:100%">
+      <tr>
+        <th>Назва Металопрокату</th>
+        <th>Ціна за 1т з ПДВ</th>
+        <th>Вага 1 м.п</th>
+        <th>Ціна за 1 м.п</th>
+        <!--<th colspan="4">Ціна за 1 м.п</th>-->
+      </tr>
 
-    <tr>
-      <th colspan="4"><?=$price['header'];?></th>
-    </tr>
+      <? foreach($prices as $price) : ?>
 
-    <? foreach($price['price'] as $item) : ?>
-        <tr>
-          <td><?=$item['name'];?></td>
-          <td><?=$item['type'];?></td>
-          <td><?=$item['price_1'];?></td>
-          <td><?=$item['price_2'];?></td>
-        </tr>
-    <? endforeach; ?>
+      <? //pr1($price)?>
+
+      <tr>
+        <th colspan="4"><?=$price['header'];?></th>
+      </tr>
+
+      <? foreach($price['price'] as $item) : ?>
+      <tr>
+        <td><?=$item['name'];?></td>
+        <td><?=$item['type'];?></td>
+        <td><?=$item['price_1'];?></td>
+        <td><?=$item['price_2'];?></td>
+      </tr>
+      <? endforeach; ?>
 
 
+      <? endforeach; ?>
 
-    <? endforeach; ?>
 
+    </table>
 
-  </table>
+  </div>
 
 </div>
 <!-- prais -->

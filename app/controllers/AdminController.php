@@ -598,6 +598,7 @@ class AdminController extends AppController
       $name = (string)$_POST['name'];
       $url = (string)$_POST['url'];
       $description = (string)$_POST['description'];
+      $description_2 = (string)$_POST['description_2'];
 
 
       if (!empty($name)) {
@@ -607,6 +608,7 @@ class AdminController extends AppController
         $cat->name = $name;
         $cat->url = $url;
         $cat->description = $description;
+        $cat->description_2 = $description_2;
 
         if (\R::store($cat)) {
           $_SESSION['page_add']['success'] = 'Сторінка успішно оновлена!';

@@ -15,7 +15,7 @@ class ArticleController extends AppController
 
     $title = 'МЕТАЛІК-PLUS |' . $this->title;
 
-    $this->meta($title, $this->configs['about']['description'] . ' ' . $this->keywords());
+    $this->meta($title);
 
     $article = \R::getRow('SELECT * FROM _articles WHERE url = ? AND active = ?', [$route['url'], 1]);
 

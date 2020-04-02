@@ -18,7 +18,7 @@
 
               </div>
               <div class="overlay text-center">
-                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                <div class="delete disabled btn btn-danger" style="color: white; cursor: pointer">
                   <i class="far fa-trash-alt"></i> Видалити
                 </div>
                 <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
@@ -52,7 +52,7 @@
               </div>
 
               <div class="overlay text-center">
-                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                <div class="delete disabled btn btn-danger" style="color: white; cursor: pointer">
                   <i class="far fa-trash-alt"></i> Видалити
                 </div>
                 <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
@@ -82,6 +82,7 @@
       </div>
     </div>
     <!--./ poster -->
+    <? if($article['category'] == 1) : ?>
     <!-- drawing -->
     <div class="card col-12">
       <div class="card-body">
@@ -96,7 +97,7 @@
               </div>
 
               <div class="overlay text-center">
-                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                <div class="delete disabled btn btn-danger" style="color: white; cursor: pointer">
                   <i class="far fa-trash-alt"></i> Видалити
                 </div>
                 <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
@@ -131,7 +132,7 @@
               </div>
 
               <div class="overlay text-center">
-                <div class="delete btn btn-danger" style="color: white; cursor: pointer">
+                <div class="delete disabled btn btn-danger" style="color: white; cursor: pointer">
                   <i class="far fa-trash-alt"></i> Видалити
                 </div>
                 <div class="update btn btn-success ml-1" style="color: white; cursor: pointer">
@@ -200,7 +201,7 @@
                 <div class="view btn btn-primary" data-img="<?=URL_ART_SCR;?>/<?=$screen;?>" style="color: white; cursor: pointer">
                   <i class="fas fa-search"></i>
                 </div>
-                <div class="delete btn btn-danger ml-2" style="color: white; cursor: pointer">
+                <div class="delete disabled btn btn-danger ml-2" style="color: white; cursor: pointer">
                   <i class="far fa-trash-alt"></i>
                 </div>
               </div>
@@ -218,6 +219,7 @@
 
     </div>
     <!--./ screens -->
+    <? endif; ?>
 
   </div>
 
@@ -266,13 +268,16 @@
             <? endforeach; ?>
           </select>
         </div>
+        <? if($article['category'] == 1) : ?>
         <div class="form-group">
           <label for="inputDesc">Інформація про матеріал</label>
           <textarea
             name="description"
-            id="inputDesc" class="form-control" rows="4"
+            id="inputDesc" class="form-control textarea" rows="4"
             placeholder="Інформація"><?=$article['description'];?></textarea>
+
         </div>
+        <? endif; ?>
 
 
         <!-- Bootstrap Switch -->

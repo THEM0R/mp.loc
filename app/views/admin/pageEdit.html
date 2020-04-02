@@ -35,6 +35,22 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="inputDesc2">Інформація про Сторінку 2</label>
+            <div class="mb-3">
+                <textarea
+                  id="inputDesc2"
+                  name="description_2"
+                  class="textarea" placeholder="Інформація 2"
+                  style="width: 100%;
+                           height: 200px;
+                           font-size: 14px;
+                            line-height: 18px;
+                            border: 1px solid #dddddd;
+                             padding: 10px;"><?=$page['description_2'];?></textarea>
+            </div>
+          </div>
+
           <div class="form-group border-top pt-3">
             <a href="/admin/page" class="btn btn-secondary">Назад</a>
             <input type="submit" name="page_edit" value="Зберегти" class="btn btn-success float-right">

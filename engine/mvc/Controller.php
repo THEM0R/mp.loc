@@ -60,7 +60,7 @@ abstract class Controller
         'name' => 'Галерея'
       ],
       5 => [
-        'url' => 'about',
+        'url' => 'page/about',
         'name' => 'Про нас'
       ],
 //            5 => [
@@ -68,73 +68,10 @@ abstract class Controller
 //                'name' => 'Контакти'
 //            ],
     ],
-    'sity' => [
-
-      'Болехів',
-      'Бурштин',
-      'Галич',
-      'Городенка',
-      'Долина',
-      'Івано-Франківськ',
-      'Калуш',
-      'Коломия',
-      'Косів',
-      'Надвірна',
-      'Рогатин',
-      'Рожнятів',
-      'Тисмениця',
-      'Тлумач',
-      'Яремче',
-
-      'Сваричів',
-      'Перегінськ',
-    ],
-    'products' => [
-
-      'блок-хаус',
-      'Профнастил',
-      'Євро-брус',
-      'Металочерепиця',
-      'Штахетник',
-      'Лист',
-
-      'Арматура',
-      'Квадрат',
-      'Круг',
-      'Труби',
-      'Труби водогазопровідні',
-      'Швелер',
-      'Кутник',
-      'Дріт',
-      'Смуга',
-      'Кладочна Сітка',
-      'Профільні Труби',
-      'Оцинковані Вироби',
-
-    ],
 
     'about' => [
 
       'title' => 'ПРО НАС',
-
-      'description' => 'Приватне підприємство «Металік-Плюс»<br>
-        займається виробництвом:<br>
-        блок-хаусу<br>
-        евро-брусу<br>
-        металочерепиці<br>
-        профнастилу<br>
-        металоштахетника та аксесуарів для даху.<br>
-        Виконуємо комплектацію стандартних та індивідуальних розмірів.<br><br>
-        
-        Завод «Металік-Плюс» знаходиться в місті Калуш, Івано-Франківської області.
-        <br><br>Початок діяльності було покладено в 2007 році.<br>
-        
-        За 12 років свого існування фірма змогла завоювати довіру своїх клієнтів.
-        <br>«Металік-Плюс» знають і поважають в Україні!.<br><br>
-        
-        Швидкість виконання роботи, 
-        індивідуальний підхід та оптимальні ціни - це те,
-        <br>що робить продукцію заводу привабливою та вигідною для покупців!',
 
       'description2' => 'Приватне підприємство «Металік-Плюс»<br>
         займається виробництвом:<br>
@@ -156,17 +93,6 @@ abstract class Controller
         <br>що робить продукцію заводу привабливою та вигідною для покупців!',
 
       'iframe' => '<iframe src="https://www.youtube.com/embed/pWFv_BZ3gb0?autoplay=0&showinfo=0&controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-
-      'phone1' => '+380 976 432 475',
-      'phone2' => '+380 661 555 050',
-      'phone3' => '',
-
-      'email' => 'metalikplus@ukr.net',
-
-      'street' => 'Б.Хмельницького 77',
-      'sity' => 'м.Калуш',
-      'work' => 'Пн - Пт 8.30 - 17.00',
-      'outgoing' => 'Неділя Вихідний',
     ],
 
 
@@ -176,6 +102,8 @@ abstract class Controller
   public $categories = [];
   public $articles = [];
   public $settings = [];
+
+  public $menu = [];
 
 
   public function __construct($model, $route)
@@ -201,6 +129,9 @@ abstract class Controller
 
 
     $this->settings = \R::getRow('SELECT * FROM _settings');
+
+    $this->menu[0]['url'] = ['/'];
+    $this->menu[0]['name'] = ['Головна'];
 
     //pr1($this->categories);
 
@@ -228,6 +159,8 @@ abstract class Controller
 
     $categories = $this->categories;
     $articles = $this->articles;
+
+    $settings = $this->settings;
 
 
     $md = \R::getAll('SELECT * FROM _module');
@@ -268,7 +201,8 @@ abstract class Controller
       'controller',
       'modules',
       'categories',
-      'articles'
+      'articles',
+      'settings'
     );
 
     if ($this->vars) {
