@@ -52,9 +52,10 @@ Router::add('admin/widgets/add', 'admin:widgetsAdd','widgetsAdd');
 /*
  * prais
  */
-Router::add('admin/price/add', 'admin:priceAdd','priceAdd');
+Router::add('admin/price/(id:int)/add', 'admin:priceAdd','priceAdd');
 Router::add('admin/price/(category:int)', 'admin:price','price');
-Router::add('admin/price/(id:int)/save', 'admin:priceSave');
+Router::add('admin/price/(id:int)/edit', 'admin:priceEdit','priceEdit');
+Router::add('admin/price/(id:int)/delete', 'admin:priceDelete');
 
 /*
  * settings

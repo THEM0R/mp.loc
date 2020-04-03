@@ -105,6 +105,8 @@
     require $theme.'/modal/poster.html';?>
 <?php if(is_file($theme.'/modal/viewImage.html'))
     require $theme.'/modal/viewImage.html';?>
+<?php if(is_file($theme.'/modal/alert.html'))
+    require $theme.'/modal/alert.html';?>
 <!-- ./modal -->
 
 <!-- scroll up -->
@@ -170,6 +172,16 @@
 <!-- Bootstrap Switch -->
 <script src="<?=CONTENT_ADMIN;?>/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
+<script>
+  var screens_count = '<?=COUNT_ART_SCR;?>';
+
+  var category_assoc = '<?=json_encode($categories["assoc"]);?>';
+  var category_array = '<?=json_encode($categories["array"]);?>';
+  var article_array = '<?=json_encode($articles);?>';
+
+</script>
+
+
 <!-- themor -->
 <script src="<?=CONTENT_ADMIN;?>/themor/js/parameter.js"></script>
 <!--<script src="<?=CONTENT_ADMIN;?>/themor/js/functions.js"></script>-->
@@ -177,15 +189,15 @@
 <script src="<?=CONTENT_ADMIN;?>/themor/js/image.upload.js"></script>
 <script src="<?=CONTENT_ADMIN;?>/themor/js/screens.upload.js"></script>
 <script src="<?=CONTENT_ADMIN;?>/themor/js/drawing.upload.js"></script>
+<script src="<?=CONTENT_ADMIN;?>/themor/js/price.js"></script>
 <!--<script src="<?=CONTENT_ADMIN;?>/themor/js/poster.upload.js"></script>-->
 <!-- themor -->
 
-<script>
-  var screens_count = '<?=COUNT_ART_SCR;?>';
-</script>
+
 
 <script>
   $(document).ready(function () {
+
 
     $(window).scroll(function () {
       if ($(this).scrollTop() > 100) {

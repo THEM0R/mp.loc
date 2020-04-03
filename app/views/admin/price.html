@@ -26,7 +26,7 @@
     <? endforeach;?>
 
 
-    <a class="btn btn-primary btn-sm float-right" href="/admin/price/add">
+    <a class="btn btn-primary btn-sm float-right" href="/admin/price/<?=$route['category'];?>/add">
       <i class="fas fa-folder"></i> Добавити Прайс лист
     </a>
   </div>
@@ -34,7 +34,7 @@
 
 <!-- Main content -->
 <? foreach($prices as $price): ?>
-<div class="card">
+<div class="card price">
   <div class="card-header">
     <!--    <a class="btn btn-primary btn-sm" href="/admin/price/add">-->
     <!--      <i class="fas fa-folder"></i> Добавити-->
@@ -44,57 +44,71 @@
   </div>
   <div class="card-body p-0" style="display: block;">
     <table class="table table-striped projects">
-
+      <thead>
+      <? if($price['category'] == 1) : ?>
+      <tr>
+        <th style="width: 20%">
+          Назва
+        </th>
+        <th style="width: 15%">
+          Тип
+        </th>
+        <th style="width: 10%">
+          Од. вимір.
+        </th>
+        <th style="width: 5%">
+          ціна
+        </th>
+      </tr>
+      <? elseif($price['category'] == 2) : ?>
+      <tr>
+        <th style="width: 20%">
+          Назва металопрокату
+        </th>
+        <th style="width: 15%">
+          Ціна за 1т. з ПДВ
+        </th>
+        <th style="width: 10%">
+          Вага 1м.п.
+        </th>
+        <th style="width: 5%">
+          Ціна за 1м.п.
+        </th>
+      </tr>
+      <? endif; ?>
+      </thead>
 
       <? foreach($price['price'] as $pric): ?>
-      <form action="/admin/price/<?=$pric['id']?>/save" method="post">
-        <tr>
-          <td><?=$pric['id']?><?=$pric['name']?>
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              name="header"
-              value="<?=$pric['header']?>">
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              name="type"
-              value="<?=$pric['type']?>">
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              name="price_1"
-              value="<?=$pric['price_1']?>">
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              name="price_2"
-              value="<?=$pric['price_2']?>">
-          </td>
-          <td>
-            <button type="submit" name="save-price" class="btn btn-info btn-sm">
-              <i class="fas fa-save"></i>
-              Зберегти
-            </button>
-            <!-- href="/admin/price/<?=$pric['id']?>/delete" -->
-            <a class="btn btn-danger btn-sm" href="#">
-              <i class="fas fa-trash"></i>
-              <!-- Видалити -->
-            </a>
-          </td>
-        </tr>
-      </form>
+
+      <tr>
+        <td><?=$pric['name']?></td>
+        <td><?=$pric['type']?></td>
+        <td><?=$pric['price_1']?></td>
+        <td><?=$pric['price_2']?></td>
+
+      </tr>
       <? endforeach; ?>
       </tbody>
     </table>
+  </div>
+  <div class="card-footer">
+    <div class="text-right">
+      <a href="/<?=$categories['assoc'][$price['category']]['url'];?>/<?=$price['url'];?>"
+         target="_blank"
+         class="view btn btn-info btn-sm">
+        <i class="fas fa-window-restore"></i>
+        Переглянути
+      </a>
+      <a href="/admin/price/<?=$price['id'];?>/edit" class="edit btn btn-success btn-sm">
+        <i class="fas fa-edit"></i>
+        Редагувати
+      </a>
+      <!-- href="/admin/price/<?=$pric['id']?>/delete" -->
+      <button data-id="<?=$price['id'];?>" class="delete btn btn-danger btn-sm disabled">
+        <i class="fas fa-trash"></i>
+        Видалити
+      </button>
+    </div>
   </div>
 </div>
 <? endforeach; ?>

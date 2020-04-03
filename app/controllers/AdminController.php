@@ -756,13 +756,14 @@ class AdminController extends AppController
 
         $price->category = trim($_POST['category']);
         $price->article = trim($_POST['article']);
+        $price->header = trim($_POST['header']);
         $price->name = trim($_POST['name']);
         $price->type = trim($_POST['type']);
         $price->price_1 = trim($_POST['price_1']);
         $price->price_2 = trim($_POST['price_2']);
 
         if (\R::store($price)) {
-          App::redirect('/admin');
+          App::redirect('/admin/price/' . $route['id']);
         }
       }
 
@@ -789,6 +790,89 @@ class AdminController extends AppController
 
 
     $this->render(compact('title', 'category', 'article'));
+  }
+
+  public function priceEditAction($model, $route)
+  {
+
+    if (App::is_Post()) {
+      if (isset($_POST['edit-price']) and is_array($_POST)) {
+        foreach ($_POST as $item) {
+          if ($item != 'Оновити') {
+            $price = \R::load('_price', $item['id']);
+            $price->category = trim($item['category']);
+            $price->article = trim($item['article']);
+            $price->header = trim($item['header']);
+            $price->name = trim($item['name']);
+            $price->type = trim($item['type']);
+            $price->price_1 = trim($item['price_1']);
+            $price->price_2 = trim($item['price_2']);
+
+            \R::store($price);
+          }
+        }
+        App::redirect();
+      }
+    }
+
+
+    $title = 'Редагувати Прайс';
+
+    $this->meta($title . $this->title);
+
+    $this->theme = 'admin';
+
+
+    $category = [];
+    foreach (\R::getAll('SELECT * FROM _category') as $cat) {
+      $category[$cat['id']] = $cat;
+    }
+
+    $article = [];
+
+    foreach (\R::getAll('SELECT * FROM _articles') as $cat) {
+      $article[$cat['id']] = $cat;
+    }
+
+    $price = [];
+
+    foreach (\R::getAll('SELECT * FROM _price WHERE article = ?', [$route['id']]) as $cat) {
+      $price[$cat['id']] = $cat;
+    }
+
+    $category_id = $category[$article[$route['id']]['category']]['id'];
+    $article_name = $article[$route['id']]['name'];
+    $article_id = $article[$route['id']]['id'];
+
+    $this->render(compact(
+      'title',
+      'category',
+      'category_id',
+      'article',
+      'article_name',
+      'article_id',
+      'price'
+    ));
+
+  }
+
+  public function priceDeleteAction($model, $route)
+  {
+
+    if (App::is_Post()) {
+
+      $id = (int)$_POST['id'];
+      $article = (int)$_POST['article'];
+      if ($id != '') {
+        // code
+
+        \R::trash('_price', $id);
+        exit(json_encode(['type' => 'success', 'url' => '/admin/price/' . $article . '/edit']));
+
+        //App::redirect('/admin/price/'.$article.'/edit');
+
+      }
+    }
   }
 
   public function priceSaveAction($model, $route)
@@ -822,8 +906,8 @@ class AdminController extends AppController
   public function settingsAction($model, $route)
   {
 
-    if(App::is_Post()){
-      if(isset($_POST['settings-save'])){
+    if (App::is_Post()) {
+      if (isset($_POST['settings-save'])) {
 
         $id = trim($_POST['id']);
         $sitename = trim($_POST['sitename']);
@@ -836,7 +920,7 @@ class AdminController extends AppController
         $description = trim($_POST['meta_description']);
         $meta_title = trim($_POST['meta_title']);
 
-        $seting = \R::load('_settings',$id);
+        $seting = \R::load('_settings', $id);
 
         $seting->sitename = $sitename;
         $seting->phone = $phone;
@@ -848,7 +932,7 @@ class AdminController extends AppController
         $seting->meta_keywords_product = $hashtag_product;
         $seting->meta_description = $description;
 
-        if( \R::store($seting) ){
+        if (\R::store($seting)) {
 
           $_SESSION['settings']['success'] = 'Настройки успішно збережені!';
           App::redirect();
@@ -878,20 +962,20 @@ class AdminController extends AppController
   public function galleryAction($model, $route)
   {
 
-    if(App::is_Post()){
+    if (App::is_Post()) {
 
-      if(isset($_POST['settings-save'])){
+      if (isset($_POST['settings-save'])) {
 
         $id = trim($_POST['id']);
         $sitename = trim($_POST['sitename']);
         $phone = trim($_POST['phone']);
 
-        $seting = \R::load('_settings',$id);
+        $seting = \R::load('_settings', $id);
 
         $seting->sitename = $sitename;
         $seting->phone = $phone;
 
-        if( \R::store($seting) ){
+        if (\R::store($seting)) {
 
           $_SESSION['settings']['success'] = 'Настройки успішно збережені!';
           App::redirect();
@@ -914,10 +998,6 @@ class AdminController extends AppController
       'images'
     ));
   }
-
-
-
-
 
 
 }
